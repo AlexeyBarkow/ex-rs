@@ -23,25 +23,25 @@ body {
 	height:0.32em;
 }
 
-.fb {
+.facebook {
 	top:1.82em;
 	left:1.47em;
 	z-index:2;
 }
-.pr {
+.printerest {
 	top:1.98em;
 	left:0.95em;
 	z-index:2;
 }
 
-.tb {
-	top:1.4em;
-	left:1.87em;
+.tumbler {
+	top:1.47em;
+	left:1.82em;
 	z-index:2;
 	
 }
 
-.tw {
+.twitter {
 	top:0.23em;
 	left:0.23em;
 	z-index:2;
@@ -69,12 +69,42 @@ body {
 	margin: auto;
 	
 }
-.central_block {
+
+.central div {
 	position: absolute;
-	margin: auto;
 	margin-top:1.7em;
 	width:4.6em;
 	height:6.1em;
+}
+
+.notification {
+	width:330px;
+	height:131px;
+	background-color:rgba(0, 0, 0, 0.5);
+	position:fixed;
+	right:0px;
+	bottom:100px;
+	display:block;
+	font-size:12px;
+}
+
+.float {
+	float:left;
+}
+.notification img {
+	width: 86px;
+	height:86px;
+	margin-top:24px;
+	margin-left:24px;
+	margin-right:16px;
+	
+}
+
+.notification div {
+	margin-top:20px;
+	width:180px;
+	color:#ffffff;
+	font-family:Tahoma;
 }
 /*
 * {
