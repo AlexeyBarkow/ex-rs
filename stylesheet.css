@@ -50,6 +50,8 @@ body {
 
 .red {
 	background-color:#d8464c;
+	left:0em;
+	right:0em;
 }
 .navy-blue {
 	background-color:#364f86;
@@ -63,10 +65,10 @@ body {
 }
 
 .central {
-	width:6em;
-	height:6em;
+	width:5em;
+	margin-left:auto;
+	margin-right:auto;
 	position:relative;
-	margin: auto;
 	
 }
 
@@ -85,7 +87,7 @@ body {
 	right:0px;
 	bottom:100px;
 	display:block;
-	font-size:12px;
+	font-size:0.12em;
 }
 
 .float {
