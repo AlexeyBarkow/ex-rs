@@ -2,7 +2,7 @@ body {
 	font-size:100px;
 	height:2000px;
 }
-.social {
+#social {
 	text-align:center;
 	width:2em;
 	height:2em;
@@ -103,7 +103,7 @@ body {
 	top:0em;
 }
 
-.notification {
+#notification {
 	width:330px;
 	height:131px;
 	background-color:rgba(0, 0, 0, 0.5);
@@ -116,7 +116,7 @@ body {
 .float {
 	float:left;
 }
-.notification img {
+#notification img {
 	width: 86px;
 	height:86px;
 	margin-top:24px;
@@ -127,11 +127,16 @@ body {
 	*/
 }
 
-.notification div {
+#notification div {
 	margin-top:20px;
 	width:180px;
 	color:#ffffff;
 	font-family:Tahoma;
+}
+
+.small-paragraph {
+	margin-bottom:0px;
+	margin-top:0px;
 }
 /*
 * {
