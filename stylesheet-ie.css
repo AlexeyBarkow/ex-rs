@@ -20,6 +20,7 @@ body {
 	position:absolute;
 	top:-3px;
 	left:-3px;
+	behavior: url(libs/PIE.htc);
 }
 .icon {
 	position:absolute;
@@ -35,20 +36,24 @@ body {
 
 
 
-.deg90 {
-	transform:rotate(90deg) translate(1em) rotate(-90deg);
+.deg90 { 
+   top: 200px;
 }
 
 .deg30 {
-	transform:rotate(30deg) translate(1em) rotate(-30deg);
+	left: 170px; 
+	top: 97px;
+   
 } 
 
 .deg60 {
-	transform:rotate(60deg) translate(1em) rotate(-60deg);
+   left: 97px; 
+   top: 170px;
 }
 
 .deg225 {
-	transform:rotate(225deg) translate(1em) rotate(-225deg);
+	left: -140px; 
+	top: -140px;
 }
 /*
 .printerest {
@@ -108,11 +113,12 @@ body {
 .notification {
 	width:330px;
 	height:131px;	
-	background-color:rgba(0, 0, 0, 0.5);
+	-pie-background:rgba(0, 0, 0, 0.5);
 	position:fixed;
 	right:0px;
 	bottom:100px;
 	font-size:0.12em;
+	behavior: url(libs/PIE.htc);
 }
 
 .inline-block {
@@ -149,4 +155,4 @@ p {
 * {
 	border:1px solid #000000
 }
-*/
+*/	
