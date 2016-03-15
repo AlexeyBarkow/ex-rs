@@ -89,17 +89,17 @@ body {
 	height:6.1em;
 }
 
-.central-block div:first-child {
+.central-block .top {
 	background-color:#0089b2;
 	left:0.1em;
 	top:0.1em;
 }
-.central-block div:nth-child(2) {
+.central-block .middle {
 	background-color:#364f86;
 	left:0.05em;
 	top:0.05em;
 }
-.central-block div:last-child {
+.central-block .bot {
 	background-color:#d8464c;
 	left:0em;
 	top:0em;
