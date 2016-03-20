@@ -1,0 +1,16 @@
+
+.central {
+	width: 	600px;
+	/*height: 400px;*/
+	background-color: #716558;
+	color: #ffffff;
+
+	padding:15px;
+	box-sizing: border-box;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
