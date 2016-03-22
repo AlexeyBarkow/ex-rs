@@ -67,6 +67,10 @@ a {
 		color: #fff;
 	}
 
+.container {
+	min-height: 100%;
+}
+
 .navigation-area {
 	box-sizing: border-box;
 	width: 224px;	
@@ -104,6 +108,7 @@ nav a:hover * {
 	color: #000;
 }
 
+
 .main {
 	width: 550px;
 	padding: 10px;
@@ -132,16 +137,16 @@ nav a:hover * {
 	display: inline-block;
 	margin-bottom: -99999px;
 	padding-bottom: 99999px;
+	height: 100%;
 }
 
 .footer	{
-	box-sizing: border-box;
-    width: 796px;
-	height: 14px;
-	position: fixed;
-    bottom: 0;
-    margin: auto;
-    padding: 10px; 
-    
+    clear: both;
+	position: absolute;
+	margin: auto;
+	bottom: 0;
+	width: 796px;
+	height: 25px;
+	
 	background-color: #383838;
 }
