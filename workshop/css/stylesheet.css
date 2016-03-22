@@ -69,6 +69,7 @@ a {
 
 .container {
 	min-height: 100%;
+	padding-bottom: 100px;
 }
 
 .navigation-area {
@@ -121,14 +122,18 @@ nav a:hover * {
 		margin-top: 15px;
 	}
 
-	.main * {
-		margin-top: 5px;
-		margin-bottom: 5px;
+	.main p {
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 
 	.main li {
 		margin-top: 4px;
 		margin-bottom: 3px;
+	}
+
+	.main ul {
+		padding-bottom: 15px;
 	}
 
 .main, .navigation-area {
@@ -143,10 +148,10 @@ nav a:hover * {
 .footer	{
     clear: both;
 	position: absolute;
-	margin: auto;
 	bottom: 0;
 	width: 796px;
 	height: 25px;
-	
+
+
 	background-color: #383838;
 }
