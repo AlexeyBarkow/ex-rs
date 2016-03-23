@@ -127,7 +127,7 @@ nav a:hover * {
 	}
 
 	.main h3 {
-		margin: 8px 0 15px 2px;
+		margin: 9px 0 15px 2px;
 		
 		font-size: 16px;
     	font-weight:normal;
@@ -140,9 +140,12 @@ nav a:hover * {
 		line-height: 16px; 
 	}
 
+	.main ul {
+		list-style-image: url(../img/bullet.png);
+	}
+	
 	.main li {
-		margin-top: 4px;
-		margin-bottom: 3px;
+		margin: 4px -3px 3px;
 	}
 
 
