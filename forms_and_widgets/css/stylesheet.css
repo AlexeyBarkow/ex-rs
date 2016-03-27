@@ -1,0 +1,236 @@
+@font-face {
+	font-family: 'Gotham-Book';
+	src: url('../fonts/GothamSSm-Book.ttf');
+}
+
+@font-face {
+	font-family: 'Gotham-Light';
+	src: url('../fonts/GothamSSm-Light.ttf');
+}
+
+@font-face {
+	font-family: 'Gotham-Medium';
+	src: url('../fonts/GothamSSm-Medium.ttf');
+}
+
+@font-face {
+	font-family: 'Font-Awesome';
+	src: url('../fonts/FontAwesome.otf');
+}
+
+body {
+	font-family: 'Gotham-Light', sans-serif;
+	background-color: #d9d9d9;
+}
+
+body * {
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+
+.widget {
+	margin:20px;
+
+	border-radius: 5px;
+	border: 1px solid #afafaf;
+	overflow: hidden;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+	background-color: #ffffff;
+}
+
+	.widget .outline-button {
+		height: 58px;
+		/*border-radius: 2px;*/
+		box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+		background-color: #fb6362;
+		color: #fff;
+		border: none;
+		text-align: center;
+		text-decoration: none;
+		font-family: 'Gotham-Book';
+		font-size: 16px;
+		letter-spacing: 0px;
+	}
+	.widget .outline-button:hover {
+		background-color: #fb9f62;
+	}
+
+
+.calendar {
+	width: 346px;
+
+}
+	/*.calendar .header * {
+		display: inline;
+	}*/
+
+	.calendar h4 {
+
+		width: 100%;
+		height: 64px;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 23px 36px 23px 36px;
+
+
+		text-align: center;
+		letter-spacing: 0.75px;
+		font-weight: normal;
+
+		background-color: #404a58;
+		color: #fff;
+	}
+
+		.calendar a {
+			color: #fff;
+		}
+
+		.calendar a:hover {
+			background-color: #666;
+		}
+
+		.calendar a:first-child {
+			float: left;
+		}
+
+		.calendar a:last-child {
+			float: right;
+		}
+
+	.calendar-table {
+		position: relative;
+		margin: 10px auto;
+
+		font-size: 14px;
+	}
+
+		.calendar-table th, tr {
+			width: 39px;
+			height: 39px;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		.calendar-table td {
+			color: #c5c5c5;
+		}
+
+		.calendar-table .current {
+			color: #000;
+		}
+
+		.calendar-table .gala {
+			font-weight: bold;
+			color: #fb6362	;
+		}
+
+		.calendar-table .selected {
+			font-weight: bold;
+			border-radius: 50%;
+			color: #fff;
+			background-color: #fb6362;
+		}
+
+	.calendar button {
+		width: 298px;
+		margin: 22px auto 26px auto;
+		display: block;
+
+	}
+
+.booking {
+	width: 346px;
+}
+
+	.booking figure {
+		margin: 0;
+		width: 100%;
+		position: relative;
+	}
+
+	.booking figure img {
+		width: 100%;
+	}
+
+	
+	.booking figcaption {
+		bottom: 0;
+		left: 0;
+		position: absolute; 
+		/*background: rgba(0,0,0,0.75); */
+		color: white; 
+		padding: 0px 25px 20px; 
+	}
+	
+	.booking h2 {
+		margin: 0 -3px 2px;
+	}
+
+	.location {
+		margin: 0;
+		font-size: 14px;
+	}
+
+		.location i {
+			font-size: 18px;
+			margin-right: 5px;
+		}
+
+	/*.location:before {
+		font-family: 'Font-Awesome';
+		content: '\f041';
+		font-size: 18px;
+		margin-right: 5px;
+	} */
+
+	.booking label {
+		font-size: 14px;
+	}
+
+	.booking dd {
+		margin: 0;
+		width: 100%;
+	}
+
+	.booking dl {
+		padding: 25px;
+	}
+
+	.calendar-field {
+		width: 100%;
+		height: 45px;
+		border-width: 1px;
+		border-radius: 3px;
+		font-size: 16px;
+		padding: 11px;
+
+		background-color: #f4f4f4;
+		color: #bbbbbb;
+	}
+
+
+	.calendar-button {
+    	margin-left: -40px;
+		height: 37px;
+		width: 37px;
+		border-radius: 2px;
+		/*box-shadow: 0 1px 2px rgba(0,0,0,0.5);*/
+		background-color: #414b59;
+		color: #ffffff;
+		border: none;
+		text-align: center;
+		text-decoration: none;
+		font-size: 16px;
+	}
+
+	.calendar-button:hover {
+		background-color: #5a6779;
+	}
+	/*.calendar-button:before {
+		font-family: 'Font-Awesome';
+		content: '\f073';
+		color: #000;
+	}*/
+
+

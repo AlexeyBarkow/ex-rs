@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="css/stylesheet.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="calendar widget"> 
+			
+			<h4><a href="#">&lt;</a><span>May 2014</span><a href="#">&gt;</a></h4>
+			
+		
+		<div>
+			<table class="calendar-table">
+				<tr>
+					<th>Sun</th>
+					<th>Mon</th>
+					<th>Tue</th>
+					<th>Wed</th>
+					<th>Thu</th>
+					<th>Fri</th>
+					<th>Sat</th>
+				</tr>
+				<tr>
+					<td>29</td>
+					<td>30</td>
+					<td class="current">1</td>
+					<td class="current">2</td>
+					<td class="current selected">3</td>
+					<td class="current">4</td>
+					<td class="current">5</td>
+				</tr>
+				<tr>
+					<td class="current">6</td>
+					<td class="current gala">7</td>
+					<td class="current">8</td>
+					<td class="current">9</td>
+					<td class="current">10</td>
+					<td class="current">11</td>
+					<td class="current">12</td>
+				</tr>
+				<tr>
+					<td class="current">13</td>
+					<td class="current">14</td>
+					<td class="current">15</td>
+					<td class="current">16</td>
+					<td class="current">17</td>
+					<td class="current">18</td>
+					<td class="current">19</td>
+				</tr>
+				<tr>
+					<td class="current">20</td>
+					<td class="current">21</td>
+					<td class="current">22</td>
+					<td class="current gala">23</td>
+					<td class="current">24</td>
+					<td class="current">25</td>
+					<td class="current">26</td>
+				</tr>
+				<tr>
+					<td class="current">27</td>
+					<td class="current">28</td>
+					<td class="current">29</td>
+					<td class="current">30</td>
+					<td>1</td>
+					<td>2</td>
+					<td>3</td>
+				</tr>
+			</table>
+			<button class="outline-button">ADD EVENT</button>
+		</div>
+	</div>
+
+	<div class="booking widget">
+		<figure>
+			<img src="img/eiphel.png" alt="eiphel's tower">
+			<figcaption>
+				<h2>Hotel Relais</h2>
+				<p class="location"><i class="fa fa-map-marker"></i>Paris, France</p>
+			</figcaption>
+		</figure>
+		<dl>
+			<dt><label for="check-in">Check in</label></dt>
+			<dd><input id="check-in" class="calendar-field" type="text" disabled value="9 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button></dd>
+			<dt><label for="check-out">Check out</label></dt>
+			<dd><input id="check-out" class="calendar-field" type="text" disabled value="16 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button></dd>
+			<dd><input id="flexible-dates" type="checkbox"></dd>
+			<dt><label for="flexible-dates">Flexible dates</label></dt>
+			<dt><label for="adults">Adults</label></dt>
+			<dd><select id="adults">
+				<option value="2">2</option>
+			</select></dd>
+			<dt><label for="children">Children</label></dt>
+			<dd><select id="children">
+				<option value="1">1</option>
+			</select></dd>
+		</dl>
+
+	</div>
+</body>
+</html>
