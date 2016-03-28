@@ -47,8 +47,9 @@ body {
 	align-items: stretch;
 }
 
- * {
+* {
 	box-sizing: border-box;
+	text-decoration: none;
 }
 
 .header {
@@ -61,23 +62,20 @@ body {
 	
 }
 
-	.header * {
+/*	.header * {
 		text-decoration: none;
-	}
+	}*/
 	
-	
-	
-	.logo-block {
-
-	}
 
 		.logo-block h2 {
 			margin-left: 10px;
+			display: inline-block;
+
 			font-family: Helvetica, sans-serif;
-			color: #030303;
 			font-size: 40px;
 			font-weight: normal;
-			display: inline-block;
+
+			color: #030303;
 		}
 
 	.navigation-area {
@@ -85,15 +83,17 @@ body {
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+
+			color: #000;
 	}
 
-		input[type=checkbox] {
+		.navigation-area input[type=checkbox] {
 			position: absolute;
 			top: -9999px;
 			left: -9999px;
 		}
 
-		label { 
+		.navigation-area label { 
 			display:none;
 			cursor: pointer;
 			user-select:none;
@@ -104,9 +104,6 @@ body {
 
 		}
 
-		.navigation-area a {
-			color: #000;
-		}
 
 		.navigation-area a:before {
 			vertical-align: middle;
@@ -120,7 +117,6 @@ body {
 
 		.navigation-area li {
 			display: inline;
-
 		}
 
 .bold {
@@ -155,8 +151,6 @@ body {
 	}
 
 	.panda {
-		/*width: 632px;*/
-		/*height: 364px;*/
 		margin: 0;
 
 		display: flex;
@@ -211,31 +205,34 @@ body {
 	
 
 .read-more {
-	float: right;
+	height: 24px;
+	padding: 0;
 	margin-right: 10px;
 	margin-bottom: 20px;
-	background-color: #faa61a;
-	padding: 0;
+	float: right;
+
 	border: none;
+
 	font-size: 14px;
-	height: 24px;
+
+	background-color: #faa61a;
 }
 
 	.read-more span {
-	height: 24px;
-		box-sizing: border-box;	
+		height: 24px;
 		padding: 4px;
+		/*box-sizing: border-box;	*/
 		color: #fff;
 		background-color: #000;
 	}
 
 	.read-more:after {
+		content: '\2794';
 		height: 24px;
 		width: 20px;
-		content: '\2794';
+		padding-top: 2px;
 		vertical-align: middle;
 		text-align: center;
-		padding-top: 2px;
 		display: inline-block;
 
 		font-size: 14px;	
@@ -243,14 +240,14 @@ body {
 
 
 .big-label {
-	background-color: #fff;
 	padding: 2px;
 	font-size: 20px;
+	background-color: #fff;
 }
 
 .label {
-	background-color: #fff;
 	padding: 2px;
+	background-color: #fff;
 }
 
 .bebas {
@@ -271,8 +268,8 @@ body {
 }
 
 .description {
-	color: #fff;
 	font-size: 20px;
+	color: #fff;
 }
 
 .tiny {
@@ -294,26 +291,18 @@ body {
     justify-content: space-around;
     align-content: flex-start;
     align-items: stretch;
-
-    /*
-	display: flex;
-	flex-wrap: wrap;
-    justify-content: space-around;
-    align-content: flex-start;
-	flex-direction: row;
-	align-items: center;*/
 }
+
 	.content-container > div {
 		border: 30px solid #cdcdcd;
 		border-image: url('../img/border.png') 40 repeat;
-		font-size: 18px;
 		border-left-width: 0px;
+		font-size: 18px;
 	}
 
 
 	.content-container ul { 
 		list-style-type: none;
-		/*margin-left: 0;*/
 		font-size: 18px;
 		padding: 0;
 	}
@@ -333,21 +322,22 @@ body {
 	}
 
 		.services li {
-				
 				margin: 15px 10px;
 			}
 
 		.services li:before {
 			height: 24px;
 			width: 20px;
-			content: '\2794';
-			text-align: center;
-			box-sizing: border-box;
 			margin-right: 10px;
 			padding-top: 2px;
+			content: '\2794';
+			text-align: center;
+			/*box-sizing: border-box;*/
 			display: inline-block;
-			background-color: #faa61a;
+
 			font-size: 14px;
+
+			background-color: #faa61a;
 				
 		}
 
@@ -355,8 +345,6 @@ body {
 		width: 450px;
 		flex-grow: 4;
     	flex-shrink: 0;
-
-/*text-size-adjust: none;*/
 	}
 
 	.contacts {
@@ -365,9 +353,10 @@ body {
 		flex-grow: 4;
     	flex-shrink: 0;
 	}
+
 		.contacts li:before {
-			display: inline-block;
 			width: 40px;
+			display: inline-block;
 
 			font-family: 'FontAwesome';	
 			font-size: 30px;
@@ -418,8 +407,8 @@ body {
 	
 	.clients h4 {
 		width: 100%;
-		font-size: 18px;
 		margin-left: 25px;
+		font-size: 18px;
 	}
 
 	.at-t {
@@ -459,8 +448,8 @@ body {
 	}
 
 .footer {
-	margin-top: 40px;
 	width: 100%;
+	margin-top: 40px;
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
@@ -468,7 +457,6 @@ body {
 
 }
 	.footer * {
-		text-decoration: none;
 	}
 
 
@@ -580,9 +568,6 @@ body {
 		font-size: 60px;
 	}
 
-	.panda {
-	}
-
 	.panda .first-img {
 		width: 100%;
 	}
@@ -639,22 +624,23 @@ body {
 		display: block;
 	}
 
-    label {
-      position:relative;
-      display:block;
-      width:100%;
+    .navigation-area label {
       min-height:40px;
+      width:100%;
       padding: 5px;
       margin-bottom: 10px;
+      position:relative;
+      display:block;
+      
       background-color: #faa61a;
     }	
 
-    label:before {
+    .navigation-area label:before {
       content:"\2261";
       font-size:30px;
     }
         
-    input[type=checkbox]:checked ~ ul {
+    .navigation-area input[type=checkbox]:checked ~ ul {
       display:block;
     }
 }
