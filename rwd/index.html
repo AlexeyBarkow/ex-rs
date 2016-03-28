@@ -33,7 +33,11 @@
 			<h1>LIPSUM MEDIA PRESENTATION</h1>
 			<figure class="panda">
 				<div class="img-container">
-					<img src="img/panda.png" alt="panda" class="first-img">
+					<!-- <img src="img/panda-big.jpg" alt="panda" class="first-img"> -->
+					<picture  >
+	                    <source srcset="img/panda-small.jpg" media="(max-width: 420px)">
+	                    <source srcset="img/panda-big.jpg"><img srcset="images/panda-small.jpg" alt="panda" class="first-img">
+	                </picture>
 					<img src="img/play.png" alt="play" class="second-img"/> 	
 				</div>
 				<figcaption class="short-description">

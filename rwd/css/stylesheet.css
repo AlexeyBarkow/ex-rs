@@ -170,11 +170,10 @@ body {
 			position: relative;
 		}
 		
-		/*.first-img {
-			width: 364px;
-			height: auto;
+		.first-img {
+			vertical-align: middle;
 		}
-*/
+
 		.second-img {
 			position: absolute;
 			top: 50%;
