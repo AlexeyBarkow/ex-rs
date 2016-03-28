@@ -512,14 +512,14 @@ body {
 
 
 
-@media all and (max-width: 1030px) {
+@media all and (max-width: 1040px) {
 
 	.main h1 {
 		font-size: 120px;
 	}
 }
 
-@media all and (max-width: 1000px) {
+@media all and (max-width: 1010px) {
 	.main {
 		padding: 0 0 20px 0;
 		justify-content: center;
@@ -538,7 +538,7 @@ body {
 
 @media all and (max-width: 962px) {
 
-	.header, .main, .content-container{
+	.header, /*.main,*/ .content-container{
 		flex-direction: column;
 		align-items: center;
 	}
@@ -576,7 +576,7 @@ body {
 }
 
 
-@media all and (max-width: 790px) {
+@media all and (max-width: 800px) {
 	.main h1 {
 		font-size: 60px;
 	}
@@ -613,6 +613,15 @@ body {
 	.project-description img {
 		float: none;
 		max-width: 100%;
+	}
+
+	.content-container > div {
+		border-left-width: 0;
+		border-right-width: 0;
+	}
+
+	.content-container > div:last-child {
+		border-right-width: 0;
 	}
 }
 
