@@ -69,7 +69,7 @@
 					<td>3</td>
 				</tr>
 			</table>
-			<button class="outline-button">ADD EVENT</button>
+			<button class="outline-button block">ADD EVENT</button>
 		</div>
 	</div>
 
@@ -83,20 +83,36 @@
 		</figure>
 		<dl>
 			<dt><label for="check-in">Check in</label></dt>
-			<dd><input id="check-in" class="calendar-field" type="text" disabled value="9 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button></dd>
+			<dd><input id="check-in" class="calendar-field text" type="text"  value="9 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button></dd>
 			<dt><label for="check-out">Check out</label></dt>
-			<dd><input id="check-out" class="calendar-field" type="text" disabled value="16 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button></dd>
-			<dd><input id="flexible-dates" type="checkbox"></dd>
-			<dt><label for="flexible-dates">Flexible dates</label></dt>
-			<dt><label for="adults">Adults</label></dt>
-			<dd><select id="adults">
-				<option value="2">2</option>
-			</select></dd>
-			<dt><label for="children">Children</label></dt>
-			<dd><select id="children">
-				<option value="1">1</option>
-			</select></dd>
+			<dd><input id="check-out" class="calendar-field text" type="text"  value="16 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button></dd>
+			<dd>
+				<div class="checkbox-block">
+					<input id="flexible-dates" type="checkbox" checked>
+					<label for="flexible-dates" class="checkboxer">Flexible dates</label>
+				</div>
+			</dd>
+			<dd style="display: inline">
+				<label for="adults" class="block">Adults</label>
+				<div class="block">
+					<select id="children" class="text inline-block">
+						<option value="1">1</option>
+					</select>
+					<div class="button-imitator inline-block"><i class="fa fa-caret-down"></i></div>
+				</div>
+
+			</dd>
+			<dd style="display: inline">
+				<label for="children" class="block">Children</label>
+				<div>
+					<select id="children" class="text inline-block">
+						<option value="1">1</option>
+					</select>
+					<div class="button-imitator inline-block"><i class="fa fa-caret-down"></i></div>
+				</div>
+			</dd>
 		</dl>
+		<button class="outline-button block"><i class="fa fa-search"></i>SEARCH ROOM</button>
 
 	</div>
 </body>

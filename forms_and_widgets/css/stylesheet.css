@@ -29,6 +29,8 @@ body * {
 }
 
 
+
+
 .widget {
 	margin:20px;
 
@@ -43,6 +45,7 @@ body * {
 		height: 58px;
 		/*border-radius: 2px;*/
 		box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+		border-radius: 2px;
 		background-color: #fb6362;
 		color: #fff;
 		border: none;
@@ -52,10 +55,84 @@ body * {
 		font-size: 16px;
 		letter-spacing: 0px;
 	}
+
 	.widget .outline-button:hover {
 		background-color: #fb9f62;
 	}
 
+	.widget .text/*input[type=text]*/ {
+		border-width: 1px;
+		border-radius: 2px;
+		font-size: 15px;
+		padding: 11px;	
+		/*letter-spacing: -0.5px;*/
+		font-family: 'Gotham-Light';
+		background-color: #f4f4f4;
+
+	}
+
+	.widget .checkbox-block input[type=checkbox] {
+		display: none;
+	}
+
+	.widget .checkbox-block label:before {
+		vertical-align: middle;	
+		display: inline-block;
+		font-size: 20px;
+		text-align: center;
+		content: "";
+		background-color: #f4f4f4;
+		/*border: 1px solid #cccccc;*/
+		border-radius: 2px;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,0.5);
+		width: 22px;
+		height: 22px;
+		margin-right: 10px;
+	}
+
+	.widget .checkbox-block input[type=checkbox]:checked + label:before{
+		font-family: 'Font-Awesome';
+		content: "\f00c";
+	}
+
+	.widget select {
+   		-webkit-appearance: none;
+		border: none;
+		box-shadow: inset 0 1px 1px rgba(0,0,0,0.5); 
+		/*background: url("../img/select.png") no-repeat right center #f4f4f4;*/
+	}
+
+	.widget select + .button-imitator {
+		padding: 9px;
+		height: 37px;
+		width: 37px;
+    	margin-left: -45px;
+    	vertical-align: middle;
+		border-radius: 2px;
+		/*box-shadow: 0 1px 2px rgba(0,0,0,0.5);*/
+		background-color: #414b59;
+		color: #ffffff;
+		border: none;
+		text-align: center;
+		text-decoration: none;
+		font-size: 16px;
+	}
+
+	.widget .button-imitator:hover, select:hover + .button-imitator {
+		pointer-events: none;
+		background-color: #5a6779;
+	}
+
+
+
+	
+
+	/*.widget select:hover {
+		background: url("../img/select-hover.png") no-repeat right center #f4f4f4;
+
+
+	}
+*/
 
 .calendar {
 	width: 346px;
@@ -120,6 +197,11 @@ body * {
 			color: #000;
 		}
 
+		.calendar-table a:hover .current  {
+			border-radius: 50%;
+			background-color: #fb9f62;
+		}
+
 		.calendar-table .gala {
 			font-weight: bold;
 			color: #fb6362	;
@@ -132,10 +214,9 @@ body * {
 			background-color: #fb6362;
 		}
 
-	.calendar button {
+	.calendar .outline-button {
 		width: 298px;
 		margin: 22px auto 26px auto;
-		display: block;
 
 	}
 
@@ -186,31 +267,27 @@ body * {
 
 	.booking label {
 		font-size: 14px;
+		margin-bottom: 10px;
 	}
 
 	.booking dd {
-		margin: 0;
+		margin: 8px 0 20px;
 		width: 100%;
 	}
 
 	.booking dl {
-		padding: 25px;
+		padding: 20px 25px 20px 25px;
+		margin: 0;
 	}
 
 	.calendar-field {
 		width: 100%;
 		height: 45px;
-		border-width: 1px;
-		border-radius: 3px;
-		font-size: 16px;
-		padding: 11px;
-
-		background-color: #f4f4f4;
 		color: #bbbbbb;
 	}
 
 
-	.calendar-button {
+	.calendar-field + button {
     	margin-left: -40px;
 		height: 37px;
 		width: 37px;
@@ -227,10 +304,26 @@ body * {
 	.calendar-button:hover {
 		background-color: #5a6779;
 	}
+
+	.booking select {
+		width: 138px;
+	}
 	/*.calendar-button:before {
 		font-family: 'Font-Awesome';
 		content: '\f073';
 		color: #000;
 	}*/
+
+	.booking .outline-button {
+		width: 298px;
+		margin: 22px auto 26px auto;
+	}
+.inline-block {
+	display: inline-block;
+}
+
+.block {
+	display: block;
+}
 
 
