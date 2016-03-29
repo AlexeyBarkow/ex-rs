@@ -64,7 +64,7 @@ body * {
 
 
 	.outline-button i {
-		font-size: 20px;
+		/*font-size: 20px;*/
 		margin-right: 12px;
 	}
 
@@ -100,8 +100,14 @@ body * {
 	}
 
 	.widget .checkbox-block input[type=checkbox]:checked + label:before{
-		font-family: 'Font-Awesome';
-		content: "\f00c";
+		/*font-family: 'Font-Awesome';*/
+		/*content: " ";*/
+	    background-image: url(../img/spritesheet.png);
+	    background-repeat: no-repeat;
+    /*display: inline-block;*/
+	    /*width: 16px;
+	    height: 11px;*/
+	    background-position: -98px -53px;
 	}
 
 	.widget select {
@@ -153,7 +159,7 @@ body * {
 	}*/
 
 	.calendar h4 {
-
+		position: relative;
 		/*width: 100%;*/
 		height: 64px;
 		margin-top: 0;
@@ -171,17 +177,23 @@ body * {
 
 		.calendar a {
 			color: #fff;
+			/*transform: translate(-50%, -50%);*/
 		}
 
 		.calendar a:hover {
 			background-color: #666;
 		}
 
+		.month-choose {
+			margin-top: 3px;
+		}
 		.calendar a:first-child {
+			/*margin-top: 2px;*/
 			float: left;
 		}
 
 		.calendar a:last-child {
+			/*margin-top: 2px;*/
 			float: right;
 		}
 
@@ -246,7 +258,7 @@ body * {
 */
 	.booking img {
 
-    	clip: rect(0px,0px,346px,182px);
+    	clip: rect(0,0,346px,182px);
 	}
 	
 	.booking figcaption {
@@ -268,7 +280,7 @@ body * {
 	}
 
 		.location i {
-			font-size: 18px;
+			/*font-size: 18px;*/
 			margin-right: 5px;
 		}
 
@@ -320,6 +332,7 @@ body * {
 
 	.calendar-field + button {
     	margin-left: -40px;
+    	vertical-align: middle;
 		height: 37px;
 		width: 37px;
 		border-radius: 2px;
@@ -400,9 +413,53 @@ body * {
 	.destination .content {
 		width: 357px;
 		vertical-align: top;
-		padding: 33px;
+		padding: 28px 33px 28px 33px;
 	} 
+		
+	.destination h3 {
+		font-family: 'Gotham-Medium';
+		font-weight: normal;
+		line-height: 27px;
+	    font-size: 20px;
+	    margin-top: 0;
+	    margin-bottom: 0;
+	    width: 80%;
+	}
 
+
+	.destination figure {
+		height: 341px;
+		position: relative;
+		margin: 0;
+	}
+	.destination img {
+		height: 341px;
+		width: 360px;
+
+	}
+
+	.content .reviews {
+		margin-top: 10px;
+		margin-bottom: 27px;
+		font-family: 'Gotham-Book';
+	}
+	
+	.content p {
+		margin-top: 17px;
+		font-size: 14px;
+		line-height: 24px;
+		/*letter-spacing: 1px;*/
+	}
+
+	
+	.destination figcaption {
+		bottom: 0;
+		right: 0;
+		position: absolute; 
+		/*background: rgba(0,0,0,0.75); */
+		color: white; 
+		padding: 0px 40px 40px; 
+	}
 
 
 
@@ -431,3 +488,216 @@ body * {
 .float-right {
 	float: right
 }
+
+.dark-gray {
+	color: #999999;
+}
+
+.gray {
+	color: #a9a9a9;
+}
+
+.red {
+	color: #fb6362;
+}
+
+.black {
+	color: black;
+
+}
+
+i + span {
+	vertical-align: middle;
+}
+
+
+/*Sprites*/
+.sprite {
+    background-image: url(../img/spritesheet.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sprite-add {
+    width: 16px;
+    height: 16px;
+    background-position: -5px -5px;
+}
+
+.sprite-calendar {
+    width: 16px;
+    height: 18px;
+    background-position: -31px -5px;
+    /*  width: 16px;
+    height: 16px;
+    background-position: -31px -5px;
+*/
+}
+
+
+.sprite-Forma-1 {
+    width: 21px;
+    height: 19px;
+    background-position: -57px -5px;
+}
+
+.sprite-star {
+    width: 21px;
+    height: 20px;
+    background-position: -5px -34px;
+}
+
+.sprite-big-navi {
+    width: 18px;
+    height: 26px;
+    background-position: -36px -34px;
+}
+
+.sprite-eye {
+    width: 27px;
+    height: 17px;
+    background-position: -64px -34px;
+}
+
+.sprite-comment {
+    width: 25px;
+    height: 21px;
+    background-position: -64px -61px;
+}
+
+.sprite-heart {
+    width: 25px;
+    height: 22px;
+    background-position: -101px -5px;
+}
+
+.sprite-next {
+    width: 8px;
+    height: 12px;
+    background-position: -101px -37px;
+}
+
+.sprite-mark {
+    width: 16px;
+    height: 11px;
+    background-position: -101px -59px;
+}
+
+.sprite-prev {
+    width: 8px;
+    height: 12px;
+    background-position: -119px -37px;
+}
+
+.sprite-drop-down {
+    width: 10px;
+    height: 7px;
+    background-position: -5px -80px;
+}
+
+.sprite-navi {
+    width: 12px;
+    height: 17px;
+    background-position: -25px -80px;
+}
+
+.sprite-search {
+    width: 22px;
+    height: 22px;
+    background-position: -99px -80px;
+}
+
+
+/*
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-ADD-copy {
+    width: 16px;
+    height: 16px;
+    background-position: -5px -5px;
+}
+
+.sprite-Calendar {
+    width: 16px;
+    height: 16px;
+    background-position: -31px -5px;
+}
+
+.sprite-Forma-1 {
+    width: 21px;
+    height: 19px;
+    background-position: -57px -5px;
+}
+
+.sprite-Forma-1-copy-10 {
+    width: 21px;
+    height: 20px;
+    background-position: -5px -34px;
+}
+
+.sprite-Forma-1-copy-11 {
+    width: 18px;
+    height: 26px;
+    background-position: -36px -34px;
+}
+
+.sprite-Forma-1-copy-7 {
+    width: 27px;
+    height: 17px;
+    background-position: -64px -34px;
+}
+
+.sprite-Forma-1-copy-8 {
+    width: 25px;
+    height: 21px;
+    background-position: -64px -61px;
+}
+
+.sprite-Forma-1-copy-9 {
+    width: 25px;
+    height: 22px;
+    background-position: -101px -5px;
+}
+
+.sprite-Next {
+    width: 8px;
+    height: 12px;
+    background-position: -101px -37px;
+}
+
+.sprite-Next-copy-2 {
+    width: 16px;
+    height: 11px;
+    background-position: -101px -59px;
+}
+
+.sprite-Prev {
+    width: 8px;
+    height: 12px;
+    background-position: -119px -37px;
+}
+
+.sprite-Rectangle-5 {
+    width: 10px;
+    height: 7px;
+    background-position: -5px -80px;
+}
+
+.sprite-map15-copy-_2_ {
+    width: 12px;
+    height: 17px;
+    background-position: -25px -80px;
+}
+
+.sprite-search-copy {
+    width: 22px;
+    height: 22px;
+    background-position: -99px -80px;
+}
+
+*/
