@@ -7,11 +7,8 @@
 	<title>Document</title>
 </head>
 <body>
-	<div class="calendar widget"> 
-			
-			<h4><a href="#">&lt;</a><span>May 2014</span><a href="#">&gt;</a></h4>
-			
-		
+	<div class="calendar widget inline-block"> 
+			<h4 class="stretch"><a href="#">&lt;</a><span>May 2014</span><a href="#">&gt;</a></h4>
 		<div>
 			<table class="calendar-table">
 				<tr>
@@ -69,51 +66,72 @@
 					<td>3</td>
 				</tr>
 			</table>
-			<button class="outline-button block">ADD EVENT</button>
+			<!-- <button class="outline-button block">ADD EVENT</button> -->
+			<input type="submit" class="outline-button block" value="ADD EVENT">
 		</div>
 	</div>
 
-	<div class="booking widget">
-		<figure>
-			<img src="img/eiphel.png" alt="eiphel's tower">
+	<div class="booking widget inline-block">
+		<figure class="stretch">
+			<img class="stretch" src="img/eiphel.jpg" alt="eiphel's tower">
 			<figcaption>
 				<h2>Hotel Relais</h2>
 				<p class="location"><i class="fa fa-map-marker"></i>Paris, France</p>
 			</figcaption>
 		</figure>
-		<dl>
-			<dt><label for="check-in">Check in</label></dt>
-			<dd><input id="check-in" class="calendar-field text" type="text"  value="9 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button></dd>
-			<dt><label for="check-out">Check out</label></dt>
-			<dd><input id="check-out" class="calendar-field text" type="text"  value="16 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button></dd>
-			<dd>
-				<div class="checkbox-block">
-					<input id="flexible-dates" type="checkbox" checked>
-					<label for="flexible-dates" class="checkboxer">Flexible dates</label>
+		<form action="" class="booking-form">
+			<div>
+				<label for="check-in">Check in</label>
+				<input id="check-in" class="calendar-field stretch text" type="text"  value="9 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button>
+			</div>
+
+			<div>	
+				<label for="check-out">Check out</label>
+				<input id="check-out" class="calendar-field stretch text" type="text"  value="16 July, 2016"><button class="calendar-button"><i class="fa fa-calendar"></i></button>
+			</div>
+			
+			<div class="checkbox-block">
+				<input id="flexible-dates" type="checkbox" checked>
+				<label for="flexible-dates" class="checkboxer">Flexible dates</label>
+			</div>
+			<div class="stretch">
+				<div class="inline-block select-block">
+					<label for="adults" class="block">Adults</label>
+					<select id="adults" class="text inline-block">
+						<option value="1">1</option>
+					</select>
+					<div class="button-imitator inline-block"><i class="fa fa-caret-down"></i></div>
 				</div>
-			</dd>
-			<dd style="display: inline">
-				<label for="adults" class="block">Adults</label>
-				<div class="block">
+				
+				<div class="float-right select-block">
+					<label for="children" class="block">Children</label>
 					<select id="children" class="text inline-block">
 						<option value="1">1</option>
 					</select>
 					<div class="button-imitator inline-block"><i class="fa fa-caret-down"></i></div>
 				</div>
+			</div>
+			
+			<button type="submit" class="outline-button stretch"><i class="fa fa-search"></i>SEARCH ROOMS</button>
+		</form>		
+	</div>
 
-			</dd>
-			<dd style="display: inline">
-				<label for="children" class="block">Children</label>
-				<div>
-					<select id="children" class="text inline-block">
-						<option value="1">1</option>
-					</select>
-					<div class="button-imitator inline-block"><i class="fa fa-caret-down"></i></div>
-				</div>
-			</dd>
-		</dl>
-		<button class="outline-button block"><i class="fa fa-search"></i>SEARCH ROOM</button>
-
+	<div class="destination widget inline-block">
+		<ul class="stretch-vertical side-nav inline-block">
+			<li><a href="#" class="stretch stretch-vertical"><i class="fa fa-eye"></i></a></li>
+			<li><a href="#" class="stretch stretch-vertical"><i class="fa fa-map-marker"></i></a></li>
+			<li><a href="#" class="stretch stretch-vertical"><i class="fa fa-star"></i></a></li>
+		</ul>
+		<div class="content stretch-vertical inline-block">
+			<h3>My most favourite place in the world</h3>
+			<p><span>154</span> Reviews</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a pulvinar ipsum. Aliquam sit amet iaculis dolor. Vivamus sed diam sollicitudin. </p>
+			<p><a href="">Read more</a></p>
+		</div>
+		<figure>
+			<img src="img/boat.jpg" alt="">
+			<figcaption><i></i> 752 <i></i> 2709</figcaption>
+		</figure>
 	</div>
 </body>
 </html>
