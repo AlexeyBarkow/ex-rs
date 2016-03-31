@@ -97,17 +97,27 @@
 			<div class="stretch">
 				<div class="inline-block select-block">
 					<label for="adults" class="block">Adults</label>
-					<select id="adults" class="text inline-block input-border">
+					<!-- <select id="adults" class="text inline-block input-border">
 						<option value="1">1</option>
-					</select>
+					</select> -->
+					<ul id="adults" class="text inline-block input-border pseudo-select">
+						<li>1</li>
+						<li class="select">2</li>
+					</ul>
 					<div class="button-imitator inline-block"><i class="sprite sprite-drop-down"></i></div>
 				</div>
 				
 				<div class="float-right select-block">
 					<label for="children" class="block">Children</label>
+					<!-- 
 					<select id="children" class="text inline-block input-border">
 						<option value="1">1</option>
-					</select>
+					</select> -->
+
+					<ul id="children" class="text inline-block input-border pseudo-select">
+						<li class="select">1</li>
+						<li>2</li>
+					</ul>
 					<div class="button-imitator inline-block"><i class="sprite sprite-drop-down"></i></div>
 				</div>
 			</div>
@@ -207,7 +217,7 @@
 				<input type="text" class="email-input text" placeholder="Email">
 			</div>
 			<div>
-				<input type="text" class="subject text stretch" placeholder="Subject"><a href=""><i class="sprite sprite-clip"></i></a>
+				<input type="text" class="subject input-border text stretch" placeholder="Subject"><a href=""><i class="sprite sprite-clip"></i></a>
 			</div>
 
 			<textarea class="message-text text input-border stretch" placeholder="Message"></textarea>
