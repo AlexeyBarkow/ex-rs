@@ -13,14 +13,9 @@
 	src: url('../fonts/GothamSSm-Medium.ttf');
 }
 
-/*@font-face {
-	font-family: 'Font-Awesome';
-	src: url('../fonts/FontAwesome.otf');
-}*/
-
 body {
-	font-family: 'Gotham-Light', Helvetica, sans-serif;
 	background-color: #d9d9d9;
+	font-family: 'Gotham-Light', Helvetica, sans-serif;
 }
 
 body * {
@@ -34,6 +29,8 @@ a {
 }
 
 
+
+
 .widget {
 	margin:20px;
 
@@ -45,12 +42,10 @@ a {
 }
 
 	.widget form {
-		/*padding-bottom: 25px;*/
 		padding: 0 25px 25px 25px;
 	}
 	.widget .outline-button {
 		height: 58px;
-		/*border-radius: 2px;*/
 		box-shadow: 0 1px 2px rgba(0,0,0,0.5);
 		border-radius: 2px;
 		background-color: #fb6362;
@@ -58,8 +53,7 @@ a {
 		border: none;
 		text-align: center;
 		text-decoration: none;
-		font-family: 'Gotham-Book';
-		/*font-weight: 500;*/
+		font-family: 'Gotham-Book', Helvetica, sans-serif;
 		font-size: 16px;
 		letter-spacing: 0px;
 		margin: 0 auto 0 auto;
@@ -71,7 +65,6 @@ a {
 
 
 	.outline-button i {
-		/*font-size: 20px;*/
 		margin-right: 12px;
 	}
 
@@ -81,8 +74,7 @@ a {
 		border-radius: 2px;
 		font-size: 15px;
 		padding: 11px;	
-		/*letter-spacing: -0.5px;*/
-		font-family: 'Gotham-Light';
+		font-family: 'Gotham-Light', Helvetica, sans-serif: ;
 		background-color: #f4f4f4;
 
 	}
@@ -98,7 +90,6 @@ a {
 		text-align: center;
 		content: "";
 		background-color: #f4f4f4;
-		/*border: 1px solid #cccccc;*/
 		border-radius: 2px;
 		box-shadow: inset 0 1px 1px rgba(0,0,0,0.5);
 		width: 22px;
@@ -106,22 +97,15 @@ a {
 		margin-right: 10px;
 	}
 
-	.widget .checkbox-block input[type=checkbox]:checked + label:before{
-		/*font-family: 'Font-Awesome';*/
-		/*content: " ";*/
+	.widget .checkbox-block input[type=checkbox]:checked + label:before {
 	    background-image: url(../img/spritesheet.png);
 	    background-repeat: no-repeat;
-    /*display: inline-block;*/
-	    /*width: 16px;
-	    height: 11px;*/
 	    background-position: -98px -53px;
 	}
 
 	.input-border {
-   		/*-webkit-appearance: none;*/
 		border: none;
 		box-shadow: inset 0 1px 1px rgba(0,0,0,0.5); 
-		/*background: url("../img/select.png") no-repeat right center #f4f4f4;*/
 	}
 
 	.widget select + .button-imitator {
@@ -131,7 +115,6 @@ a {
     	margin-left: -45px;
     	vertical-align: middle;
 		border-radius: 2px;
-		/*box-shadow: 0 1px 2px rgba(0,0,0,0.5);*/
 		background-color: #414b59;
 		color: #ffffff;
 		border: none;
@@ -149,26 +132,13 @@ a {
 	.widget .select-block {
 		margin-right: -6px;
 	}
-	
-
-	/*.widget select:hover {
-		background: url("../img/select-hover.png") no-repeat right center #f4f4f4;
-
-
-	}
-*/
 
 .calendar {
 	width: 346px;
-
 }
-	/*.calendar .header * {
-		display: inline;
-	}*/
 
 	.calendar h4 {
 		position: relative;
-		/*width: 100%;*/
 		height: 64px;
 		margin-top: 0;
 		margin-bottom: 0;
@@ -183,25 +153,14 @@ a {
 		color: #fff;
 	}
 
-		/*.calendar a {
-			color: #fff;
-			transform: translate(-50%, -50%);
-		}*/
-
-/*		.calendar a:hover {
-			background-color: #666;
-		}*/
-		
 		.month-choose {
 			margin-top: 3px;
 		}
 		h4 a:first-child {
-			/*margin-top: 2px;*/
 			float: left;
 		}
 
 		h4 a:last-child {
-			/*margin-top: 2px;*/
 			float: right;
 		}
 
@@ -213,7 +172,6 @@ a {
 	}
 	
 		.calendar-table a:hover {
-			/*border-radius: 50%;*/
 			background-color: #fb9f62;
 		}
 		.calendar-table th, tr {
@@ -231,11 +189,6 @@ a {
 			color: #000;
 		}
 
-	/*	.calendar-table a:hover .current  {
-			border-radius: 50%;
-			background-color: #fb9f62;
-		}
-*/
 		.calendar-table .gala {
 			font-weight: bold;
 			color: #fb6362	;
@@ -254,8 +207,6 @@ a {
 	.calendar .outline-button {
 		width: 298px;
 		margin-top: 22px;
-		/*margin: 22px auto 26px auto;*/
-
 	}
 
 .booking {
@@ -264,14 +215,9 @@ a {
 
 	.booking figure {
 		margin: 0;
-		/*width: 100%;*/
 		position: relative;
 	}
-/*
-	.booking figure img {
-		width: 100%;
-	}
-*/
+
 	.booking img {
 
     	clip: rect(0,0,346px,182px);
@@ -281,7 +227,6 @@ a {
 		bottom: 0;
 		left: 0;
 		position: absolute; 
-		/*background: rgba(0,0,0,0.75); */
 		color: white; 
 		padding: 0px 25px 20px; 
 	}
@@ -296,16 +241,8 @@ a {
 	}
 
 		.location i {
-			/*font-size: 18px;*/
 			margin-right: 5px;
 		}
-
-	/*.location:before {
-		font-family: 'Font-Awesome';
-		content: '\f041';
-		font-size: 18px;
-		margin-right: 5px;
-	} */
 
 	.booking label {
 		font-size: 14px;
@@ -318,8 +255,8 @@ a {
 
 	.booking-form > div {
 		margin-bottom: 20px;
-
 	}
+
 	.booking-form input {
 		margin-top: 8px;
 	}
@@ -328,19 +265,8 @@ a {
 		margin-top: -4px;
 		margin-bottom: 24px;
 	}
-/*
-	.booking dd {
-		margin: 8px 0 20px;
-		width: 100%;
-	}
-
-	.booking dl {
-		padding: 20px 25px 20px 25px;
-		margin: 0;
-	}*/
 
 	.calendar-field {
-		/*width: 100%;*/
 		height: 45px;
 		color: #bbbbbb;
 	}
@@ -352,7 +278,6 @@ a {
 		height: 37px;
 		width: 37px;
 		border-radius: 2px;
-		/*box-shadow: 0 1px 2px rgba(0,0,0,0.5);*/
 		background-color: #414b59;
 		color: #ffffff;
 		border: none;
@@ -367,26 +292,14 @@ a {
 
 	.booking select {
 		width: 138px;
-		/*margin-right: -6px;*/
 	}
 
 	.booking .child {
 		float: right;
-		/*margin-right: -6px;*/
 	}
-	/*.calendar-button:before {
-		font-family: 'Font-Awesome';
-		content: '\f073';
-		color: #000;
-	}*/
 
 	.booking .outline-button {
-		/*width: 100%;*/
 		margin-top: 20px;
-
-		/*margin: 22px auto 26px auto;*/
-	/*	margin-left: auto;
-		margin-right: auto;*/
 	}
 
 
@@ -422,14 +335,7 @@ a {
 	.side-nav a:hover {
 		background-color: #fb6362;
 	}
-/*
-	.side-nav a i {
-		position: absolute;
-		top: 50%;
-		left: 50%;
- 		transform: translate(-50%, -50%);
-	}*/
-	
+
 	.destination .content {
 		clear: both;
 		width: 357px;
@@ -472,28 +378,36 @@ a {
 
 	}
 
-	.content .reviews {
-		margin-top: 10px;
-		margin-bottom: 27px;
-		font-family: 'Gotham-Book';
-	}
-	
-	.content p {
-		margin-top: 17px;
-		font-size: 14px;
-		line-height: 24px;
-		/*letter-spacing: 1px;*/
+	.content {
+		height: 100%;
+		overflow-y: hidden;
 	}
 
+		.content .reviews {
+			margin-top: 10px;
+			margin-bottom: 27px;
+			font-family: 'Gotham-Book';
+		}
+		
+		.content p {
+			margin-top: 17px;
+			font-size: 14px;
+			line-height: 24px;
+		}
+
 	
-	.destination figcaption {
-		bottom: 0;
-		right: 0;
+	.destination-caption {
+		bottom: 23px;
+		right: 25px;
 		position: absolute; 
-		/*background: rgba(0,0,0,0.75); */
 		color: white; 
-		padding: 0px 40px 40px; 
+		/*padding: 0px 40px 40px; */
 	}
+
+		.destination-caption i {
+			margin-right: 5px;
+			margin-left: 14px;
+		}
 
 .bar-graph {
 	position: relative;
@@ -506,7 +420,6 @@ a {
 	.graph {
 		position: absolute;
 		width: 706px;
-		/*height: 80%;*/
 		height: 240px;
 		margin-bottom: 65px;
 
@@ -525,9 +438,7 @@ a {
 		.lines li {
 
 			width: 100%;
-			/*margin-top: 5px;*/
 			margin-bottom: 54px;
-			/*height: 25%;*/
 			margin-left: 0;
 			border-bottom: 1px solid #ccc;
 		}
@@ -535,8 +446,6 @@ a {
 		.chart {
 			position: absolute;
 			bottom: 2px;
-			/*width: 90%;*/
-			/*margin-bottom: 2px;*/
 			padding-left: 46px;
 			margin: 0;
 		}
@@ -544,10 +453,7 @@ a {
 			.horizontal-list {
 				display: inline-block;
 				margin: 0 14px 0 17px;
-				/*width: 12.88%;*/
-				/*width: 14.28%;*/
 				vertical-align: bottom;
-				/*direction: rtl;*/
 				
 			}
 
@@ -556,7 +462,6 @@ a {
 				border-radius: 2px;
 				background-color: #fb6362;
 				display: block;
-
 
 				animation-name: dropHeader;
 				animation-iteration-count: 1;
@@ -573,12 +478,11 @@ a {
 				display: block;
 				height: 30px;
 				border-radius: 2px;
-				/*because we rotate this element*/
+				/*because we invert this element*/
 				margin-top: 15px;
 				background-color: #404a58;
 				width: 55px;
 				color: #ffffff;
-				/*height: 20px;*/
 			}
 
 			.message:after {
@@ -607,11 +511,10 @@ a {
 
 .email {
 	width: 380px;
-	/*padding: 20px;*/
 }
 
+	
 	.email-input {
-		/*display: none;*/
 		width: 100%;
 	}
 
@@ -630,39 +533,20 @@ a {
 		min-height: 43px;
 	}
 
-	.email-input-block a {
-		margin: 10px 5px 5px;
+	.email-input-block > a {    
+		margin: 12px 8px 5px;
 	}
-
-	/*.email-input-block:after {
-		content: " ";
-	    background-image: url(../img/spritesheet.png);
-	    background-repeat: no-repeat;
-	    display: inline-block;
-	    vertical-align: middle;
-		
-	    width: 16px;
-	    height: 16px;
-	    background-position: -5px -5px;
-	    position: absolute;
-	    top: 15px;
-	    right: 15px;
-	}*/
 
 		.email-input {
 			width: auto;
 			border: none;
 			background-color: transparent;
 			clear: both;
-			/*height: 41px;*/
-			/*position: relative;*/
 		}
 
 		.email-input:focus {
 			outline: none;
 		}
-
-		
 
 		.email-added {
 			max-width: 290px;
@@ -674,49 +558,46 @@ a {
 			
 			.email-added span {
 				color:#ffffff;
+				max-width: 270px;
+				font-size: 14px;
 			}
 
 			.email-added a {
-				margin: 0 5px 0 5px;
+				margin: 0 0 0 5px;
+				/*margin-right: 5px;*/
+				vertical-align: middle;
+				font-size: 16px;
 			}
 
 			.email-added a:hover {
 				background-color: #2c333c;
 			}
+
 		/*Will be changed by JS*/
 		.email-added + .email-input {
 			display: none;
 		}
 
+		.subject {
+			min-height: 44px;
+		}
+
+		.subject + a {
+			vertical-align: middle;
+			display: inline-block;
+			margin-left: -33px;
+		}
+
 		.message-text {
-			min-height: 224px;
+			min-height: 220px;
 			resize: none;
+			overflow: hidden;
 		}
 
 		.email input[type=submit] {
 			width: 127px;
+			height: 48px;
 		}
-
-/*	.subject:after {
-		content: " ";
-	    background-image: url(../img/spritesheet.png);
-	    background-repeat: no-repeat;
-	    display: inline-block;
-	    vertical-align: middle;
-		
-	    
-	    width: 21px;
-	    height: 19px;
-	    background-position: -57px -5px;
-	    position: absolute;
-	    top: 15px;
-	    right: 15px;
-	}
-*/
-	
-
-
-
 
 
 @keyframes dropHeader {
@@ -727,9 +608,9 @@ a {
     100% {
         transform: scale(1, 1);
     	transform-origin : 0% 0%;
-    /*transform-origin : 50% 100%;*/
     }
 }
+
 .reverse-order, .reverse-order > * {
 	-ms-transform: rotate(180deg);
     transform: rotate(180deg);
@@ -821,10 +702,6 @@ i + span {
     width: 16px;
     height: 18px;
     background-position: -31px -5px;
-    /*  width: 16px;
-    height: 16px;
-    background-position: -31px -5px;
-*/
 }
 
 
@@ -902,97 +779,3 @@ i + span {
 
 
 
-
-
-/*
-.sprite {
-    background-image: url(spritesheet.png);
-    background-repeat: no-repeat;
-    display: block;
-}
-
-.sprite-ADD-copy {
-    width: 16px;
-    height: 16px;
-    background-position: -5px -5px;
-}
-
-.sprite-Calendar {
-    width: 16px;
-    height: 16px;
-    background-position: -31px -5px;
-}
-
-.sprite-Forma-1 {
-    width: 21px;
-    height: 19px;
-    background-position: -57px -5px;
-}
-
-.sprite-Forma-1-copy-10 {
-    width: 21px;
-    height: 20px;
-    background-position: -5px -34px;
-}
-
-.sprite-Forma-1-copy-11 {
-    width: 18px;
-    height: 26px;
-    background-position: -36px -34px;
-}
-
-.sprite-Forma-1-copy-7 {
-    width: 27px;
-    height: 17px;
-    background-position: -64px -34px;
-}
-
-.sprite-Forma-1-copy-8 {
-    width: 25px;
-    height: 21px;
-    background-position: -64px -61px;
-}
-
-.sprite-Forma-1-copy-9 {
-    width: 25px;
-    height: 22px;
-    background-position: -101px -5px;
-}
-
-.sprite-Next {
-    width: 8px;
-    height: 12px;
-    background-position: -101px -37px;
-}
-
-.sprite-Next-copy-2 {
-    width: 16px;
-    height: 11px;
-    background-position: -101px -59px;
-}
-
-.sprite-Prev {
-    width: 8px;
-    height: 12px;
-    background-position: -119px -37px;
-}
-
-.sprite-Rectangle-5 {
-    width: 10px;
-    height: 7px;
-    background-position: -5px -80px;
-}
-
-.sprite-map15-copy-_2_ {
-    width: 12px;
-    height: 17px;
-    background-position: -25px -80px;
-}
-
-.sprite-search-copy {
-    width: 22px;
-    height: 22px;
-    background-position: -99px -80px;
-}
-
-*/
