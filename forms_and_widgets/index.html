@@ -76,8 +76,8 @@
 		<figure class="stretch">
 			<img class="stretch" src="img/eiphel.jpg" alt="eiphel's tower">
 			<figcaption>
-				<h2>Hotel Relais</h2>
-				<p class="location"><i class="sprite sprite-navi"></i><span>Paris, France</span></p>
+				<h2><a href="">Hotel Relais</a></h2>
+				<p class="location"><a href=""><i class="sprite sprite-navi"></i><span>Paris, France</span></a></p>
 			</figcaption>
 		</figure>
 		<form action="" class="booking-form">
@@ -98,7 +98,7 @@
 			<div class="stretch">
 				<div class="inline-block select-block">
 					<label for="adults" class="block">Adults</label>
-					<select id="adults" class="text inline-block">
+					<select id="adults" class="text inline-block input-border">
 						<option value="1">1</option>
 					</select>
 					<div class="button-imitator inline-block"><i class="sprite sprite-drop-down"></i></div>
@@ -106,7 +106,7 @@
 				
 				<div class="float-right select-block">
 					<label for="children" class="block">Children</label>
-					<select id="children" class="text inline-block">
+					<select id="children" class="text inline-block input-border">
 						<option value="1">1</option>
 					</select>
 					<div class="button-imitator inline-block"><i class="sprite sprite-drop-down"></i></div>
@@ -138,10 +138,10 @@
 	<div class="bar-graph widget inline-block">
 		<div class="graph">
 			<ul class="lines">
-				<li style="margin-bottom: 54px;">40</li>
-				<li style="margin-bottom: 54px;">30</li>
-				<li style="margin-bottom: 54px;">20</li>
-				<li style="margin-bottom: 54px;">0</li>
+				<li>40</li>
+				<li>30</li>
+				<li>20</li>
+				<li>0</li>
 			</ul>
 			<ul class="chart stretch">
 				<li class="reverse-order horizontal-list">
@@ -201,7 +201,19 @@
 
 	<div class="email widget inline-block">
 		<form action="">
-			<input type="submit" class="outline-button" value="SEND">
+			<div class="email-input-block text input-border">
+				<a href="" class="float-right"><i class="sprite sprite-add"></i></a>
+				<div class="email-added inline-block"><span>rick.james@mail.com</span><a href="">&#215;</a></div>
+				<!-- <div class="email-added inline-block"><span>rick.james@mail.com</span><a href="">&#215;</a></div> -->
+				<input type="text" class="email-input text" placeholder="Email">
+			</div>
+			<!-- <div class="subject"> -->
+			<input type="text" class="subject text stretch" placeholder="Subject">
+			<!-- </div> -->
+
+			<textarea class="message-text text input-border stretch" placeholder="Message"></textarea>
+
+			<input type="submit" class="outline-button float-right" value="SEND">	
 		</form>
 	</div>
 </body>

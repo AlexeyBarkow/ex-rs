@@ -44,6 +44,10 @@ a {
 	background-color: #ffffff;
 }
 
+	.widget form {
+		/*padding-bottom: 25px;*/
+		padding: 0 25px 25px 25px;
+	}
 	.widget .outline-button {
 		height: 58px;
 		/*border-radius: 2px;*/
@@ -58,6 +62,7 @@ a {
 		/*font-weight: 500;*/
 		font-size: 16px;
 		letter-spacing: 0px;
+		margin: 0 auto 0 auto;
 	}
 
 	.widget .outline-button:hover {
@@ -71,7 +76,7 @@ a {
 	}
 
 
-	.widget .text/*input[type=text]*/ {
+	.widget .text {
 		border-width: 1px;
 		border-radius: 2px;
 		font-size: 15px;
@@ -112,7 +117,7 @@ a {
 	    background-position: -98px -53px;
 	}
 
-	.widget select {
+	.input-border {
    		/*-webkit-appearance: none;*/
 		border: none;
 		box-shadow: inset 0 1px 1px rgba(0,0,0,0.5); 
@@ -248,7 +253,8 @@ a {
 		}
 	.calendar .outline-button {
 		width: 298px;
-		margin: 22px auto 26px auto;
+		margin-top: 22px;
+		/*margin: 22px auto 26px auto;*/
 
 	}
 
@@ -377,7 +383,10 @@ a {
 	.booking .outline-button {
 		/*width: 100%;*/
 		margin-top: 20px;
+
 		/*margin: 22px auto 26px auto;*/
+	/*	margin-left: auto;
+		margin-right: auto;*/
 	}
 
 
@@ -517,6 +526,7 @@ a {
 
 			width: 100%;
 			/*margin-top: 5px;*/
+			margin-bottom: 54px;
 			/*height: 25%;*/
 			margin-left: 0;
 			border-bottom: 1px solid #ccc;
@@ -597,8 +607,116 @@ a {
 
 .email {
 	width: 380px;
-	padding: 20px;
+	/*padding: 20px;*/
 }
+
+	.email-input {
+		/*display: none;*/
+		width: 100%;
+	}
+
+	.email form {
+		padding-top: 25px;
+		overflow: auto;
+	}
+
+	.email form > * {
+		margin-bottom: 25px;
+	}
+
+	.text.email-input-block {
+		position: relative;
+		padding: 1px 4px 1px 4px;
+		min-height: 43px;
+	}
+
+	.email-input-block a {
+		margin: 10px 5px 5px;
+	}
+
+	/*.email-input-block:after {
+		content: " ";
+	    background-image: url(../img/spritesheet.png);
+	    background-repeat: no-repeat;
+	    display: inline-block;
+	    vertical-align: middle;
+		
+	    width: 16px;
+	    height: 16px;
+	    background-position: -5px -5px;
+	    position: absolute;
+	    top: 15px;
+	    right: 15px;
+	}*/
+
+		.email-input {
+			width: auto;
+			border: none;
+			background-color: transparent;
+			clear: both;
+			/*height: 41px;*/
+			/*position: relative;*/
+		}
+
+		.email-input:focus {
+			outline: none;
+		}
+
+		
+
+		.email-added {
+			max-width: 290px;
+			margin-top: 3px;
+			margin-bottom: 2px;
+			padding: 9px;
+			background-color: #404a58;
+		}
+			
+			.email-added span {
+				color:#ffffff;
+			}
+
+			.email-added a {
+				margin: 0 5px 0 5px;
+			}
+
+			.email-added a:hover {
+				background-color: #2c333c;
+			}
+		/*Will be changed by JS*/
+		.email-added + .email-input {
+			display: none;
+		}
+
+		.message-text {
+			min-height: 224px;
+			resize: none;
+		}
+
+		.email input[type=submit] {
+			width: 127px;
+		}
+
+/*	.subject:after {
+		content: " ";
+	    background-image: url(../img/spritesheet.png);
+	    background-repeat: no-repeat;
+	    display: inline-block;
+	    vertical-align: middle;
+		
+	    
+	    width: 21px;
+	    height: 19px;
+	    background-position: -57px -5px;
+	    position: absolute;
+	    top: 15px;
+	    right: 15px;
+	}
+*/
+	
+
+
+
 
 
 @keyframes dropHeader {
@@ -655,6 +773,14 @@ a {
 	float: right
 }
 
+.clear:after {
+	content: " ";
+	display: block;
+	clear: both;
+}
+
+
+
 .dark-gray {
 	color: #999999;
 }
@@ -702,7 +828,7 @@ i + span {
 }
 
 
-.sprite-Forma-1 {
+.sprite-clip {
     width: 21px;
     height: 19px;
     background-position: -57px -5px;
