@@ -335,7 +335,6 @@ a {
 }
 	
 	.destination .side-nav {
-		/*height: 100%;*/
 		width: 72px;
 		padding: 0;
 		margin: 0;
@@ -344,7 +343,6 @@ a {
 	}
 	.side-nav li {
 		height: 33.3333%;
-		/*color: #ffffff;*/
 		position: relative;
 		text-align: center;
 		font-size: 24px;
@@ -426,7 +424,6 @@ a {
 		right: 25px;
 		position: absolute; 
 		color: white; 
-		/*padding: 0px 40px 40px; */
 	}
 
 		.destination-caption i {
@@ -446,7 +443,6 @@ a {
 		position: absolute;
 		width: 706px;
 		height: 240px;
-		margin-bottom: 65px;
 
 	}
 
