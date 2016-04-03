@@ -6,8 +6,8 @@
 	<title>Final Task</title>
 </head>
 <body>
-	<div class="content">
-		<header>
+	<div class="content inner-inline-block">
+		<header class="stretch">
 			<a href="#"><img src="img/logo.png" alt="" class="logo"></a>
 			<form action="" class="search standart-border round-corners">
 				<div class="search-field inner-inline-block">
@@ -17,15 +17,14 @@
 					<input type="text" class="inner-input-text" placeholder="Search">
 					<div class="stretch-vertical float-right inner-inline-block">
 						<!--Makes other elements vertically centered-->
-						<div class="stretch-vertical"></div>
-
-						<div class="vertical-line"></div>
-						<input id="select-categories" type="checkbox" class="search-checkbox">
-						<label for="select-categories" class="label-categories">All Categories</label>
-						<div class="standart-border categories">
+						<div class="stretch-vertical"></div><!--
+				     --><div class="inner-vertical-line"></div><!--
+					 --><input id="select-categories" type="checkbox" class="search-checkbox"><!--
+					 --><label for="select-categories" class="label-categories">All Categories</label><!--
+					 --><div class="standart-border categories">
 							<div class="frame-for-selected standart-border">
 								<!--duct tape for IE10-->
-								<label for="select-categories" class="label-categories stretch stretch-vertical"></label>
+								<label for="select-categories" class="label-categories stretch stretch-vertical categories-active">All Categories</label>
 							</div>
 							<div class="cat-select inner-inline-block">
 								<div class="stretch-vertical"></div>
@@ -82,9 +81,9 @@
 									<label for="select-12">Trips</label>
 								</li>
 							</ul>
-						</div>
-						<div class="vertical-line"></div>
-						<input type="submit" class="submit sprite-other sprite-next" value="">
+						</div><!--
+					 --><div class="inner-vertical-line"></div>
+						<button type="submit" class="submit sprite-other sprite-next"></button>
 						</div>
 				</div>
 				
@@ -96,9 +95,9 @@
 				<a href="" class="sign-up centred-text inner-block">
 					<i class="sprite-other sprite-sign-in"></i>
 					<span>Sign Up</span>
-				</a>
-				<div class="vertical-line"></div>
-				<a href="" class="log-in centred-text inner-block">
+				</a><!--
+			 --><div class="inner-vertical-line"></div><!--
+			 --><a href="" class="log-in centred-text inner-block">
 					<i class="sprite-other sprite-login"></i>
 					<span>Login</span>
 				</a>
@@ -111,8 +110,8 @@
 			<ul class="inner-inline-block menu-list">
 				<li class="selected">
 					<a href="">
-						<div><i class="sprite-menu sprite-house-hover"></i></div>
-						<span>HOME</span>
+						<div><i class="sprite-menu sprite-house"></i></div>
+						<span>Home</span>
 					</a>
 				</li>
 				<li>
@@ -159,6 +158,114 @@
 				</li>
 			</ul>
 		</nav>
+		<div class="submenu">
+			<ul class="submenu-list">
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-news"></i><p>Daily News</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-maps"></i><p>Maps</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-education"></i><p>Education</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-events"></i><p>Events</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-explorers"></i><p>Explorers</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-magazine"></i><p>Magazine</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-science"></i><p>Science</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-games"></i><p>Games</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-blogs"></i><p>Blogs</p></a></li>
+				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-trips"></i><p>Trips</p></a></li>
+			</ul>
+		</div><!--
+	 --><main class="main">
+			<div class="filter">
+				<ul class="filter-list inner-inline-block">
+					<li><a class="standart-border" href="">Home</a>
+					</li><li><a class="standart-border" href="">Animals</a>
+					</li><li><a class="standart-border" href="">Ancient</a>
+					</li><li><a class="standart-border" href="">Energy</a>
+					</li><li><a class="standart-border" href="">Environment</a>
+				</li><li><a class="standart-border" href="">Travel</a>
+					</li>
+				</ul>
+			</div>
+			<div class="standart-border">
+				<figure class="current-selection">
+					<figcaption class="inner-caption">
+						<ul class="inner-inline-block slider">
+							<li class="current"><a href="">1</a>
+							</li><li><a href="">2</a>
+							</li><li><a href="">3</a>
+							</li>
+						</ul>
+					</figcaption><!--
+				 --><img src="img/leopards.jpg" alt="leopards"><!--
+				 --><div class="standart-border">
+						<button class="float-right pause standart-border">&#9612; &#9612;</button>
+						<figcaption class="outer-caption">
+							<h3>Lion Cubs Playing</h3>
+							<p>African lion cubs play in the grass in the Okavango Delta.</p>
+						</figcaption>
+					</div>
+				</figure>
+			</div>
+			<div class="latest-news standart-border	inner-inline-block">
+				<div class="stretch-vertical"></div>
+				<i class="sprite-other sprite-clock"></i><h5>Latest News</h5><!--
+			 --><div class="inner-vertical-line"></div><!--
+			 --><ul class="dropdown-list">
+			 		<li class="current label-categories">Most Recent</li>
+				 	<li><a href="">Most Viewed</a></li>
+				 	<li><a href="">Most Recent</a></li>
+				 	<li><a href="">Most Discussed</a></li>
+				 	<li><a href="">Most Rated</a></li>
+				 </ul>
+				 <ul class="inner-inline-block slider float-right">
+				 	<li class="current"><a href=""><i class="sprite-other sprite-list"></i></a>
+				 	</li><li><a href=""><i class="sprite-other sprite-table"></i></a></li>
+				 </ul>
+			</div>
+		</main>
+		<aside class="aside float-right">
+			<div>
+				<div class="aside-header standart-border inner-inline-block"><div class="stretch-vertical"></div><i class="sprite-other sprite-favorite"></i><h4>Most Popular News</h4></div>
+				<div class="news-mini standart-border">
+					<figure>
+						<img src="img/snake.jpg" alt="">
+						<div class="rating-block float-right">
+							<ul class="rating inner-inline-block">
+								<li><a href="" class="sprite-other sprite-star"></a></li>
+								<li><a href="" class="sprite-other sprite-star"></a></li>
+								<li><a href="" class="sprite-other sprite-star"></a></li>
+								<li><a href="" class="sprite-other sprite-star"></a></li>
+								<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+							</ul>
+							<p><span>71,482</span> votes</p>
+						</div>
+						<figcaption><h5>The Bite That Heals</h5><p>6 days ago</p></figcaption>
+					</figure>
+				</div>
+				<div class="news-mini standart-border">
+					<figure>
+						<img src="img/lizard.jpg" alt="">
+						<div class="rating-block float-right">
+							<ul class="rating inner-inline-block">
+								<li><a href="" class="sprite-other sprite-star"></a></li>
+								<li><a href="" class="sprite-other sprite-star"></a></li>
+								<li><a href="" class="sprite-other sprite-star"></a></li>
+								<li><a href="" class="sprite-other sprite-star"></a></li>
+								<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+							</ul>
+							<p><span>64,159</span> votes</p>
+						</div>
+						<figcaption><h5>Stranger Than Nature</h5><p>8 days ago</p></figcaption>
+					</figure>
+				</div>
+			</div>
+			<div>
+				<div class="aside-header standart-border inner-inline-block"><div class="stretch-vertical"></div><i class="sprite-other sprite-video"></i><h4>Most Popular Videos</h4></div>
+				
+			</div>
+			<div>
+				<div class="aside-header standart-border inner-inline-block"><div class="stretch-vertical"></div><i class="sprite-other sprite-calendar"></i><h4>Upcoming Events</h4></div>
+			</div>
+			
+		</aside>
 	</div>
 </body>
 </html>
