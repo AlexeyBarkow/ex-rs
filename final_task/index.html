@@ -6,266 +6,538 @@
 	<title>Final Task</title>
 </head>
 <body>
-	<div class="content inner-inline-block">
-		<header class="stretch">
-			<a href="#"><img src="img/logo.png" alt="" class="logo"></a>
-			<form action="" class="search standart-border round-corners">
-				<div class="search-field inner-inline-block">
+	<div class="wrapper">
+		<div class="content inner-inline-block">
+			<header class="stretch">
+				<a href="#"><img src="img/logo.png" alt="" class="logo"></a>
+				<form action="" class="search standart-border round-corners">
+					<div class="search-field inner-inline-block">
+						<!--Makes other elements vertically centered-->
+						<div class="stretch-vertical"></div>
+						<div class="loupe sprite-other sprite-loupe"></div>
+						<input type="text" class="inner-input-text email-input" placeholder="Search">
+						<div class="stretch-vertical float-right inner-inline-block">
+							<!--Makes other elements vertically centered-->
+							<div class="stretch-vertical"></div><!--
+					     --><div class="inner-vertical-line"></div><!--
+						 --><input id="select-categories" type="checkbox" class="search-checkbox"><!--
+						 --><label for="select-categories" class="label-categories">All Categories</label><!--
+						 --><div class="standart-border categories">
+								<div class="frame-for-selected standart-border">
+									<!--duct tape for IE10-->
+									<label for="select-categories" class="label-categories stretch stretch-vertical categories-active">All Categories</label>
+								</div>
+								<div class="cat-select inner-inline-block">
+									<div class="stretch-vertical"></div>
+									<input id="select-all" type="checkbox" class="classic-checkbox">
+									<label for="select-all">Select all categories to search</label>
+								</div>
+								<ul class="cat-list">
+									<li>
+										<input id="select-1" type="checkbox" class="category-checkbox">
+										<label for="select-1">Videos</label>
+									</li>
+									<li>
+										<input id="select-2" type="checkbox" class="category-checkbox">
+										<label for="select-2">Photography</label>
+									</li>
+									<li>
+										<input id="select-3" type="checkbox" class="category-checkbox">
+										<label for="select-3">Animals</label>
+									</li>
+									<li>
+										<input id="select-4" type="checkbox" class="category-checkbox">
+										<label for="select-4">Games</label>
+									</li>
+									<li>
+										<input id="select-5" type="checkbox" class="category-checkbox">
+										<label for="select-5">Environment</label>
+									</li>
+									<li>
+										<input id="select-6" type="checkbox" class="category-checkbox">
+										<label for="select-6">Travel</label>
+									</li>
+									<li>
+										<input id="select-7" type="checkbox" class="category-checkbox">
+										<label for="select-7">Kids</label>
+									</li>
+									<li>
+										<input id="select-8" type="checkbox" class="category-checkbox">
+										<label for="select-8">Adventurer</label>
+									</li>
+									<li>
+										<input id="select-9" type="checkbox" class="category-checkbox">
+										<label for="select-9">Television</label>
+									</li>
+									<li>
+										<input id="select-10" type="checkbox" class="category-checkbox">
+										<label for="select-10">Apps</label>
+									</li>
+									<li>
+										<input id="select-11" type="checkbox" class="category-checkbox">
+										<label for="select-11">Events</label>
+									</li>
+									<li>
+										<input id="select-12" type="checkbox" class="category-checkbox">
+										<label for="select-12">Trips</label>
+									</li>
+								</ul>
+							</div><!--
+						 --><div class="inner-vertical-line"></div>
+							<button type="submit" class="submit sprite-other sprite-next"></button>
+							</div>
+					</div>
+					
+				</form>
+
+				<div class="login-field standart-border round-corners inner-inline-block float-right">
 					<!--Makes other elements vertically centered-->
 					<div class="stretch-vertical"></div>
-					<div class="loupe sprite-other sprite-loupe"></div>
-					<input type="text" class="inner-input-text" placeholder="Search">
-					<div class="stretch-vertical float-right inner-inline-block">
-						<!--Makes other elements vertically centered-->
-						<div class="stretch-vertical"></div><!--
-				     --><div class="inner-vertical-line"></div><!--
-					 --><input id="select-categories" type="checkbox" class="search-checkbox"><!--
-					 --><label for="select-categories" class="label-categories">All Categories</label><!--
-					 --><div class="standart-border categories">
-							<div class="frame-for-selected standart-border">
-								<!--duct tape for IE10-->
-								<label for="select-categories" class="label-categories stretch stretch-vertical categories-active">All Categories</label>
-							</div>
-							<div class="cat-select inner-inline-block">
-								<div class="stretch-vertical"></div>
-								<input id="select-all" type="checkbox" class="classic-checkbox">
-								<label for="select-all">Select all categories to search</label>
-							</div>
-							<ul class="cat-list">
-								<li>
-									<input id="select-1" type="checkbox" class="category-checkbox">
-									<label for="select-1">Videos</label>
-								</li>
-								<li>
-									<input id="select-2" type="checkbox" class="category-checkbox">
-									<label for="select-2">Photography</label>
-								</li>
-								<li>
-									<input id="select-3" type="checkbox" class="category-checkbox">
-									<label for="select-3">Animals</label>
-								</li>
-								<li>
-									<input id="select-4" type="checkbox" class="category-checkbox">
-									<label for="select-4">Games</label>
-								</li>
-								<li>
-									<input id="select-5" type="checkbox" class="category-checkbox">
-									<label for="select-5">Environment</label>
-								</li>
-								<li>
-									<input id="select-6" type="checkbox" class="category-checkbox">
-									<label for="select-6">Travel</label>
-								</li>
-								<li>
-									<input id="select-7" type="checkbox" class="category-checkbox">
-									<label for="select-7">Kids</label>
-								</li>
-								<li>
-									<input id="select-8" type="checkbox" class="category-checkbox">
-									<label for="select-8">Adventurer</label>
-								</li>
-								<li>
-									<input id="select-9" type="checkbox" class="category-checkbox">
-									<label for="select-9">Television</label>
-								</li>
-								<li>
-									<input id="select-10" type="checkbox" class="category-checkbox">
-									<label for="select-10">Apps</label>
-								</li>
-								<li>
-									<input id="select-11" type="checkbox" class="category-checkbox">
-									<label for="select-11">Events</label>
-								</li>
-								<li>
-									<input id="select-12" type="checkbox" class="category-checkbox">
-									<label for="select-12">Trips</label>
-								</li>
-							</ul>
-						</div><!--
-					 --><div class="inner-vertical-line"></div>
-						<button type="submit" class="submit sprite-other sprite-next"></button>
-						</div>
+					<a href="" class="sign-up centred-text inner-block">
+						<i class="sprite-other sprite-sign-in"></i>
+						<span>Sign Up</span>
+					</a><!--
+				 --><div class="inner-vertical-line"></div><!--
+				 --><a href="" class="log-in centred-text inner-block">
+						<i class="sprite-other sprite-login"></i>
+						<span>Login</span>
+					</a>
 				</div>
-				
-			</form>
 
-			<div class="login-field standart-border round-corners inner-inline-block float-right">
-				<!--Makes other elements vertically centered-->
+			</header>
+			<nav class="navigation-menu stretch inner-inline-block">
+				<div class="background-line stretch"></div>
 				<div class="stretch-vertical"></div>
-				<a href="" class="sign-up centred-text inner-block">
-					<i class="sprite-other sprite-sign-in"></i>
-					<span>Sign Up</span>
-				</a><!--
-			 --><div class="inner-vertical-line"></div><!--
-			 --><a href="" class="log-in centred-text inner-block">
-					<i class="sprite-other sprite-login"></i>
-					<span>Login</span>
-				</a>
-			</div>
-
-		</header>
-		<nav class="navigation-menu stretch inner-inline-block">
-			<div class="background-line stretch"></div>
-			<div class="stretch-vertical"></div>
-			<ul class="inner-inline-block menu-list">
-				<li class="selected">
-					<a href="">
-						<div><i class="sprite-menu sprite-house"></i></div>
-						<span>Home</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<div><i class="sprite-menu sprite-photo"></i></div>
-						<span>Photography</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<div><i class="sprite-menu sprite-camera"></i></div>
-						<span>Video</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<div><i class="sprite-menu sprite-environment"></i></div>
-						<span>Environment</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<div><i class="sprite-menu sprite-travel"></i></div>
-						<span>Travel</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<div><i class="sprite-menu sprite-adventure"></i></div>
-						<span>Adventure</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<div><i class="sprite-menu sprite-tv"></i></div>
-						<span>Television</span>
-					</a>
-				</li>
-				<li>
-					<a href="">
-						<div><i class="sprite-menu sprite-baby"></i></div>
-						<span>Kids</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
-		<div class="submenu">
-			<ul class="submenu-list">
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-news"></i><p>Daily News</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-maps"></i><p>Maps</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-education"></i><p>Education</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-events"></i><p>Events</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-explorers"></i><p>Explorers</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-magazine"></i><p>Magazine</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-science"></i><p>Science</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-games"></i><p>Games</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-blogs"></i><p>Blogs</p></a></li>
-				<li class="standart-border"><a href=""><i class="sprite-submenu sprite-trips"></i><p>Trips</p></a></li>
-			</ul>
-		</div><!--
-	 --><main class="main">
-			<div class="filter">
-				<ul class="filter-list inner-inline-block">
-					<li><a class="standart-border" href="">Home</a>
-					</li><li><a class="standart-border" href="">Animals</a>
-					</li><li><a class="standart-border" href="">Ancient</a>
-					</li><li><a class="standart-border" href="">Energy</a>
-					</li><li><a class="standart-border" href="">Environment</a>
-				</li><li><a class="standart-border" href="">Travel</a>
+				<ul class="inner-inline-block menu-list">
+					<li class="selected">
+						<a href="">
+							<div><i class="sprite-menu sprite-house"></i></div>
+							<span>Home</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<div><i class="sprite-menu sprite-photo"></i></div>
+							<span>Photography</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<div><i class="sprite-menu sprite-camera"></i></div>
+							<span>Video</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<div><i class="sprite-menu sprite-environment"></i></div>
+							<span>Environment</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<div><i class="sprite-menu sprite-travel"></i></div>
+							<span>Travel</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<div><i class="sprite-menu sprite-adventure"></i></div>
+							<span>Adventure</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<div><i class="sprite-menu sprite-tv"></i></div>
+							<span>Television</span>
+						</a>
+					</li>
+					<li>
+						<a href="">
+							<div><i class="sprite-menu sprite-baby"></i></div>
+							<span>Kids</span>
+						</a>
 					</li>
 				</ul>
-			</div>
-			<div class="standart-border">
-				<figure class="current-selection">
-					<figcaption class="inner-caption">
-						<ul class="inner-inline-block slider">
-							<li class="current"><a href="">1</a>
-							</li><li><a href="">2</a>
-							</li><li><a href="">3</a>
-							</li>
-						</ul>
-					</figcaption><!--
-				 --><img src="img/leopards.jpg" alt="leopards"><!--
-				 --><div class="standart-border">
-						<button class="float-right pause standart-border">&#9612; &#9612;</button>
-						<figcaption class="outer-caption">
-							<h3>Lion Cubs Playing</h3>
-							<p>African lion cubs play in the grass in the Okavango Delta.</p>
-						</figcaption>
+			</nav>
+			<div class="submenu">
+				<ul class="submenu-list">
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-news"></i><p>Daily News</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-maps"></i><p>Maps</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-education"></i><p>Education</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-events"></i><p>Events</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-explorers"></i><p>Explorers</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-magazine"></i><p>Magazine</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-science"></i><p>Science</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-games"></i><p>Games</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-blogs"></i><p>Blogs</p></a></li>
+					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-trips"></i><p>Trips</p></a></li>
+				</ul>
+			</div><!--
+		 --><main class="main">
+				<div class="filter">
+					<ul class="filter-list inner-inline-block">
+						<li><a class="standart-border" href="">Home</a>
+						</li><li><a class="standart-border" href="">Animals</a>
+						</li><li><a class="standart-border" href="">Ancient</a>
+						</li><li><a class="standart-border" href="">Energy</a>
+						</li><li><a class="standart-border" href="">Environment</a>
+					</li><li><a class="standart-border" href="">Travel</a>
+						</li>
+					</ul>
+				</div>
+				<div class="standart-border">
+					<figure class="current-selection">
+						<figcaption class="inner-caption">
+							<ul class="inner-inline-block slider">
+								<li class="current"><a href="">1</a>
+								</li><li><a href="">2</a>
+								</li><li><a href="">3</a>
+								</li>
+							</ul>
+						</figcaption><!--
+					 --><img src="img/leopards.jpg" alt="leopards"><!--
+					 --><div class="standart-border">
+							<button class="float-right pause standart-border">&#9612; &#9612;</button>
+							<figcaption class="outer-caption">
+								<h3>Lion Cubs Playing</h3>
+								<p>African lion cubs play in the grass in the Okavango Delta.</p>
+							</figcaption>
+						</div>
+					</figure>
+				</div>
+				<div class="latest-news standart-border	inner-inline-block">
+					<div class="stretch-vertical"></div><!--
+				 --><i class="sprite-other sprite-clock"></i><h5>Latest News</h5><!--
+				 --><div class="inner-vertical-line"></div><!--
+				 --><ul class="dropdown-list">
+				 		<li class="current label-categories">Most Recent</li>
+					 	<li><a href="">Most Viewed</a></li>
+					 	<li><a href="">Most Recent</a></li>
+					 	<li><a href="">Most Discussed</a></li>
+					 	<li><a href="">Most Rated</a></li>
+					 </ul>
+					 <ul class="inner-inline-block slider float-right">
+					 	<li class="current"><a href=""><i class="sprite-other sprite-list"></i></a>
+					 	</li><li><a href=""><i class="sprite-other sprite-table"></i></a></li>
+					 </ul>
+				</div>
+			</main>
+			<aside class="aside float-right">
+				<div>
+					<div class="aside-header standart-border inner-inline-block"><!--
+					 --><div class="stretch-vertical"></div><!--
+					 --><i class="sprite-other sprite-favorite"></i><!--
+					 --><h5>Most Popular News</h5>
 					</div>
-				</figure>
-			</div>
-			<div class="latest-news standart-border	inner-inline-block">
-				<div class="stretch-vertical"></div>
-				<i class="sprite-other sprite-clock"></i><h5>Latest News</h5><!--
-			 --><div class="inner-vertical-line"></div><!--
-			 --><ul class="dropdown-list">
-			 		<li class="current label-categories">Most Recent</li>
-				 	<li><a href="">Most Viewed</a></li>
-				 	<li><a href="">Most Recent</a></li>
-				 	<li><a href="">Most Discussed</a></li>
-				 	<li><a href="">Most Rated</a></li>
-				 </ul>
-				 <ul class="inner-inline-block slider float-right">
-				 	<li class="current"><a href=""><i class="sprite-other sprite-list"></i></a>
-				 	</li><li><a href=""><i class="sprite-other sprite-table"></i></a></li>
-				 </ul>
-			</div>
-		</main>
-		<aside class="aside float-right">
-			<div>
-				<div class="aside-header standart-border inner-inline-block"><div class="stretch-vertical"></div><i class="sprite-other sprite-favorite"></i><h4>Most Popular News</h4></div>
-				<div class="news-mini standart-border">
-					<figure>
-						<img src="img/snake.jpg" alt="">
-						<div class="rating-block float-right">
-							<ul class="rating inner-inline-block">
-								<li><a href="" class="sprite-other sprite-star"></a></li>
-								<li><a href="" class="sprite-other sprite-star"></a></li>
-								<li><a href="" class="sprite-other sprite-star"></a></li>
-								<li><a href="" class="sprite-other sprite-star"></a></li>
-								<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
-							</ul>
-							<p><span>71,482</span> votes</p>
-						</div>
-						<figcaption><h5>The Bite That Heals</h5><p>6 days ago</p></figcaption>
-					</figure>
+					<div class="aside-block standart-border darker-background">
+						<figure class="news-mini">
+							<a href="">
+								<img src="img/snake.jpg" alt="snake">
+							</a>
+							<div class="rating-block float-right">
+								<ul class="rating inner-inline-block">
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+								</ul>
+								<p><span>71,482</span> votes</p>
+							</div>
+							<figcaption><h4>The Bite That Heals</h4><p>6 days ago</p></figcaption>
+						</figure>
+					</div>
+					<div class="aside-block standart-border darker-background">
+						<figure class="news-mini">
+							<a href="">
+								<img src="img/lizard.jpg" alt="lizard">
+							</a>
+							<div class="rating-block float-right">
+								<ul class="rating inner-inline-block">
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+								</ul>
+								<p><span>64,159</span> votes</p>
+							</div>
+							<figcaption><h4>Stranger Than Nature</h4><p>8 days ago</p></figcaption>
+						</figure>
+					</div>
 				</div>
-				<div class="news-mini standart-border">
-					<figure>
-						<img src="img/lizard.jpg" alt="">
-						<div class="rating-block float-right">
-							<ul class="rating inner-inline-block">
-								<li><a href="" class="sprite-other sprite-star"></a></li>
-								<li><a href="" class="sprite-other sprite-star"></a></li>
-								<li><a href="" class="sprite-other sprite-star"></a></li>
-								<li><a href="" class="sprite-other sprite-star"></a></li>
-								<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
-							</ul>
-							<p><span>64,159</span> votes</p>
+				<div>
+					<div class="aside-header standart-border inner-inline-block darker-background"><!--
+					 --><div class="stretch-vertical"></div><!--
+					 --><i class="sprite-other sprite-video"></i><!--
+					 --><h5>Most Popular Videos</h5>
+					</div>
+					<div class="aside-block standart-border">
+						<figure class="video">
+							<a href="">
+								<img src="img/parrots.jpg" alt="parrot">
+								<i class="sprite-other sprite-play-video"></i>
+							</a>
+							<figcaption>
+								<h4>Most Rare Birds Ever</h4>
+								<p><span>211,482</span> views</p>
+							</figcaption>
+						</figure>
+					</div>
+					<div class="aside-block standart-border darker-background">
+						<figure class="video">
+							<a href="">
+								<img src="img/birdfish.jpg" alt="birdfish">
+								<i class="sprite-other sprite-play-video"></i>
+							</a>
+							<figcaption>
+								<h4>Mandarin Dragonet</h4>
+								<p><span>192,029</span> views</p>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+				<div>
+					<div class="aside-header standart-border inner-inline-block">
+						<div class="stretch-vertical"></div><i class="sprite-other sprite-calendar"></i><h5>Upcoming Events</h5>
+						<div class="right-slider float-right inner-inline-block stretch-vertical">
+							<div class="stretch-vertical"></div><!--
+						 --><button class="flip sprite-other sprite-next"></button><!--
+						 --><div class="inner-vertical-line"></div><!--
+						 --><button class="sprite-other sprite-next"></button>
 						</div>
-						<figcaption><h5>Stranger Than Nature</h5><p>8 days ago</p></figcaption>
-					</figure>
+				</div>
+					<div class="aside-block standart-border">
+						<h4 class="underline">NatGeo Live Student Matinees</h4>
+						<figure class="event">
+							<a href="">
+								<span><i class="sprite-other sprite-clock"></i> April 17, 2013</span>
+								<img src="img/event.jpg" alt="event">
+							</a href="">
+							<figcaption>
+								<p>Live Student Matinees offer students in USA and Canada entertaining and visually spectac-ular presentations by leading explorers</p>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+				<div class="inner-inline-block end">
+					<a href="" class="shop standart-button inner-inline-block standart-border end"><!--
+					 --><div class="stretch-vertical"></div><!--
+					 --><i class="sprite-other sprite-shop"></i><!--
+					 --><div class="inner-vertical-line"></div><!--
+					 --><p>SHOPPING</p>
+					</a>
+					<a href="" class="subscribe standart-button inner-inline-block standart-border float-right end"><!--
+					 --><div class="stretch-vertical"></div><!--
+					 --><i class="sprite-other sprite-subscription"></i><!--
+					 --><div class="inner-vertical-line"></div><!--
+					 --><p>SUBSCRIPTIONS</p>
+					</a>
+				</div>
+			</aside>
+			<div class="news inner-inline-block">
+				<div class="news-block standart-border">
+					<div class="news-mini-block standart-border darker-background">
+						<figure class="news-mini">
+							<img src="img/lion.jpg" alt="lion">
+							<div class="rating-block float-right">
+								<ul class="rating inner-inline-block">
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+								</ul>
+								<p><span>1,291</span> votes</p>
+							</div>
+							<figcaption><h4>African Lion Cub</h4><p>3 hours ago</p></figcaption>
+						</figure>
+					</div>
+					<p>An African lion cub rests in the tall grasses of Botswana’s Okavango Delta. Once ranging across the African continent and into Syria, Israel, Iraq, Pakistan, Iran, and even northwest India, lions have declined to as few as 20,000 animals from about 450,000 just 50 years ago.</p>
+				</div><!--
+			 --><div class="news-block standart-border">
+					<div class="news-mini-block standart-border darker-background">
+						<figure class="news-mini">
+							<img src="img/gorilla.jpg" alt="gorilla">
+							<div class="rating-block float-right">
+								<ul class="rating inner-inline-block">
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+								</ul>
+								<p><span>972</span> votes</p>
+							</div>
+							<figcaption><h4>Young Mountain Gorilla</h4><p>5 hours ago</p></figcaption>
+						</figure>
+					</div>
+					<p>This young mountain gorilla, named Kwibesha, is a member of the Kabrizi family of gorillas in Virunga National Park. Wildlife rangers in the park have had to suspend their monitoring of the gorillas because rebel militias and the Congolese army occupy much of their habitat.</p>
+				</div><!--
+			 --><div class="news-block standart-border">
+					<div class="news-mini-block standart-border darker-background">
+						<figure class="news-mini">
+							<img src="img/penguin.jpg" alt="penguin">
+							<div class="rating-block float-right">
+								<ul class="rating inner-inline-block">
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+								</ul>
+								<p><span>681</span> votes</p>
+							</div>
+							<figcaption><h4>King Penguins</h4><p>8 hours ago</p></figcaption>
+						</figure>
+					</div>
+					<p>King penguins live on the more temperate islands north of Antarctica. Although their habitat is warmer than that of emperor penguins, king penguins have four layers of feathers and huddle together for warmth.</p>
+				</div><!--
+				--><div class="news-block standart-border">
+					<div class="news-mini-block standart-border darker-background">
+						<figure class="news-mini">
+							<img src="img/shark.jpg" alt="shark">
+							<div class="rating-block float-right">
+								<ul class="rating inner-inline-block">
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li><a href="" class="sprite-other sprite-star"></a></li>
+									<li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+								</ul>
+								<p><span>2,827</span> votes</p>
+							</div>
+							<figcaption><h4>Great White Shark</h4><p>1 day ago</p></figcaption>
+						</figure>
+					</div>
+					<p>The legendary great white shark is far more fearsome in our imaginations than in reality. As scientific research on these elusive predators increases, their image as mindless killing machines is beginning to fade.</p>
+				</div>
+				<div class="single-news"></div>
+				<div class="single-news"></div>
+				<div class="single-news"></div>
+			</div>
+			<div class="magazines stretch">
+				<div class="aside-header inner-inline-block stretch standart-border">
+					<div class="stretch-vertical"></div><!--
+				 --><i class="sprite-other sprite-magazine-mini"></i><!--
+				 --><h5>National Geographic Magazines</h5><!--
+				 --><div class="right-slider float-right inner-inline-block stretch-vertical">
+						<div class="stretch-vertical"></div><!--
+					 --><button class="flip sprite-other sprite-next"></button><!--
+					 --><div class="inner-vertical-line"></div><!--
+					 --><button class="sprite-other sprite-next"></button>
+					</div>
+				</div>
+				<div class="magazines-block inner-inline-block">
+					<div class="magazine standart-border">
+						<figure class="standart-border darker-background stretch">
+							<img src="img/magazine-1.jpg" alt="magazine">
+							<figcaption>National Geographic Magazine</figcaption>
+						</figure>
+						<div class="rating-block">
+							<ul class="rating inner-inline-block">
+								<li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+							</ul>
+							<p><span>7,782</span> votes</p>
+						</div>
+						<a class="standart-button standart-border inner-inline-block" href="">
+							<div class="stretch-vertical"></div><!--
+						 --><i class="sprite-other sprite-plus"></i><!--
+						 --><div class="inner-vertical-line"></div><!--
+						 --><p>SUBSCRIBE</p>
+						</a>
+					</div>
+					<div class="magazine standart-border">
+						<figure class="standart-border darker-background stretch">
+							<img src="img/magazine-2.jpg" alt="magazine">
+							<figcaption>National Geographic Kids Magazine</figcaption>
+						</figure>
+						<div class="rating-block">
+							<ul class="rating inner-inline-block">
+								<li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li class="rate"><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li>
+							</ul>
+							<p><span>5,841</span> votes</p>
+						</div>
+						<a class="standart-button standart-border inner-inline-block" href="">
+							<div class="stretch-vertical"></div><!--
+						 --><i class="sprite-other sprite-plus"></i><!--
+						 --><div class="inner-vertical-line"></div><!--
+						 --><p>SUBSCRIBE</p>
+						</a>
+					</div>
+					<div class="magazine standart-border">
+						<figure class="standart-border darker-background stretch">
+							<img src="img/magazine-3.jpg" alt="magazine">
+							<figcaption>NG Young Explorer Magazine</figcaption>
+						</figure>
+						<div class="rating-block">
+							<ul class="rating inner-inline-block">
+								<li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+							</ul>
+							<p><span>6,121</span> votes</p>
+						</div>
+						<a class="standart-button standart-border inner-inline-block" href="">
+							<div class="stretch-vertical"></div><!--
+						 --><i class="sprite-other sprite-plus"></i><!--
+						 --><div class="inner-vertical-line"></div><!--
+						 --><p>SUBSCRIBE</p>
+						</a>
+					</div>
+					<div class="magazine standart-border">
+						<figure class="standart-border darker-background stretch">
+							<img src="img/magazine-2.jpg" alt="magazine">
+							<figcaption>National Geographic Little</figcaption>
+						</figure>
+						<div class="rating-block">
+							<ul class="rating inner-inline-block">
+								<li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li><a href="" class="sprite-other sprite-star"></a></li><!--
+							 --><li class="rate"><a href="" class="sprite-other sprite-star"></a></li>
+							</ul>
+							<p><span>9,107</span> votes</p>
+						</div>
+						<a class="standart-button standart-border inner-inline-block" href="">
+							<div class="stretch-vertical"></div><!--
+						 --><i class="sprite-other sprite-plus"></i><!--
+						 --><div class="inner-vertical-line"></div><!--
+						 --><p>SUBSCRIBE</p>
+						</a>
+					</div>
 				</div>
 			</div>
-			<div>
-				<div class="aside-header standart-border inner-inline-block"><div class="stretch-vertical"></div><i class="sprite-other sprite-video"></i><h4>Most Popular Videos</h4></div>
-				
+		</div>
+		<footer class="footer stretch">
+			<form action="" class="bottom-form float-left inner-inline-block">
+				<input class="rounded-border" type="text" placeholder="type your email" maxlength="30">
+				<input type="submit" value="SUBSCRIBE">
+				<input class="sprite-other sprite-facebook facebook" type="button">
+				<input class="sprite-other sprite-twitter twitter" type="button">
+				<input class="sprite-other sprite-play youtube" type="button">
+			</form>
+			<div class="float-right">
+				<ul class="inner-inline-block">
+					<li>Customer Service</li>
+					<li>Advertise With Us</li>
+					<li>Terms of Service</li>
+					<li>Privacy Policy</li>
+				</ul>
+				<p>© 1996-2013 National Geographic Society. All rights reserved</p>
 			</div>
-			<div>
-				<div class="aside-header standart-border inner-inline-block"><div class="stretch-vertical"></div><i class="sprite-other sprite-calendar"></i><h4>Upcoming Events</h4></div>
-			</div>
-			
-		</aside>
+		</footer>
 	</div>
 </body>
 </html>
