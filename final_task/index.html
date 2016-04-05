@@ -8,7 +8,7 @@
 <body>
 	<div class="wrapper">
 		<div class="content inner-inline-block">
-			<header class="stretch">
+			<header class="header inner-inline-block stretch">
 				<a href="#"><img src="img/logo.png" alt="" class="logo"></a>
 				<form action="" class="search standart-border round-corners">
 					<div class="search-field inner-inline-block">
@@ -93,12 +93,12 @@
 				<div class="login-field standart-border round-corners inner-inline-block float-right">
 					<!--Makes other elements vertically centered-->
 					<div class="stretch-vertical"></div>
-					<a href="" class="sign-up centred-text inner-block">
+					<a href="" class="sign-up inner-block">
 						<i class="sprite-other sprite-sign-in"></i>
 						<span>Sign Up</span>
 					</a><!--
 				 --><div class="inner-vertical-line"></div><!--
-				 --><a href="" class="log-in centred-text inner-block">
+				 --><a href="" class="log-in inner-block">
 						<i class="sprite-other sprite-login"></i>
 						<span>Login</span>
 					</a>
@@ -159,7 +159,7 @@
 					</li>
 				</ul>
 			</nav>
-			<div class="submenu">
+			<nav class="submenu">
 				<ul class="submenu-list">
 					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-news"></i><p>Daily News</p></a></li>
 					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-maps"></i><p>Maps</p></a></li>
@@ -172,27 +172,25 @@
 					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-blogs"></i><p>Blogs</p></a></li>
 					<li class="standart-border"><a href=""><i class="sprite-submenu sprite-trips"></i><p>Trips</p></a></li>
 				</ul>
-			</div><!--
+			</nav><!--
 		 --><main class="main">
 				<div class="filter">
 					<ul class="filter-list inner-inline-block">
-						<li><a class="standart-border" href="">Home</a>
-						</li><li><a class="standart-border" href="">Animals</a>
-						</li><li><a class="standart-border" href="">Ancient</a>
-						</li><li><a class="standart-border" href="">Energy</a>
-						</li><li><a class="standart-border" href="">Environment</a>
-					</li><li><a class="standart-border" href="">Travel</a>
-						</li>
+						<li><a class="standart-border" href="">Home</a></li><!--
+					 --><li><a class="standart-border" href="">Animals</a></li><!--
+					 --><li><a class="standart-border" href="">Ancient</a></li><!--
+					 --><li><a class="standart-border" href="">Energy</a></li><!--
+					 --><li><a class="standart-border" href="">Environment</a></li><!--
+					 --><li><a class="standart-border" href="">Travel</a></li>
 					</ul>
 				</div>
 				<div class="standart-border">
-					<figure class="current-selection">
+					<figure class="current-selected-news">
 						<figcaption class="inner-caption">
 							<ul class="inner-inline-block slider split-lines">
-								<li class="current"><a href="">1</a>
-								</li><li><a href="">2</a>
-								</li><li><a href="">3</a>
-								</li>
+								<li class="current"><a href="">1</a></li><!--
+							 --><li><a href="">2</a></li><!--
+							 --><li><a href="">3</a></li>
 							</ul>
 						</figcaption><!--
 					 --><img src="img/leopards.jpg" alt="leopards"><!--
@@ -335,7 +333,7 @@
 					</a>
 				</div>
 			</aside>
-			<div class="news inner-inline-block">
+			<section class="news inner-inline-block">
 				<div class="news-block standart-border">
 					<div class="news-mini-block standart-border darker-background">
 						<figure class="news-mini">
@@ -415,8 +413,8 @@
 				<div class="single-news"></div>
 				<div class="single-news"></div>
 				<div class="single-news"></div>
-			</div>
-			<div class="magazines stretch">
+			</section>
+			<section class="magazines stretch">
 				<div class="aside-header inner-inline-block stretch standart-border">
 					<div class="stretch-vertical"></div><!--
 				 --><i class="sprite-other sprite-magazine-mini"></i><!--
@@ -518,7 +516,7 @@
 						</a>
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 		<footer class="footer stretch">
 			<form action="" class="bottom-form float-left inner-inline-block">
