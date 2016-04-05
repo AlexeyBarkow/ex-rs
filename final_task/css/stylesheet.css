@@ -599,8 +599,12 @@ figure {
 	}
 
 .current-selected-news {
+	min-height: 226px;
 	width: 504px;
 }
+	.current-selected-news img {
+		min-height: 226px;
+	}
 
 	.outer-caption {
 		max-width: 450px;
@@ -735,21 +739,33 @@ figure {
 		padding: 5px;
 	}
 
-		.news-mini h4 {
-			margin-top: 10px;
-			margin-bottom: 0;
+		.aside-block .news-mini img, .video img {
+			height: 100px;
+			width: 214px;
 		}
 
-		.news-mini p {
-			color: #b3b3b3;
-		}
-		
 		.news-mini {
-			position: relative;
+			min-height: 100px;
 		}
+
+			.news-mini h4 {
+				margin-top: 10px;
+				margin-bottom: 0;
+			}
+
+			.news-mini p {
+				color: #b3b3b3;
+			}
+			
+			.news-mini {
+				position: relative;
+			}
 
 	.video {
 		position: relative;
+		min-height: 100px;
+
+		background-color: #000000;
 	}
 
 		.video figcaption, .video i {
@@ -770,12 +786,19 @@ figure {
 			color: #ffffff;
 		}
 
+	.event img {
+		height: 58px;
+		width: 213px;
+	}
+
 	.event p {
 		margin-top: 10px;
 	}
 
 	.event a {
 		position: relative;
+		display: block;
+		min-height: 58px;
 	}
 
 		.event a span {
@@ -875,6 +898,11 @@ figure {
 		z-index: 6;
 	}
 
+	.news-block img {
+		height: 100px;
+		width: 319px;
+	}
+
 	.news-block p {
 		font-size: 12px;
 		color: #989898;
@@ -904,7 +932,12 @@ figure {
 		padding: 8px 5px 8px 5px;
 	}
 
+		.magazine img {
+			height: 100px;
+		}
+
 		.magazine figure {
+			min-height: 153px;
 			padding: 15px 5px 5px 5px;
 			text-align: center;
 		}
