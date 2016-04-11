@@ -145,10 +145,10 @@ function DoublyLinkedList () {
 		return -1;
 	};
 	//function for testing
-	this.getList = function () {
-		return listData;
-	};
+	// this.getList = function () {
+	// 	return listData;
+	// };
 }
 
-var a = new DoublyLinkedList();
-console.log(a.append(2).head());
+// var a = new DoublyLinkedList();
+// console.log(a.append(2).head());
