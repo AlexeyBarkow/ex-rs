@@ -215,11 +215,11 @@
             events = events.split(" ");
             Array.prototype.forEach.call(this, curr => {
                 events.forEach(event => {
-                    curr.addEventListener(event, function(e){
+                    curr.addEventListener(event, function eventHandler(e){
                         if (e.target.matches(selector)) {
                             handler.call(this, e, data);    
                             //Yes, I know, arguments.callee is depricated. But I didn't find better way to do what I want
-                            curr.removeEventListener(event, arguments.callee);
+                            curr.removeEventListener(event, eventHandler);
                         }
                     });
                 });
@@ -262,5 +262,7 @@
         }
         return selector;
     }
+
+    
     window.$ = $; 
 })();
