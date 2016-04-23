@@ -1,17 +1,9 @@
 (function () {
     function jQueryArray(array) {
         this.length = 0;
-        // var that = this;
         Array.prototype.push.apply(this, array);
-        // Array.prototype.forEach.call(array, (curr,i,arr) => {
-        //     that[i] = curr; 
-        //     that.length++;
-        // });
-        // this.push = Array.prototype.push;
-        // this.push.apply(array);
         //make our jQuery array interpretate as array
         this.splice = Array.prototype.splice;
-
     }
 
     jQueryArray.prototype.addClass = function(classToAdd) {
@@ -104,17 +96,20 @@
                 }
             }
         } else {
-            //ToDo: attr with PlaneObject as parameter
-            Array.prototype.forEach.call(this, (curr))
+            //if attributeName is PlaneObject
+            // Array.prototype.forEach.call(this, curr => {
+            //     for (var attribute in attributeName) {
+            //         curr.setAttribute(attribute, attributeName[attribute]);
+            //     }
+            // });
             for (var attribute in attributeName) {
-
+                this.attr(attribute, attributeName[attribute]);
             }
         }
         return this;
     }
 
 
-    //ToDo: if one of selected elements metches the selector, its child will be added twice
     jQueryArray.prototype.children = function(selector) {
         var res = new jQueryArray([]);
         Array.prototype.forEach.call(this, (curr, index) => {
@@ -191,8 +186,6 @@
         if (typeof selector !== 'string') {
             selector = '*';
         }
-        // var children = $(this).children(selector);
-        // Array.prototype.push.apply(children, this);
         if (typeof events === 'string') {
             events = events.split(" ");
             Array.prototype.forEach.call(this, curr => {
@@ -205,7 +198,10 @@
                 });
             });
         } else {
-            //ToDo: add support of PlaneObject as events parameter
+            //if events is PlaneObject
+            for (var event in events) {
+                this.on(event, selector, data, events[event]);
+            }
         }
         return this;
     }
@@ -215,8 +211,6 @@
         if (typeof selector !== 'string') {
             selector = '*';
         }
-        // var children = $(this).children(selector);
-        // Array.prototype.push.apply(children, this);
         if (typeof events === 'string') {
             events = events.split(" ");
             Array.prototype.forEach.call(this, curr => {
@@ -231,7 +225,10 @@
                 });
             });
         } else {
-            //ToDo: add support of PlaneObject as events parameter
+            //if events is PlaneObject
+            for (var event in events) {
+                this.one(event, selector, data, events[event]);
+            }
         }
         return this;
     }
