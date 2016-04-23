@@ -6,8 +6,11 @@ function jQueryArray(array) {
     //     that[i] = curr; 
     //     that.length++;
     // });
-	//make our jQuery array interpretate as array
-    this.splice = function () {};
+    // this.push = Array.prototype.push;
+    // this.push.apply(array);
+    //make our jQuery array interpretate as array
+    this.splice = Array.prototype.splice;
+
 }
 
 jQueryArray.prototype.addClass = function(classToAdd) {
@@ -110,8 +113,9 @@ jQueryArray.prototype.attr = function(attributeName, value) {
 jQueryArray.prototype.children = function(selector) {
     var res = new jQueryArray([]);
     Array.prototype.forEach.call(this, (curr, index) => {
-        //ToDo: Change Array.push to my own concat method
-        Array.prototype.push.apply(res, $(selector === undefined ? "*" : selector, curr));
+        if (Array.prototype.indexOf.call(res, curr) === -1) {
+            Array.prototype.push.apply(res, $(selector === undefined ? "*" : selector, curr));
+        }
     });
     return res;
 }
@@ -177,16 +181,62 @@ jQueryArray.prototype.data = function(key, value) {
     return this;
 }
 
-jQueryArray.prototype.on = function() {
-
+jQueryArray.prototype.on = function(events, selector, data, handler) {
+    handler = handler || data || selector;
+    if (typeof selector !== 'string') {
+        selector = '*';
+    }
+    // var children = $(this).children(selector);
+    // Array.prototype.push.apply(children, this);
+    if (typeof events === 'string') {
+        events = events.split(" ");
+        Array.prototype.forEach.call(this, curr => {
+            events.forEach(event => {
+                curr.addEventListener(event, function(e){
+                    if (curr.matches(selector)) {
+                        handler.call(this, e, data);
+                    }
+                });
+            });
+        });
+    } else {
+        //ToDo: add support of PlaneObject as events parameter
+    }
+    return this;
 }
 
-jQueryArray.prototype.one = function() {
-
+jQueryArray.prototype.one = function(events, selector, data, handler) {
+    handler = handler || data || selector;
+    if (typeof selector !== 'string') {
+        selector = '*';
+    }
+    // var children = $(this).children(selector);
+    // Array.prototype.push.apply(children, this);
+    if (typeof events === 'string') {
+        events = events.split(" ");
+        Array.prototype.forEach.call(this, curr => {
+            events.forEach(event => {
+                curr.addEventListener(event, function(e){
+                    if (curr.matches(selector)) {
+                        handler.call(this, e, data);    
+                        //Yes, I know, arguments.callee is depricated. But I didn't find better way to do what I want
+                        curr.removeEventListener(event, arguments.callee);
+                    }
+                });
+            });
+        });
+    } else {
+        //ToDo: add support of PlaneObject as events parameter
+    }
+    return this;
 }
 
-jQueryArray.prototype.each = function() {
+jQueryArray.prototype.each = function(callback) {
+    Array.prototype.every.call(this, (curr, index) => {
+        return !(callback.call(curr, index, curr) === false);
 
+    });
+    return this;
 }
 
 
