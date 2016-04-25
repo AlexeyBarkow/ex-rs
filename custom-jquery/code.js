@@ -22,23 +22,26 @@
     }
 
 
-    //ToDo: my append function adds elements uncorrectly if we have same elements on JQueryArray and child
     jQueryArray.prototype.append = function(child) {
         if (typeof child === 'string') {
             Array.prototype.forEach.call(this, (curr) => {
                 curr.innerHTML += child;
             });
         }
-        if(child instanceof Node) {
-            Array.prototype.forEach.call(this, (curr, index, arr) => {
-                curr.appendChild(child.cloneNode(true));
-            });
 
-            //If child instanceof Element
-            if (child.remove) {
-                child.remove();
+        if(child instanceof Node) {
+            if (Array.prototype.indexOf(this, child) === -1) {
+                Array.prototype.forEach.call(this, (curr, index, arr) => {
+                    curr.appendChild(child.cloneNode(true));
+                });
+
+                //If child instanceof Element
+                if (child.remove) {
+                    child.remove();
+                }
             }
         }
+
         if (child instanceof jQueryArray) {
             var that = this;
             Array.prototype.forEach.call(child, curr => {
