@@ -31,16 +31,7 @@ body {
 		resize: vertical;
 	}
 
-	.form-buttons {
-		float: right;	
-	}
-
-
-		.form-buttons > *{
-			margin-left: 15px;
-			margin-right: 5px
-		}
-
+	
 	.add-form {
 		width: 320px;
 		padding: 20px;
@@ -52,6 +43,8 @@ body {
 		border: 2px solid #000; 
 	}
 
+	
+	
 	.button {
 		text-align: center;
 		min-width: 80px;
@@ -121,6 +114,30 @@ body {
 
 	}
 
+	.form-buttons {
+		/*float: right;	*/
+	}
+
+
+		.form-buttons > *{
+			margin-top: 5px;
+			/*margin-right: 5px*/
+		}
+		.stretch-button {
+			text-align: center;
+			height: 40px;
+			width: 100%;
+			background-color: #ccc;
+			border-radius: 2px;
+			border: 1px solid #000;
+		}
+		
+		.stretch-button:hover {
+			background-color: #bbb;
+
+		}
+
+
 	.red-border {
 		/*background-color: #000;*/
 		border-color: #f00;
@@ -134,6 +151,10 @@ body {
 	.nav-area ul {
 		padding-left: 10px;
 		margin-bottom: 0;
+	}
+
+	.bookmarks {
+		display: inline-block;
 	}
 	
 	.trapezoid {

@@ -44,9 +44,13 @@ function switchToBookmark($current) {
 
 $('button[type=submit]').on('click', function () {
 	$submitButtonPressed = $(this);
-})
+});
 
-$('.add-form').submit(function (e) {
+$('#reset').on('click', function () {
+	toDefault();
+});
+
+$('.add-form').submit(function () {
 	var   isValid = true
 		, $index = $('#index')
 		, indexVal = $index.val()
