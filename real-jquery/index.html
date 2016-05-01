@@ -9,12 +9,12 @@
 	<div class="container">
 		<aside class="aside">
 			<!-- <a class="hide button">collapse</a> -->
-			<div id="aside-hide">
+			<!-- <div id="aside-hide">
 				<a href="#" class="hide button">Collapse</a>
-			</div>
-			<div id="aside-show" hidden>
-				<a href="#" class="show button" hidden>Show</a>
-			</div>
+			</div> -->
+			<!-- <div id="show-hide"> -->
+			<a href="#" class="hide button" id="hide-button" data-text-swap="Show" data-text-original="Collapse">Collapse</a>
+			<!-- </div> -->
 			<form class="add-form" action="">
 				<h2>Add your own tab</h2>
 				<table>
@@ -46,7 +46,10 @@
 					<textarea class="text" id="html-content" placeholder="Content"></textarea>
 				</div>
 				<!-- <input class="button" type="submit" value="Add">	 -->
-				<button class="button" type="submit">Add</button>
+				<div class="form-buttons">
+					<button class="button submit" name="edit" type="submit">Edit</button>
+					<button class="button submit" name="add" type="submit">Add</button>
+				</div>
 			</form>
 
 		</aside>
@@ -60,17 +63,17 @@
 			</nav>
 			<div class="content">
 				<div class="inner-content">
-					<section class="item">
-						<h2>Lorem?</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam qui iure modi quidem praesentium voluptate excepturi in. Quidem tempora iusto iste, exercitationem est beatae ea dolorem adipisci, aspernatur at placeat.</p>
-					</section>
-					<section class="item" hidden>
-						<h3>Lorem!</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, illo facere? Excepturi adipisci, delectus commodi dicta expedita doloribus amet minima in eaque ullam eos animi culpa magnam praesentium, atque assumenda.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum deleniti necessitatibus recusandae reprehenderit quibusdam optio labore possimus, rem facere sit, nemo voluptas praesentium aspernatur ratione quo. Quo sunt beatae nemo?</p>
-					</section>
-					<section class="item" hidden>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt aspernatur, minima. Repellendus facere voluptatibus architecto quidem sequi suscipit veritatis odio ullam, unde eius non esse laborum. Molestiae consequatur tenetur quod?</p>
-					</section>
+					<section class="item"><!-- 
+					 --><h2>Lorem?</h2>
+<!-- 				 --><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam qui iure modi quidem praesentium voluptate excepturi in. Quidem tempora iusto iste, exercitationem est beatae ea dolorem adipisci, aspernatur at placeat.</p><!-- 
+			 	 --></section>
+					<section class="item" hidden><!-- 
+					 --><h3>Lorem!</h3>
+<!-- 				 --><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, illo facere? Excepturi adipisci, delectus commodi dicta expedita doloribus amet minima in eaque ullam eos animi culpa magnam praesentium, atque assumenda.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum deleniti necessitatibus recusandae reprehenderit quibusdam optio labore possimus, rem facere sit, nemo voluptas praesentium aspernatur ratione quo. Quo sunt beatae nemo?</p><!-- 
+				 --></section><!-- 
+				 --><section class="item" hidden><!--
+   					 --><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt aspernatur, minima. Repellendus facere voluptatibus architecto quidem sequi suscipit veritatis odio ullam, unde eius non esse laborum. Molestiae consequatur tenetur quod?</p><!-- 
+				 --></section>
 				</div>
 			</div>
 		</main>

@@ -31,9 +31,15 @@ body {
 		resize: vertical;
 	}
 
-	.aside input[type='submit'] {
+	.form-buttons {
 		float: right;	
 	}
+
+
+		.form-buttons > *{
+			margin-left: 15px;
+			margin-right: 5px
+		}
 
 	.add-form {
 		width: 320px;
