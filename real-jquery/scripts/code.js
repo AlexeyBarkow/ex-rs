@@ -15,11 +15,20 @@ $('#hide-button').on('click', function () {
 	}
 });
 
+$('#datepicker').datepicker();
+
+function getFormattedDate(ms) {
+	if (ms) {
+		return $.datepicker.formatDate('mm/dd/yy', new Date(ms));
+	}
+	return $.datepicker.formatDate('mm/dd/yy', new Date());
+}
 
 function toDefault() {
 	$('#index').val($('.bookmarks').children().length);
 	$('#title').val('');
 	$('#html-content').val('');	
+	$('#datepicker').val(getFormattedDate());
 }
 
 $('.bookmarks').children().on('click', onBookmarkClick);
@@ -29,17 +38,21 @@ function onBookmarkClick () {
 	$('#index').val($(this).index());
 	$('#title').val($(this).children().text());
 	$('#html-content').val($(`.item:nth-child( ${ 1 + ( + $(this).index()) } )`).html().replace(/<!--[^>]*-->/g, ''));
+	$('#datepicker').val(getFormattedDate($(this).data('date')));
 }
 
 
 function switchToBookmark($current) {
 	var $selected = $('.selected')
-		, index = $current.index();
+		, index = $current.index()
+		;
 	$editingBookmark = $current;
 	$selected.toggleClass('selected');
 	$(`.item:nth-child( ${ 1 + ( + $selected.index()) } )`).toggle();
 	$current.toggleClass('selected');
 	$(`.item:nth-child( ${ 1 + ( + $current.index()) } )`).toggle();
+	$('.actual-date').text(getFormattedDate($current.data('date')));
+	// $('#datepicker').val(getFormattedDate($current.data('date')));
 }
 
 $('button[type=submit]').on('click', function () {
@@ -56,6 +69,8 @@ $('.add-form').submit(function () {
 		, indexVal = $index.val()
 		, $title = $('#title')
 		, $htmlContent = $('#html-content')
+		, $datepicker = $('#datepicker')
+		, date = $datepicker.datepicker('getDate')
 		;
 	$('.red-border').removeClass('red-border');
 	if (indexVal === '') {
@@ -71,6 +86,12 @@ $('.add-form').submit(function () {
 		isValid = false;
 	}
 
+	if (date === null) {
+		$datepicker.addClass('red-border');
+		isValid = false;
+	}
+
+	// console.log(date);
 	if (isValid) {
 		var   $newBookmark = $(`<li class="trapezoid"><a href="#">${ $( '#title' ).val() }</a></li>`)
 			, $bookmarks = $('.bookmarks')
@@ -78,9 +99,8 @@ $('.add-form').submit(function () {
 			, $innerContent = $('.inner-content')
 			;
 		$newBookmark.on('click', onBookmarkClick);
-		console.log($submitButtonPressed.attr('name'))
+		$newBookmark.data('date', date.getTime());
 		if ($submitButtonPressed.attr('name') === 'edit'){
-			console.log("le fu")
 			if ($editingBookmark) {
 				$(`.item:nth-child( ${ 1 + ( + $editingBookmark.index()) } )`).remove();
 				$editingBookmark.remove();
@@ -105,5 +125,5 @@ $('.add-form').submit(function () {
 	}
 });
 
-
+switchToBookmark($('.selected'));
 toDefault();

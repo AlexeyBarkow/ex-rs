@@ -4,17 +4,12 @@
 	<meta charset="UTF-8">
 	<title>Real jQuery</title>
 	<link rel="stylesheet" href="stylesheets/stylesheet.css">
+	<link rel="stylesheet" href="stylesheets/jquery-ui.min.css">
 </head>
 <body>
 	<div class="container">
 		<aside class="aside">
-			<!-- <a class="hide button">collapse</a> -->
-			<!-- <div id="aside-hide">
-				<a href="#" class="hide button">Collapse</a>
-			</div> -->
-			<!-- <div id="show-hide"> -->
 			<a href="#" class="hide button" id="hide-button" data-text-swap="Show" data-text-original="Collapse">Collapse</a>
-			<!-- </div> -->
 			<form class="add-form" action="">
 				<h2>Add your own tab</h2>
 				<table>
@@ -23,7 +18,7 @@
 							<label for="index">index</label>
 						</td>
 						<td>
-							<input class="text" id="index" type="number" placeholder="Enter tab's index">
+							<input class="text" id="index" min="0" placeholder="Enter tab's index" type="number">
 						</td>
 					</tr>
 					<tr>
@@ -34,17 +29,20 @@
 							<input class="text" id="title" type="text" placeholder="Enter tab's title">
 						</td>
 					</tr>
+					<tr>
+						<td>
+							<label for="datepicker">Date</label>
+						</td>
+						<td>
+							<input class="text" type="text" id="datepicker" placeholder="Enter date here">
+						</td>
+					</tr>
 				</table>
-				<!-- <div class="single-line">
-					
-				</div>
-				<div class="single-line">
-					
-				</div> -->
 				<div class="inner-block">
 					<label for="html-content">Html content</label>
 					<textarea class="text" id="html-content" placeholder="Content"></textarea>
 				</div>
+
 				<div class="form-buttons">
 					<button class="stretch-button" name="add" type="submit">Add</button>
 					<button class="stretch-button" name="edit" type="submit">Edit</button>
@@ -56,9 +54,9 @@
 		<main class="main">
 			<nav class="nav-area">
 				<ul class="bookmarks"><!-- 
-				 --><li class="trapezoid selected"><a href="#">Example1</a></li><!-- 
-				 --><li class="trapezoid"><a href="#">Example2</a></li><!-- 
-				 --><li class="trapezoid" ><a href="#">Example3</a></li><!-- 
+				 --><li class="trapezoid selected" data-date="1465678800000"><a href="#">Example1</a></li><!-- 
+				 --><li class="trapezoid" data-date="1471294800000"><a href="#">Example2</a></li><!-- 
+				 --><li class="trapezoid" data-date="1477774800000"><a href="#">Example3</a></li><!-- 
 			 --></ul>
 			</nav>
 			<div class="content">
@@ -75,10 +73,16 @@
    					 --><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt aspernatur, minima. Repellendus facere voluptatibus architecto quidem sequi suscipit veritatis odio ullam, unde eius non esse laborum. Molestiae consequatur tenetur quod?</p><!-- 
 				 --></section>
 				</div>
+				<div class="clear">
+					<div class="float-right">
+						Actual due date: <span class="text actual-date"></span>
+					</div>
+				</div>
 			</div>
 		</main>
 	</div>
 	<script src="scripts/jquery-2.2.3.js"></script>
+	<script src="scripts/jquery-ui.min.js"></script>
 	<script src="scripts/code.js"></script>
 </body>
 </html>

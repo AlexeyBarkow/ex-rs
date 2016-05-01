@@ -225,6 +225,14 @@ body {
 	display: block;
 }
 
+.float-right {
+	float: right;
+}
+
+.clear {
+	overflow: hidden;
+}
+
 * {
 	/*border: 1px solid #000;*/
 	/*padding: 10px;*/
