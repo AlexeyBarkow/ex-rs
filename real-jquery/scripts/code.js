@@ -46,6 +46,7 @@ function toDefault() {
 	$('#imagepicker').val('');
 	$('.error-message').html('');
 	slider.reloadSlider();
+	slider.goToSlide($('.selected').index());
 }
 
 $('.bookmarks').children().on('click', onBookmarkClick);
@@ -136,6 +137,11 @@ $('.add-form').submit(function () {
 		validMessage += '<p>Please, fill the content field</p>';
 	}
 
+	if ($('.bookmarks').outerWidth() + 100 > $('.content').outerWidth()) {
+		isValid = false;
+		validMessage += "Can't add new tab";
+	}
+
 	if (isValid) {
 		var   $newBookmark = $(`<li class="trapezoid"><a href="#">${ $( '#title' ).val().replace(/<[^>]+>/, '') }</a></li>`)
 			, $bookmarks = $('.bookmarks')
@@ -144,6 +150,7 @@ $('.add-form').submit(function () {
 			, $bxslider = $('.bxslider')
 			, $newSlide = $(`<li><image src="${ $imagepicker.val() }" alt="slide"></li>`)
 			;
+
 		$newBookmark.on('click', onBookmarkClick);
 		$newBookmark.data('date', date.getTime());
 		if ($submitButtonPressed.attr('name') === 'edit'){
@@ -168,9 +175,9 @@ $('.add-form').submit(function () {
 				$(`.bxslider li:nth-child( ${ indexVal } )`).after($newSlide);
 			}
 		}
+		// slider.goToSlide($newSlide.index());
 		switchToBookmark($newBookmark);
 		toDefault();
-		//prevent page updating
 	} else {
 		$('.error-message').html(validMessage);
 	}

@@ -151,27 +151,47 @@ body {
 .main {
 	overflow: hidden;
 	min-width: 320px;
+	position: relative;
 }
-	.nav-area ul {
-		padding-left: 10px;
-		margin-bottom: 0;
+
+	.nav-area {
+		display: inline-block;
 	}
 
 	.bookmarks {
+		padding-left: 10px;
+		margin-bottom: 0;
+		
 		display: inline-block;
+    	white-space:nowrap;
 	}
 	
 	.trapezoid {
 		display: inline-block;
+
 		position: relative;
 		height: 40px;
+		width: 100px;
+		/*text-overflow: ellipsis;*/
 		border-top: 1px solid #000;
 		border-bottom: 1px solid #000;
-		padding: 10px;
+		/*padding: 10px;*/
+		padding-top: 10px;
+		padding-bottom: 10px;
 		background-color: #eee;
 		margin-right: 10px;
+		/*overflow: hidden;*/
 	}
 	
+		.trapezoid a {
+			text-align: center;
+			display: inline-block;
+		  	width: 100px;
+		  	white-space: nowrap;
+		  	overflow: hidden;
+		  	text-overflow: ellipsis;
+		}
+
 	.trapezoid:after, .trapezoid:before {
 		content: '';
 		position: absolute;
@@ -198,6 +218,7 @@ body {
 	.trapezoid > * {
 		z-index: 2;
 	}
+
 
 	.trapezoid:hover, .trapezoid:hover:before, .trapezoid:hover:after {
 		background-color: #bbb;
