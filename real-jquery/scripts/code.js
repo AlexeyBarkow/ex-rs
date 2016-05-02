@@ -6,7 +6,9 @@ var slider = $('.bxslider').bxSlider({
   onSlideBefore: function(_, _, newIndex) {
   	// console.log(newIndex)
 	// console.log($(`.bookmarks li:nth-child( ${ newIndex + 1 } )`));
-	switchToBookmark($(`.bookmarks li:nth-child( ${ newIndex + 1 } )`));	
+	var $select = $(`.bookmarks li:nth-child( ${ newIndex + 1 } )`);
+	switchToBookmark($select);	
+	changeFormFields($select);
   	// console.log(newIndex);
   }
 });
@@ -41,20 +43,25 @@ function toDefault() {
 	$('#title').val('');
 	$('#html-content').val('');	
 	$('#datepicker').val(getFormattedDate());
+	$('#imagepicker').val('');
+	$('.error-message').html('');
+	slider.reloadSlider();
 }
 
 $('.bookmarks').children().on('click', onBookmarkClick);
 
 function onBookmarkClick () {
 	switchToBookmark($(this));
-	$('#index').val($(this).index());
-	$('#title').val($(this).children().text());
-	$('#html-content').val($(`.item:nth-child( ${ 1 + ( + $(this).index()) } )`).html().replace(/<!--[^>]*-->/g, ''));
-	$('#datepicker').val(getFormattedDate($(this).data('date')));
-	$('#imagepicker').val($(`.bxslider li:nth-child( ${ 1 + ( + $(this).index()) } ) img`).attr('src'));
+	changeFormFields($(this));
 }
 
-
+function changeFormFields ($current) {
+	$('#index').val($current.index());
+	$('#title').val($current.children().text());
+	$('#html-content').val($(`.item:nth-child( ${ 1 + ( + $current.index()) } )`).html().replace(/<!--[^>]*-->/g, ''));
+	$('#datepicker').val(getFormattedDate($current.data('date')));
+	$('#imagepicker').val($(`.bxslider li:nth-child( ${ 1 + ( + $current.index()) } ) img`).attr('src'));
+}
 
 
 function switchToBookmark($current) {
@@ -81,6 +88,7 @@ $('#reset').on('click', function () {
 
 $('.add-form').submit(function () {
 	var   isValid = true
+		, validMessage = ''
 		, $index = $('#index')
 		, indexVal = $index.val()
 		, $title = $('#title')
@@ -92,28 +100,42 @@ $('.add-form').submit(function () {
 	$('.red-border').removeClass('red-border');
 	if (indexVal === '') {
 		$index.addClass('red-border');
+		validMessage += '<p>Please, fill the index field</p>';
 		isValid = false;
 	}
+
 	if ($title.val() === '') {
 		$title.addClass('red-border');
-		isValid = false;
-	}
-	if ($htmlContent.val() === '') {
-		$htmlContent.addClass('red-border');
+		validMessage += '<p>Please, fill the title field</p>';
 		isValid = false;
 	}
 
 	if (date === null) {
 		$datepicker.addClass('red-border');
 		isValid = false;
+		validMessage += '<p>Please, fill the date field</p>';
+	} else {
+		var currDate = new Date();
+		currDate.setHours(0,0,0,0); 
+		if (currDate.getTime() > date.getTime()) {
+			$datepicker.addClass('red-border');
+			isValid = false;
+			validMessage += '<p>Please, fill the correct date</p>';
+		}
 	}
 
 	if ($imagepicker.val() === '') {
 		$imagepicker.addClass('red-border');
 		isValid = false;
+		validMessage += '<p>Please, fill the image field</p>';
 	}
 
-	// console.log(date);
+	if ($htmlContent.val() === '') {
+		$htmlContent.addClass('red-border');
+		isValid = false;
+		validMessage += '<p>Please, fill the content field</p>';
+	}
+
 	if (isValid) {
 		var   $newBookmark = $(`<li class="trapezoid"><a href="#">${ $( '#title' ).val().replace(/<[^>]+>/, '') }</a></li>`)
 			, $bookmarks = $('.bookmarks')
@@ -146,12 +168,13 @@ $('.add-form').submit(function () {
 				$(`.bxslider li:nth-child( ${ indexVal } )`).after($newSlide);
 			}
 		}
-		slider.reloadSlider();
 		switchToBookmark($newBookmark);
 		toDefault();
 		//prevent page updating
-		return false;
+	} else {
+		$('.error-message').html(validMessage);
 	}
+	return false;
 });
 
 switchToBookmark($('.selected'));

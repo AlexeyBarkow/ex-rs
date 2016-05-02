@@ -137,6 +137,10 @@ body {
 
 		}
 
+	.error-message {
+		color: #f00;
+		font-size: 12px;
+	}
 
 	.red-border {
 		/*background-color: #000;*/
