@@ -217,9 +217,19 @@ body {
 		.inner-content {
 			border: 2px solid #000;
 			padding: 10px;
-			min-height: 600px
+			min-height: 400px
 		}
 
+.bx-wrapper {
+	margin-bottom: 20px;
+}
+
+.bxslider img {
+	height: 200px;	
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
 
 .inner-block > * {
 	display: block;

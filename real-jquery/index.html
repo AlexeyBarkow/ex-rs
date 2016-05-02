@@ -3,8 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Real jQuery</title>
-	<link rel="stylesheet" href="stylesheets/stylesheet.css">
 	<link rel="stylesheet" href="stylesheets/jquery-ui.min.css">
+	<link rel="stylesheet" href="stylesheets/jquery.bxslider.css">
+	<link rel="stylesheet" href="stylesheets/stylesheet.css">
 </head>
 <body>
 	<div class="container">
@@ -37,6 +38,14 @@
 							<input class="text" type="text" id="datepicker" placeholder="Enter date here">
 						</td>
 					</tr>
+					<tr>
+						<td>
+							<label for="imagepicker">Image</label>
+						</td>
+						<td>
+							<input class="text" type="text" id="imagepicker" placeholder="Enter image url here">
+						</td>
+					</tr>
 				</table>
 				<div class="inner-block">
 					<label for="html-content">Html content</label>
@@ -60,6 +69,11 @@
 			 --></ul>
 			</nav>
 			<div class="content">
+				<ul class="bxslider">
+				  <li><img src="img/owl.jpg" alt="slide"></li>
+				  <li><img src="img/moon.jpg" alt="slide"></li>
+				  <li><img src="img/j.jpg" alt="slide"></li>
+				</ul>
 				<div class="inner-content">
 					<section class="item"><!-- 
 					 --><h2>Lorem?</h2>
@@ -82,6 +96,7 @@
 		</main>
 	</div>
 	<script src="scripts/jquery-2.2.3.js"></script>
+	<script src="scripts/jquery.bxslider.js"></script>
 	<script src="scripts/jquery-ui.min.js"></script>
 	<script src="scripts/code.js"></script>
 </body>
