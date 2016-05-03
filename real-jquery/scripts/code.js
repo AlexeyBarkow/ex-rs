@@ -39,14 +39,13 @@ function getFormattedDate(ms) {
 }
 
 function toDefault() {
+	// $editingBookmark = null;
 	$('#index').val($('.bookmarks').children().length);
 	$('#title').val('');
 	$('#html-content').val('');	
 	$('#datepicker').val(getFormattedDate());
 	$('#imagepicker').val('');
 	$('.error-message').html('');
-	slider.reloadSlider();
-	slider.goToSlide($('.selected').index());
 }
 
 $('.bookmarks').children().on('click', onBookmarkClick);
@@ -137,7 +136,7 @@ $('.add-form').submit(function () {
 		validMessage += '<p>Please, fill the content field</p>';
 	}
 
-	if ($('.bookmarks').outerWidth() + 100 > $('.content').outerWidth()) {
+	if ($('.bookmarks').outerWidth() + 100 > $('.content').outerWidth() && $submitButtonPressed.attr('name') !== 'edit') {
 		isValid = false;
 		validMessage += "Can't add new tab";
 	}
@@ -155,8 +154,9 @@ $('.add-form').submit(function () {
 		$newBookmark.data('date', date.getTime());
 		if ($submitButtonPressed.attr('name') === 'edit'){
 			if ($editingBookmark) {
-				$(`.item:nth-child( ${ indexVal + 1 } )`).remove();
-				$(`.bxslider li:nth-child( ${ indexVal + 1 } )`).remove();
+				$(`.item:nth-child( ${ 1 + ( + indexVal ) } )`).remove();
+
+				$(`.bxslider li:nth-child( ${ 1 + ( + indexVal ) } )`).remove();
 				$editingBookmark.remove();
 			} 
 		}
@@ -178,6 +178,8 @@ $('.add-form').submit(function () {
 		// slider.goToSlide($newSlide.index());
 		switchToBookmark($newBookmark);
 		toDefault();
+		slider.reloadSlider();
+		slider.goToSlide($('.selected').index());
 	} else {
 		$('.error-message').html(validMessage);
 	}
