@@ -177,9 +177,9 @@ $('.add-form').submit(function () {
 		}
 		// slider.goToSlide($newSlide.index());
 		switchToBookmark($newBookmark);
-		toDefault();
 		slider.reloadSlider();
 		slider.goToSlide($('.selected').index());
+		toDefault();
 	} else {
 		$('.error-message').html(validMessage);
 	}
