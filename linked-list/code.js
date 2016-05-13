@@ -21,7 +21,7 @@ function DoublyLinkedList () {
 
 	this.append = function (data) {
 		var res = new ListNode(null, null, data);
-		if (listData.head == null) {
+		if (listData.head === null) {
 			listData.head = res;
 			listData.tail = res;
 		} else {
@@ -32,20 +32,13 @@ function DoublyLinkedList () {
 		return this;
 	};
 
-	this.at = function (index) {
-		var res = findAt(index);
-		if (!res) {
-			throw INCORRECT_INDEX_MESSAGE;
-		}
-		return res.value;
-	};
 	//private function
 	function findAt(index) {
 		if (index < 0 || typeof index !== "number") {
 			throw INCORRECT_INDEX_MESSAGE;
 		}
 		var curr = listData.head;
-		for (var i = 0; i < index && curr != null; i++) {
+		for (var i = 0; i < index && curr !== null; i++) {
 			curr = curr.next;
 		}
 
@@ -54,6 +47,14 @@ function DoublyLinkedList () {
 		}
 		return curr;
 	}
+	
+	this.at = function (index) {
+		var res = findAt(index);
+		if (!res) {
+			throw INCORRECT_INDEX_MESSAGE;
+		}
+		return res.value;
+	};
 
 	this.insertAt = function (index, data) {
 		var curr = findAt(index),
@@ -63,7 +64,7 @@ function DoublyLinkedList () {
 			return this.append(data);
 		}
 		prev = curr.prev;
-		if (prev == null) {
+		if (prev === null) {
 			listData.head.prev = res;
 			listData.head = res;
 			res.next = curr;
@@ -80,17 +81,17 @@ function DoublyLinkedList () {
 		var curr = findAt(index),
 			prev,
 			next;
-		if (curr == null) {
+		if (curr === null) {
 			throw INCORRECT_INDEX_MESSAGE;
 		}
 		prev = curr.prev;
 		next = curr.next;
-		if (prev != null) {
+		if (prev !== null) {
 			prev.next = next;
 		} else {
 			listData.head = next;
 		}
-		if (next != null) {
+		if (next !== null) {
 			next.prev = prev;
 		} else {
 			listData.tail = prev;
@@ -101,10 +102,10 @@ function DoublyLinkedList () {
 	this.reverse = function () {
 		var curr = listData.head,
 			tmp;
-		if (curr == null) {
+		if (curr === null) {
 			return this;
 		}
-		while (curr.next != null) {
+		while (curr.next !== null) {
 			tmp = curr.next;
 			curr.next = curr.prev;
 			curr.prev = tmp;
@@ -121,7 +122,7 @@ function DoublyLinkedList () {
 
 	this.each = function (callback) {
 		var curr = listData.head;
-		while (curr != null) {
+		while (curr !== null) {
 			curr.value = callback.call(null, curr.value);
 			curr = curr.next;
 		}
@@ -130,7 +131,7 @@ function DoublyLinkedList () {
 
 	this.indexOf = function (data) {
 		var curr = listData.head, index = 0;
-		while (curr != null) {
+		while (curr !== null) {
 			if (curr.value === data) {
 				return index;
 			}
