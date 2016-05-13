@@ -1,23 +1,26 @@
+function ListNode (prev, next, value) {
+		this.next = next;
+		this.prev = prev;
+		this.value = value;
+}
 function DoublyLinkedList () {
 	//private data
-	var listData = {
-		'head' : null,
-		'tail' : null
-	}, that = {};
+	var INCORRECT_INDEX_MESSAGE = "error: Incorrect index",
+		listData = {
+			head : null,
+			tail : null
+		}
+		;
 	this.head = function () {
-		return listData.head.value;
+		return listData.head ? listData.head.value : null;
 	};
 
 	this.tail = function () {
-		return listData.tail.value;
+		return listData.tail ? listData.tail.value : null;
 	};
 
 	this.append = function (data) {
-		var res = {
-			'value' : data,
-			'next' : null,
-			'prev' : null
-		};
+		var res = new ListNode(null, null, data);
 		if (listData.head == null) {
 			listData.head = res;
 			listData.tail = res;
@@ -26,43 +29,42 @@ function DoublyLinkedList () {
 			res.prev = listData.tail;
 			listData.tail = res;
 		}
-		return this;	
+		return this;
 	};
 
 	this.at = function (index) {
-		if (index < 0) {
-			return undefined;
+		if (index < 0 || typeof index !== "number") {
+			throw INCORRECT_INDEX_MESSAGE;
 		}
 		var curr = listData.head;
 		for (var i = 0; i < index && curr != null; i++) {
 			curr = curr.next;
 		}
-		return curr ? curr.value : undefined;
+		if (!curr) {
+			throw INCORRECT_INDEX_MESSAGE;
+		}
+		return curr.value;
 	};
 	//private function
 	function findAt(index) {
-		if (index < 0) {
-			return null;
+		if (index < 0 || typeof index !== "number") {
+			throw INCORRECT_INDEX_MESSAGE;
 		}
 		var curr = listData.head;
 		for (var i = 0; i < index && curr != null; i++) {
 			curr = curr.next;
+		}
+
+		if (!curr && i !== index) {
+			throw INCORRECT_INDEX_MESSAGE;
 		}
 		return curr;
 	}
 
 	this.insertAt = function (index, data) {
-		if (index < 0) {
-			return this;
-		}
-		var curr = findAt(index), 
+		var curr = findAt(index),
 			prev,
-			res = {
-				'value' : data,
-				'next' : null,
-				'prev' : null
-			};
-		// console.log(curr); 	
+			res = new ListNode(null, null, data);
 		if (curr == null) {
 			return this.append(data);
 		}
@@ -77,7 +79,6 @@ function DoublyLinkedList () {
 			res.next = curr;
 		}
 		curr.prev = res;
-
 		return this;
 	};
 
@@ -86,7 +87,7 @@ function DoublyLinkedList () {
 			prev,
 			next;
 		if (curr == null) {
-			return this;
+			throw INCORRECT_INDEX_MESSAGE;
 		}
 		prev = curr.prev;
 		next = curr.next;
@@ -104,7 +105,7 @@ function DoublyLinkedList () {
 	};
 
 	this.reverse = function () {
-		var curr = listData.head, 
+		var curr = listData.head,
 			tmp;
 		if (curr == null) {
 			return this;
@@ -144,11 +145,4 @@ function DoublyLinkedList () {
 		}
 		return -1;
 	};
-	//function for testing
-	// this.getList = function () {
-	// 	return listData;
-	// };
 }
-
-// var a = new DoublyLinkedList();
-// console.log(a.append(2).head());
