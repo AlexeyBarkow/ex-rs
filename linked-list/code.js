@@ -9,8 +9,8 @@ function DoublyLinkedList () {
 		listData = {
 			head : null,
 			tail : null
-		}
-		;
+		};
+
 	this.head = function () {
 		return listData.head ? listData.head.value : null;
 	};
@@ -33,17 +33,11 @@ function DoublyLinkedList () {
 	};
 
 	this.at = function (index) {
-		if (index < 0 || typeof index !== "number") {
+		var res = findAt(index);
+		if (!res) {
 			throw INCORRECT_INDEX_MESSAGE;
 		}
-		var curr = listData.head;
-		for (var i = 0; i < index && curr != null; i++) {
-			curr = curr.next;
-		}
-		if (!curr) {
-			throw INCORRECT_INDEX_MESSAGE;
-		}
-		return curr.value;
+		return res.value;
 	};
 	//private function
 	function findAt(index) {
@@ -55,7 +49,7 @@ function DoublyLinkedList () {
 			curr = curr.next;
 		}
 
-		if (!curr && i !== index) {
+		if (!curr && i < index) {
 			throw INCORRECT_INDEX_MESSAGE;
 		}
 		return curr;
@@ -65,7 +59,7 @@ function DoublyLinkedList () {
 		var curr = findAt(index),
 			prev,
 			res = new ListNode(null, null, data);
-		if (curr == null) {
+		if (curr === null) {
 			return this.append(data);
 		}
 		prev = curr.prev;
