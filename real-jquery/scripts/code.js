@@ -7,7 +7,7 @@ var slider = $('.bxslider').bxSlider({
   	// console.log(newIndex)
 	// console.log($(`.bookmarks li:nth-child( ${ newIndex + 1 } )`));
 	var $select = $(`.bookmarks li:nth-child( ${ newIndex + 1 } )`);
-	switchToBookmark($select);	
+	switchToBookmark($select);
 	changeFormFields($select);
   	// console.log(newIndex);
   }
@@ -42,7 +42,7 @@ function toDefault() {
 	// $editingBookmark = null;
 	$('#index').val($('.bookmarks').children().length);
 	$('#title').val('');
-	$('#html-content').val('');	
+	$('#html-content').val('');
 	$('#datepicker').val(getFormattedDate());
 	$('#imagepicker').val('');
 	$('.error-message').html('');
@@ -116,7 +116,7 @@ $('.add-form').submit(function () {
 		validMessage += '<p>Please, fill the date field</p>';
 	} else {
 		var currDate = new Date();
-		currDate.setHours(0,0,0,0); 
+		currDate.setHours(0,0,0,0);
 		if (currDate.getTime() > date.getTime()) {
 			$datepicker.addClass('red-border');
 			isValid = false;
@@ -142,7 +142,7 @@ $('.add-form').submit(function () {
 	}
 
 	if (isValid) {
-		var   $newBookmark = $(`<li class="trapezoid"><a href="#">${ $( '#title' ).val().replace(/<[^>]+>/, '') }</a></li>`)
+		var   $newBookmark = $(`<li class="trapezoid"><a href="#">${ $( '#title' ).val().replace(/<[^>]+>/g, '') }</a></li>`)
 			, $bookmarks = $('.bookmarks')
 			, $newSection = $(`<section class="item"></section>`).html($('#html-content').val()).hide()
 			, $innerContent = $('.inner-content')
@@ -158,7 +158,7 @@ $('.add-form').submit(function () {
 
 				$(`.bxslider li:nth-child( ${ 1 + ( + indexVal ) } )`).remove();
 				$editingBookmark.remove();
-			} 
+			}
 		}
 		if (indexVal === '0') {
 			$bookmarks.prepend($newBookmark);
