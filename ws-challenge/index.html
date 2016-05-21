@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var socket = new WebSocket('ws://198.199.125.240');
+        var token;
+        var bits;
+        var winmessage = 'abrakadabra';
+        socket.binaryType = 'arraybuffer';
+        socket.onopen = function () {
+            var sendInfo = {
+                msg : "challenge_accepted",
+                name : "AliakseiBarkou"
+            }
+            // console.log("connected");
+            socket.send(JSON.stringify(sendInfo));
+
+        }
+        socket.onmessage = function(e) {
+            console.log(e);
+            var data;
+            if (typeof e.data === 'string') {
+                data = JSON.parse(e.data);
+            } else {
+                console.log(e.data)
+                data = {};
+                // var data = new DataView(e.data);
+                // var dv = new Int32Array(e.data);                // dv.setUnit16()
+                // var dv = new Int16Array(e.data);
+                // data = ab2str(e.data);
+                if (bits == 8){
+                    console.log(8);
+                    var dv = new Uint8Array(e.data);
+
+                    // dv = new TextDecoder("utf-8").decode(uint8array);
+                    // var b64encoded = String.fromCharCode.apply(null, dv);
+                    // var dv = new DataView(buffer, 8, 4)
+                    // dv = String.fromCharCode(dv);
+                    console.log(dv)
+                    // data = dv;
+                } else {
+                    var dv = new Uint16Array(e.data);
+                    // console.log(String.fromCharCode(dv));
+                    // var dv = new DataView(buffer, 8, 4);
+                    console.log(dv)
+                    // data = dv;
+                    // console.log(bits);
+                    // var view = new int16Array(e.data);
+                    // console.log(view)
+                }
+                msg = {
+                    msg : 'task_two_result',
+                    result : Array.prototype.reduce.call(dv,(res, curr) => res+curr),
+                    auth_token : token
+                }
+                socket.send(JSON.stringify(msg));
+                // console.log(dv);
+                // console.log(data);
+            }
+            switch (data.msg) {
+                case 'auth':
+                    token = data.auth_token;
+                    // console.log(token);
+                    var msg = {
+                        msg : 'task_one',
+                        auth_token: token
+                    }
+                    socket.send(JSON.stringify(msg));
+                    break;
+                case 'compute':
+                    console.log(data.operator, data.operands);
+                    // socket.send(calc())
+                    var msg = {
+                        msg : 'task_one_result',
+                        result : calc(data.operator, data.operands),
+                        auth_token : token
+                    }
+                    socket.send(JSON.stringify(msg));
+                    break;
+                case 'win':
+                // console.log("HEE")
+                    // winmessage = data.msg
+                    var msg = {
+                        msg : 'next',
+                        auth_token : token
+                    }
+
+                    socket.send(JSON.stringify(msg));
+                    break;
+                case 'binary_sum':
+                    bits = data.bits;
+                    break;
+                // case ''
+            }
+
+        }
+        function calc(op, values) {
+            switch (op) {
+                case '+':
+                    return values[0] + values[1];
+
+                case '*':
+                    return values[0] * values[1];
+
+                case '/':
+                    return values[0] / values[1];
+
+                case '-':
+                    return values[0] - values[1];
+                default:
+
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
