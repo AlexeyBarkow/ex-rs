@@ -1,3 +1,6 @@
-body {
-    background-color: #fcc;
+.hour {
+    background-color: #d2f3ff;
 }
+    .hour span {
+        font-size: 16px;
+    }

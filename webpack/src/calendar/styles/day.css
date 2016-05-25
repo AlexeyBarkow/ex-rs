@@ -1,4 +1,8 @@
-body:before {
-    content: 'q';
-    background-color: #ccc;
+.day {
+    /*max-width: 300px;*/
+    /*min-width: 100px;*/
+    flex-grow: 1;
+    flex-basis: 200px;
+    background-color: #fff;
+    border: 1px solid #ccc;
 }

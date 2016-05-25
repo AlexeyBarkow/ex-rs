@@ -1,3 +1,5 @@
+require('./styles/index.css');
+
 module.exports = {
     Calendar: require('./modules/calendar'),
     Day: require('./modules/day'),

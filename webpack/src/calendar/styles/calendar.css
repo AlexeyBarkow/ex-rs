@@ -1,4 +1,8 @@
-body:after {
-    content: 'w';
-    background-color: #000;
+.calendar {
+    background-color: #eee;
+    border: 1px solid black;
+    min-width: 1000px;
 }
+    .days-wrapper {
+        display: flex;
+    }
