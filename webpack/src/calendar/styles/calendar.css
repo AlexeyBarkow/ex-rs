@@ -1,0 +1,4 @@
+body:after {
+    content: 'w';
+    background-color: #000;
+}

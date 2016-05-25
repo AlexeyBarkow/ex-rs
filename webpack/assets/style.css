@@ -1,0 +1,13 @@
+body:after {
+    content: 'w';
+    background-color: #000;
+}
+body:before {
+    content: 'q';
+    background-color: #ccc;
+}
+body {
+    background-color: #fcc;
+}
+
+/*# sourceMappingURL=style.css.map*/
