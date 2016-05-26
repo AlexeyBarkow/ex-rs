@@ -1,13 +1,2 @@
-body:after {
-    content: 'w';
-    background-color: #000;
-}
-body:before {
-    content: 'q';
-    background-color: #ccc;
-}
-body {
-    background-color: #fcc;
-}
-
+body{font-family:Helvetica,sans-serif}.calendar{width:90%}.calendar{background-color:#eee;border:1px solid #000;min-width:1000px}.days-wrapper{display:flex}.day{flex-grow:1;flex-basis:300px;background-color:#fff;border:1px solid #ccc}.hour{background-color:#d2f3ff}.hour span{font-size:16px;background-color:red}
 /*# sourceMappingURL=style.css.map*/

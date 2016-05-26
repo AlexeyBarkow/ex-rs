@@ -1,10 +1,11 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config.js');
-var reqHandler = require('./handler');
+// var reqHandler = require('./handler');
 var devServer = new WebpackDevServer(
     webpack(config),
     {
+        // hot: true,
         contentBase: __dirname,
         publicPath: '/assets/'
     }

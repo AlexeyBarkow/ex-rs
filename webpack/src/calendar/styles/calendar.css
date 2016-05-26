@@ -1,7 +1,7 @@
 .calendar {
     background-color: #eee;
     border: 1px solid black;
-    min-width: 1000px;
+    min-width: 800px;
 }
     .days-wrapper {
         display: flex;

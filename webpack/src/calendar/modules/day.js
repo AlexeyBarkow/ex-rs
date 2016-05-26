@@ -12,11 +12,11 @@ function getDay(name, desc, hours) {
     let div = document.createElement('div');
     div.innerHTML = htmlString;
     let wrapper = document.createElement('div');
-    wrapper.className = 'wrapper';
+    wrapper.className = 'day-wrapper';
     for (let hour of hours) {
         wrapper.appendChild(hour);
     }
-    div.children[0].children[0].appendChild(wrapper);
+    div.children[0].appendChild(wrapper);
     return div.children[0];
 }
 module.exports = {

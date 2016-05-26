@@ -1,6 +1,15 @@
 .hour {
     background-color: #d2f3ff;
+    margin: 5px 5px 5px 0;
+    padding: 0 5px 0 5px;
+    border: 1px solid #82979e;
+    border-left: none;
 }
     .hour span {
-        font-size: 16px;
+        font-size: 18px;
+        /*background-color: #f00;*/
+    }
+
+    .hour ul {
+        margin: 5px 0;
     }

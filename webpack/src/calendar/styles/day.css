@@ -4,5 +4,16 @@
     flex-grow: 1;
     flex-basis: 200px;
     background-color: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #444;
 }
+    .head-container {
+        padding: 5px;
+        background-color: #ddd;
+        border-bottom: 1px solid #999;
+    }
+
+    .day h4 {
+        margin: 0 0 10px 0;
+        background-color: #bbb;
+        text-align: center;
+    }
