@@ -11,6 +11,12 @@ function getHour(number, events) {
     div.innerHTML = htmlString;
     return div.children[0];
 }
+
+// module.hot.accept('')
+
 module.exports = {
     getHour
 }
+module.hot.accept('../styles/hour', function () {
+    require('../styles/hour');
+});

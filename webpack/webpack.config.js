@@ -63,14 +63,14 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
             new WebpackNotifierPlugin(),
-            // new ExtractTextPlugin(),
-    		// new webpack.optimize.UglifyJsPlugin()
-            // new webpack.HotModuleReplacementPlugin()
+            // new ExtractTextPlugin('style.css'),
+            new webpack.HotModuleReplacementPlugin()
         ],
     devServer: {
         // hot: true,
         contentBase: __dirname,
-        publicPath: './assets/',
-        // port: 3000
+        publicPath: '/assets/',
+        host: 'localhost',
+        port: 3000
     }
 }

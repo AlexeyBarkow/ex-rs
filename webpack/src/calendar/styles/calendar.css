@@ -1,8 +1,14 @@
 .calendar {
     background-color: #eee;
-    border: 1px solid black;
+    border: 1px solid transparent;
     min-width: 800px;
+    /*padding-top: 1px;*/
 }
     .days-wrapper {
         display: flex;
+
+    }
+    .calendar h2 {
+        margin-left: 50px;
+
     }

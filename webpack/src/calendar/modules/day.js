@@ -1,4 +1,5 @@
 require('../styles/day');
+
 function getDay(name, desc, hours) {
     let htmlString =
     `
@@ -22,3 +23,6 @@ function getDay(name, desc, hours) {
 module.exports = {
     getDay
 }
+module.hot.accept('../styles/day', function () {
+    require('../styles/day');
+});

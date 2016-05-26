@@ -17,6 +17,10 @@ function getCalendar(name, days) {
     return div.children[0];
 }
 
+module.hot.accept('../styles/calendar', function () {
+    require('../styles/calendar');
+});
+
 module.exports = {
     getCalendar
 }
