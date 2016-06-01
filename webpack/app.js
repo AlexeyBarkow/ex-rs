@@ -1,8 +1,7 @@
-var appender = require('./src/calendar/calendar-appender');
-// console.log("hello from app.js!");
-// Calendar.hello();
+let appender = require('./src/calendar/calendar-appender');
 
-var daysObject = [
+
+let daysObject = [
         {date: 'May, 23', eventArray: [ { hour: '12-00:', descs: ['Lorem', 'Ipsum'] }, { hour: '14-00:', descs: ['Inpsum'] } ] },
         {date: 'May, 24', eventArray: [] },
         {date: 'May, 25', eventArray: [ { hour: '11-00:', descs: ['Dolor'] } ] },
@@ -11,17 +10,16 @@ var daysObject = [
         {date: 'May, 28', eventArray: [ { hour: '15-00:', descs: ['Amet'] } ] },
         {date: 'May, 29', eventArray: [] }
     ];
-// console.log(index);
+let calendar;
 
 
-module.hot.accept('./src/calendar/modules/calendar', function () {
-    appender.appendCalendarTo(daysObject, document.body);
-    appender = require('./src/calendar/calendar-appender');
-    console.log('hereee');
-});
 window.addEventListener('load', () => {
-    appender.appendCalendarTo(daysObject, document.body);
+    calendar = appender.appendCalendarTo(daysObject, document.body);
 });
 if (module.hot) {
-    module.hot.accept();
+    module.hot.accept(['./src/calendar/calendar-appender', './src/calendar/modules/calendar', './src/calendar/modules/day', './src/calendar/modules/hour'], () => {
+        calendar.parentElement.removeChild(calendar);
+        appender = require('./src/calendar/calendar-appender');
+        calendar = appender.appendCalendarTo(daysObject, document.body);
+    });
 }

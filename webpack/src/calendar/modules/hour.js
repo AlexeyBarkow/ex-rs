@@ -19,7 +19,7 @@ module.exports = {
 }
 
 if (module.hot) {
-    module.hot.accept('../styles/hour', function () {
+    module.hot.accept('../styles/hour', () => {
         require('../styles/hour');
     });
 }

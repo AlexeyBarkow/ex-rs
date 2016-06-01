@@ -25,7 +25,7 @@ module.exports = {
 }
 
 if (module.hot) {
-    module.hot.accept('../styles/day', function () {
+    module.hot.accept('../styles/day', () => {
         require('../styles/day');
     });
 }

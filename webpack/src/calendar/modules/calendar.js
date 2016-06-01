@@ -15,6 +15,7 @@ function getCalendar(name, days) {
     }
     div.children[0].appendChild(daysWrapper);
     return div.children[0];
+
 }
 
 module.exports = {
@@ -22,7 +23,7 @@ module.exports = {
 }
 
 if (module.hot) {
-    module.hot.accept('../styles/calendar', function () {
+    module.hot.accept('../styles/calendar', () => {
         require('../styles/calendar');
     });
 }
