@@ -17,6 +17,9 @@ function getHour(number, events) {
 module.exports = {
     getHour
 }
-module.hot.accept('../styles/hour', function () {
-    require('../styles/hour');
-});
+
+if (module.hot) {
+    module.hot.accept('../styles/hour', function () {
+        require('../styles/hour');
+    });
+}

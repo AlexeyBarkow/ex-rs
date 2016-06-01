@@ -22,3 +22,6 @@ module.hot.accept('./src/calendar/modules/calendar', function () {
 window.addEventListener('load', () => {
     appender.appendCalendarTo(daysObject, document.body);
 });
+if (module.hot) {
+    module.hot.accept();
+}

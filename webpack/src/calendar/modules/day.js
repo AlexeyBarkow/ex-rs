@@ -23,6 +23,9 @@ function getDay(name, desc, hours) {
 module.exports = {
     getDay
 }
-module.hot.accept('../styles/day', function () {
-    require('../styles/day');
-});
+
+if (module.hot) {
+    module.hot.accept('../styles/day', function () {
+        require('../styles/day');
+    });
+}
