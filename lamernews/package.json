@@ -1,0 +1,16 @@
+{
+  "name": "lamernews",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Barkou Aliaksei",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.13.4",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
