@@ -1,18 +1,13 @@
-// 
+//
 // var chai = require('chai');
 // var should = chai.should();
 // var Color = require('../app/color.js')
 
 describe('Color', function () {
-
     describe('#fromRGBColor()', function () {
         // console.log(MyNumber)
         it('should return the correct color', function () {
-            Color.fromRGBColor(0,0,0).should.be.deep.equal({
-                red: 0,
-                green: 0,
-                blue: 0
-            });
+            Color.fromRGBColor(0,0,0).should.be.deep.equal(new Color(0, 0, 0));
         });
 
         it('should throw exception', function () {
@@ -32,25 +27,13 @@ describe('Color', function () {
     });
     describe('#fromHexColor()', function () {
         it('should return the correct color', function () {
-            Color.fromHexColor('#000000').should.be.deep.equal({
-                red: 0,
-                green: 0,
-                blue: 0
-            });
+            Color.fromHexColor('#000000').should.be.deep.equal(new Color(0, 0, 0));
         });
         it('should return the correct color', function () {
-            Color.fromHexColor('#ff0000').should.be.deep.equal({
-                red: 255,
-                green: 0,
-                blue: 0
-            });
+            Color.fromHexColor('#ff0000').should.be.deep.equal(new Color(255, 0, 0));
         });
         it('should return the correct color', function () {
-            Color.fromHexColor('#f00').should.be.deep.equal({
-                red: 255,
-                green: 0,
-                blue: 0
-            });
+            Color.fromHexColor('#f00').should.be.deep.equal(new Color(255, 0, 0));
         });
         it('should throw exception', function () {
             Color.fromHexColor.bind(Color, '').should.throw(Error);
@@ -61,7 +44,20 @@ describe('Color', function () {
         it('should throw exception', function () {
             Color.fromHexColor.bind(Color, '#fffffff').should.throw(Error);
         });
-
     });
 
+    describe('#toHexColor()', function () {
+        it('should return the correct hex color', function () {
+            var color = new Color(0,0,0);
+            color.toHexColor().should.be.equal('#000000');
+        });
+        it('should return the correct hex color', function () {
+            var color = new Color(255,0,0);
+            color.toHexColor().should.be.equal('#ff0000');
+        });
+        it('should return the correct hex color', function () {
+            var color = new Color(255,255,255);
+            color.toHexColor().should.be.equal('#ffffff');
+        });
+    });
 });

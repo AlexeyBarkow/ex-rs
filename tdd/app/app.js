@@ -9,8 +9,11 @@ hexInput.addEventListener('click', function() {
     try {
         var color = Color.fromHexColor(hex.value);
         document.body.style.backgroundColor = `rgb(${color.red}, ${color.green}, ${color.blue})`;
+        R.value = color.red;
+        G.value = color.green;
+        B.value = color.blue;
     } catch (e) {
-        alert('wrong hex color')
+        alert('wrong hex color');
     }
 });
 rgb.addEventListener('click', function() {
@@ -20,7 +23,8 @@ rgb.addEventListener('click', function() {
         var b = Number.parseInt(B.value);
         var color = Color.fromRGBColor(r, g, b);
         document.body.style.backgroundColor = `rgb(${color.red}, ${color.green}, ${color.blue})`;
+        hex.value = color.toHexColor();
     } catch (e) {
-        alert('wrong rgb color')
+        alert('wrong rgb color');
     }
 });

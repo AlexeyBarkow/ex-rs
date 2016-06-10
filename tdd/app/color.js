@@ -36,9 +36,13 @@ Color.fromHexColor = function(hex) {
     }
         throw new Error('Wrong arguments');
 }
-// if (module) {
-//     module.exports = Color;
-// }
+
 Color.prototype.toHexColor = function() {
-    return '#'+this.red.toString(16) + this.green.toString(16) + this.blue.toString(16)
+    var r = this.red.toString(16);
+    r += r.length == 1 ? r : '';
+    var g = this.green.toString(16);
+    g += g.length == 1 ? g : '';
+    var b = this.blue.toString(16);
+    b += b.length == 1 ? b : '';
+    return '#' + r + g + b;
 }
