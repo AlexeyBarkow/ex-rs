@@ -6,9 +6,10 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 module.exports = {
     entry:
         [
+            'webpack-hot-middleware/client',
             'webpack/hot/dev-server',
             './public/index.js',
-            'webpack-dev-server/client?http://localhost:3000'
+            // 'webpack-dev-server/client?http://localhost:3000'
         ],
     output: {
         path: path.join(__dirname, './dist/'),
@@ -38,11 +39,11 @@ module.exports = {
         new WebpackNotifierPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
-    devServer: {
-        hot: true,
-        contentBase: __dirname,
-        publicPath: '/dist/',
-        host: 'localhost',
-        port: 3000
-    }
+    // devServer: {
+    //    hot: true,
+    //    contentBase: __dirname,
+    //    publicPath: '/dist/',
+    //     host: 'localhost',
+    //     port: 3000
+    // }
 }
