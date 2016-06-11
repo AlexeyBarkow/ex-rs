@@ -1,24 +1,26 @@
 const express = require('express');
-const app = express();
 const router = require('./app/config/routes.js');
-const mongoose = require('mongoose');
-const users = require('./app/controllers/users.js');
-const articles = require('./app/controllers/articles.js');
+const app = express();
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config.js');
+const compiler = webpack(webpackConfig);
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 
 
-function dropAllTables() {
-    mongoose.connection.collections['users']
-        .drop()
-        .then(()=>{console.log("deleted")})
-        .catch((e)=>{console.log("error", e)});
-    mongoose.connection.collections['articles']
-        .drop()
-        .then(()=>{console.log("deleted")})
-        .catch((e)=>{console.log("error", e)});
-}
-//
+app.use(webpackDevMiddleware(compiler, {
+    hot: true,
+    filename: 'bundle.js',
+    publicPath: webpackConfig.output.publicPath,
+    stats: {
+        colors: true
+    }
+}));
 
-mongoose.connect('mongodb://localhost:27017/lamernews_db');
+app.use(webpackHotMiddleware(compiler, {
+    log: console.log
+}));
+
 app.use(router);
 
 // console.log(webpackConfig)

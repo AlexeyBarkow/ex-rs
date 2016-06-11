@@ -16,6 +16,9 @@ function addNewUser(username, password, email) {
     return user.id;
 }
 
+// function isValidPassword()
+
 module.exports = {
-    addNewUser
+    addNewUser,
+    isValidPassword
 }

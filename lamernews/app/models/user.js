@@ -4,16 +4,20 @@ const Schema = mongoose.Schema;
 var userShema = Schema({
     username: {
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
     email: {
-        type: String
+        type: String,
+        unique: true,
+        required: true
     },
     registrationDate: {
         type: Date
     },
     password: {
-        type: String
+        type: String,
+        required: true
     }
 });
 var User = mongoose.model('User', userShema);

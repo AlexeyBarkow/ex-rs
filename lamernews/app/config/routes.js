@@ -1,25 +1,27 @@
 const express = require('express');
+const path = require('path');//currently not used
 const router = express.Router();
-const webpack = require('webpack');
-const webpackConfig = require('../../webpack.config.js');
-const compiler = webpack(webpackConfig);
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
+const users = require('../controllers/users.js');
+const articles = require('../controllers/articles.js');
+const passport = require('./passport.js');
+const db = require('../controllers/db.js');
 
+
+mongoose.connect('mongodb://localhost:27017/lamernews_db');
 router.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile('/public/index.html', {'root': __dirname + '../../../'});
 });
-router.use(webpackDevMiddleware(compiler, {
-    hot: true,
-    filename: 'bundle.js',
-    publicPath: webpackConfig.output.publicPath,
-    stats: {
-        colors: true
-    }
-}));
 
-router.use(webpackHotMiddleware(compiler, {
-    log: console.log
-}));
+router.use(express.cookieParser());
+router.use(express.bodyParser());
+router.use(express.session({ secret: 'SECRET' }))
+
+router.use(passport.initialize());
+router.use(passport.session());
+
+routes.post('/login', passport.authenticate('local', function(req, res) {
+    res.redirect('/users/' + req.user.username);
+});
+
 
 module.exports = router;
