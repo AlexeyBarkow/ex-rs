@@ -1,18 +1,28 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../controllers/users.js');
+const User = require('../models/user.js');
 
-passport.use(new LocalStrategy(
+passport.use('local', new LocalStrategy(
     function (username, password, done) {
         User.findOne({
-            username: username,
-            password: password
+            username: username
+            // passwordField: password
          }).exec().then((user => {
-            // if (!user) {
-            //     return done(null, false, { message: 'incorrect username or password' });
-            // }
+             if (user) {
+                if (user.password === password) {
+                    done(null, user);
+                } else {
+                    done(null, false, {
+                        message: 'Incorrect password'
+                    })
+                }
+            } else {
+                done(null, false, {
+                    message: 'incorrect username'
+                });
+            }
+
             console.log(user);
-            return done(null, user);
         })).catch(err => {
             console.log(err);
         });
@@ -27,7 +37,9 @@ passport.deserializeUser(function (id, done) {
         done(null, user);
     }).catch(err => {
         console.log(err);
-    })
+    });
 })
 
+
+// console.log(passport.authenticate);
 module.exports = passport;
