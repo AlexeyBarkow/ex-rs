@@ -27,20 +27,21 @@ function createNewArticle (req, res) {
     // articles.addNewArticle()
     //should create new article
     if (req.isAuthenticated()) {
-        console.log(req.user);
-        var author = req.user;
-        var title = req.body.title;
-        var link = req.body.link;
+        // console.log(req.user);
+        // var author = req.user;
+        // var title = req.body.title;
+        // var link = req.body.link;
         var article = new Article({
-            author: author,
-            title: title,
-            link: link,
+            author: req.user,
+            title: req.body.title,
+            link: req.body.link,
             rating: 0,
             creationDate: new Date()
         });
         console.log(article);
         article.save().then((success) => {
             console.log(success);
+
             // res.redirect('/articles/')
             res.redirect('/');
         }).catch((error) => {
@@ -56,9 +57,30 @@ function createNewArticle (req, res) {
     // res.sendStatus(404);
 };
 function updateArticle (req, res) {
+    if (req.isAuthenticated()) {
 
+        Article.findOne({ req.params.id }).then((article => {
+            var title = req.body.title;
+            var link = req.body.link;
+            var newArticle = {};
+            if (title) {
+                // newArticle['title'] = title;
+                article.title = title;
+            }
+            if (link) {
+                // newArticle['link'] = link;
+                article.link = link;
+            }
+            article.save();
+        })).catch(error => {
+            console.log(error);
+
+        })
+
+
+    }
     //should update existing article
-    res.sendStatus(404);
+    // res.sendStatus(404);
 };
 function deleteArticle (req, res) {
 

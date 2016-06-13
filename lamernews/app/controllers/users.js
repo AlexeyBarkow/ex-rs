@@ -73,7 +73,7 @@ function createNewUser (req, res) {
         email: email,
         registrationDate: new Date()
     });
-    user.save()
+    user.save();
     // users.addNewUser(req.params.username.toLowerCase(), req.body.password, req.body.email.toLowerCase())
     .then((user) => {
         console.log(user);
