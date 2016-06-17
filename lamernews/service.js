@@ -15,7 +15,14 @@ const passport = require('./app/config/passport.js');
 const users = require('./app/controllers/users.js');
 const articles = require('./app/controllers/articles.js');
 var jsonParser = bodyParser.json({type: 'application/json'});
-mongoose.connect('mongodb://localhost:27017/lamernews_db');
+
+try {
+    mongoose.connect('mongodb://localhost:27017/lamernews_db');
+} catch(e) {
+    console.log('Cannot connect to mongodb');
+}
+
+
 app.use(webpackDevMiddleware(compiler, {
         hot: true,
         filename: 'bundle.js',
@@ -38,7 +45,7 @@ router.use(passport.session());
 // console.log(passport);
 router.get('/', routes.sendIndexHTML);
 // router.
-router.get('/articles/:startIndex/count?sort', articles.sendArticles);
+router.get('/articles/:startIndex/:count', articles.sendArticles);
 router.get('/articles/random', articles.sendRandomArticle);
 router.post('/articles/', articles.createNewArticle);
 router.put('/articles/:id', articles.updateArticle);

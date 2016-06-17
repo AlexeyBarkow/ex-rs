@@ -5,6 +5,7 @@ const db = require('../controllers/db.js');
 // router.use()
 
 function sendIndexHTML (req, res) {
+    console.log('trying to send...')
     res.sendFile('/public/index.html', {'root': __dirname + '../../../'});
 };
 
