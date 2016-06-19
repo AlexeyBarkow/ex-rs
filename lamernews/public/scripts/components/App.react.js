@@ -1,20 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../../styles/test-style.css';
+import '../../styles/global.css';
+import Header from './Header.react.js';
 import { Button } from 'react-bootstrap'
 
-export default class SiteWrapper extends React.Component {
+export default class App extends React.Component {
     constructor (props) {
         super(props);
     }
     render() {
         return (
             <div>
-                <Button>Button</Button>
+                <Header></Header>
                 {this.props.children}
             </div>
         );
     };
 }
-
-// module.exports = test;

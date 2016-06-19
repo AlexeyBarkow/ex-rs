@@ -43,7 +43,6 @@ router.use(bodyParser());
 router.use(passport.initialize());
 router.use(passport.session());
 // console.log(passport);
-router.get('/', routes.sendIndexHTML);
 // router.
 router.get('/articles/:startIndex/:count', articles.sendArticles);
 router.get('/articles/random', articles.sendRandomArticle);
@@ -53,10 +52,12 @@ router.delete('/articles/:id', articles.deleteArticle);
 
 
 router.post('/login', users.login);
+router.post('/logout', users.logout);
 router.get('/users/:username', users.getPublicUserInfo);
-router.post('/users/:username', jsonParser, users.createNewUser);
+router.post('/register', jsonParser, users.createNewUser);
 router.put('/users/:username', jsonParser, users.updateUser);
 router.delete('/users/:username', users.deleteUser);
+router.get('*', routes.sendIndexHTML);
 app.use(router);
 
 // console.log(webpackConfig)

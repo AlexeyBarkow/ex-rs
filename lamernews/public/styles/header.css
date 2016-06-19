@@ -1,0 +1,42 @@
+header {
+    background-color: #a3362b;
+    color: white;
+}
+    header .logo {
+        float: left;
+    }
+    header > * {
+        display: inline-block;
+    }
+    .container > * {
+        display: inline-block;
+    }
+    /*.nav-bar {
+        list-style: none;
+    }*/
+
+        .nav-bar li, .log-in a {
+            display: inline-block;
+            vertical-align: top;
+            margin: auto 10px auto 10px;
+        }
+        /*.nav-bar a {*/
+            /*font-weight: bold;
+            color: white;*/
+        /*}*/
+    .nav-button {
+        font-weight: bold;
+        color: white;
+
+    }
+    .nav-button:hover {
+        color: #f5f5f5;
+        background-color: #872c23;
+    }
+    .nav-button:focus {
+        color: #ddd;
+        text-decoration: none;
+    }
+    .log-in {
+        float: right;
+    }

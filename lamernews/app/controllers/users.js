@@ -1,6 +1,6 @@
 const User = require('../models/user.js');
 const passport = require('passport');
-console.log(passport);
+// console.log(passport);
 // function addNewUser(username, password, email) {
     // var user = new User({
     //     username: username,
@@ -61,16 +61,17 @@ function getPublicUserInfo (req, res) {
     // res.sendStatus(404);
 };
 function createNewUser (req, res) {
+    'use strict';
     // router.use(bodyParser());
     // console.log(req.body);
     //should create new user if username isn't taken already
-    var username = req.params.username.toLowerCase();
-    var password = req.body.password;
-    var email = req.body.email.toLowerCase();
-    var user = new User({
-        username: username,
-        password: password,
-        email: email,
+    let username = req.body.username.toLowerCase();
+    let password = req.body.password;
+    let email = req.body.email.toLowerCase();
+    let user = new User({
+        username,
+        password,
+        email,
         registrationDate: new Date()
     });
     user.save()
@@ -95,31 +96,36 @@ function updateUser (req, res) {
     if (req.isAuthenticated()) {
         var newData = {};
         var username = req.user.username;
-        var newUsername = req.body.username;
-        var newPassword = req.body.password;
-        var newEmail = req.body.email;
-        if (newUsername) {
-            newData['username'] = newUsername;
+        if (username !== req.params.username) {
+            res.sendStatus(403);
+        } else {
+            var newUsername = req.body.username;
+            var newPassword = req.body.password;
+            var newEmail = req.body.email;
+            if (newUsername) {
+                newData['username'] = newUsername;
+            }
+            if (newPassword) {
+                newData['password'] = newPassword;
+            }
+            if (newEmail) {
+                newData['email'] = newEmail;
+            }
+            User.update({ username }, {$set : newData})
+            // users.updateUser(req.params.username, req.body.username, req.body.password, req.body.email)
+            .then((success) => {
+                console.log(success);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(success));
+            }).catch((error) => {
+                console.log('error', error);
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify({
+                    'error' : 'invalid user login'
+                }));
+            });
         }
-        if (newPassword) {
-            newData['password'] = newPassword;
-        }
-        if (newEmail) {
-            newData['email'] = newEmail;
-        }
-        User.update({ username }, {$set : newData})
-        // users.updateUser(req.params.username, req.body.username, req.body.password, req.body.email)
-        .then((success) => {
-            console.log(success);
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(success));
-        }).catch((error) => {
-            console.log('error', error);
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify({
-                'error' : 'invalid user login'
-            }));
-        });
+
     } else {
         res.sendStatus(401);
     }
@@ -141,7 +147,7 @@ function deleteUser(req, res) {
             console.log('error', error);
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify({
-                'error' : 'Can not delete: invalid user login'
+                message : 'Can not delete: invalid user login'
             }));
         });
     } else {
@@ -151,7 +157,7 @@ function deleteUser(req, res) {
 };
 // console.log(passport);
 function login (req, res, next) {
-    console.log(passport);
+    // console.log(passport);
     passport.authenticate('local', (err, user, info) => {
         console.log('login in..')
         if (err) {
@@ -161,15 +167,17 @@ function login (req, res, next) {
             if (user) {
                 req.logIn(user, (err) => {
                     if (err) {
-                        console.log(err);
+                        console.log('error while loging in', err);
+                        res.send(JSON.stringify({ message: "unknown error" }));
                         next(err);
                     } else {
-                        console.log(user);
-                        res.redirect('/');
+                        console.log('successfully logged', user);
+                        res.send(JSON.stringify({message: "success"}));
                     }
                 });
             } else {
-                res.redirect('/');
+                console.log('no user found', info);
+                res.send(JSON.stringify(info));
             }
         }
     })(req, res, next);
@@ -177,7 +185,9 @@ function login (req, res, next) {
 
 function logout (req, res) {
     req.logout();
-    res.redirect('/');
+    console.log('loggin out...')
+    res.send(JSON.stringify({message: "success"}));
+    // res.redirect('/');
 }
 
 module.exports = {

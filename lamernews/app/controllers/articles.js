@@ -28,6 +28,7 @@ function sendArticles (req, res) {
     var startIndex = req.params.startIndex;
     var count = req.params.count;
     var sort = req.query.sort;
+    console.log(startIndex, count, sort);
     var comparator = {};
     switch (sort) {
         case 'top':
