@@ -37,26 +37,35 @@ const passport = require('passport');
 // }
 // function isValidPassword()
 
-function getPublicUserInfo (req, res) {
+function getPublicUserInfo (req, res, next) {
 // console.log(req, req.isAuthenticated)
     //should return public user info
     // console.log(req.query, req.body, req.params);
     // var username = req.params.username;
     // users.getUserByUsername(req.params.username)
     var username = req.params.username;
-    User.findOne({
-        username: username.toLowerCase()
-    }, 'username email registrationDate')
-    .then((user) => {
-        // console.log('user',user);
-        if (user) {
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(user));
-        } else {
-            res.sendStatus(404);
-        }
+    // if (req.body.type === 'json')
+    // console.log(req.header
+    //duct tape
 
-    });
+    console.log('logged user', req.user)
+    if (req.get('Content-Type')) {
+
+        User.findOne({
+            username: username.toLowerCase()
+        }, 'username email registrationDate')
+        .then((user) => {
+            console.log('user',user);
+            if (user) {
+                res.setHeader('Content-Type', 'application/json');
+                res.send(JSON.stringify(user));
+            } else {
+                res.sendStatus(404);
+            }
+        });
+    } else {
+        next();
+    }
     // console.log('user',user);
     // res.sendStatus(404);
 };
@@ -79,12 +88,13 @@ function createNewUser (req, res) {
     .then((user) => {
         console.log(user);
         res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(user));
+        res.send(JSON.stringify({ 'message' : 'success' }));
     }).catch((error) => {
         console.log('error', error);
         res.setHeader('Content-Type', 'application/json');
         res.send(JSON.stringify({
-            'error' : 'login or email is already used'
+            'message' : 'login or email is already used',
+            'error' : error.errmsg
         }));
     });
     // res.sendStatus(404);
@@ -159,6 +169,7 @@ function deleteUser(req, res) {
 function login (req, res, next) {
     // console.log(passport);
     passport.authenticate('local', (err, user, info) => {
+        console.log(user);
         console.log('login in..')
         if (err) {
             console.log(err);
@@ -184,6 +195,7 @@ function login (req, res, next) {
 }
 
 function logout (req, res) {
+    console.log(req.user)
     req.logout();
     console.log('loggin out...')
     res.send(JSON.stringify({message: "success"}));

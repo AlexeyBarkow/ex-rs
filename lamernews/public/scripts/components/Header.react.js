@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../styles/header.css';
 import { Link } from 'react-router';
-import { LoginLink, LogoutLink, NotAuthenticated, Authenticated } from 'react-stormpath';
+// import { LoginLink, LogoutLink, NotAuthenticated, Authenticated } from 'react-stormpath';
 // console.log(LogoutLink);
 export default class Header extends React.Component {
     constructor (props) {
@@ -44,19 +44,16 @@ export default class Header extends React.Component {
                             </ul>
                         </nav>
                         <div className="log-in">
-                            <NotAuthenticated>
-                                <LoginLink className="nav-button">
+                                <Link to="/login" className="nav-button">
                                         login
-                                </LoginLink>
+                                </Link>
                                 <Link to="/register" className="nav-button">
                                         register
                                 </Link>
-                            </NotAuthenticated>
-                            <Authenticated>
-                                <LogoutLink className="nav-button">
+
+                                <Link to="/logout" className="nav-button">
                                     logout
-                                </LogoutLink>
-                            </Authenticated>
+                                </Link>
                         </div>
                     </div>
                 </section>

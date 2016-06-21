@@ -1,7 +1,7 @@
 // import request from 'superagent';
 
 var HEADERS = {
-    'Content-type': 'application/json'
+    'Content-Type': 'application/json'
 };
 
 var builder = (method, url, body, headers=HEADERS) => {
@@ -30,7 +30,9 @@ var builder = (method, url, body, headers=HEADERS) => {
                 body: JSON.stringify(body)
             });
         } else {
-            promise = fetch(url);
+            promise = fetch(url, {
+                headers
+            });
             // console.log('prom',promise);
         }
     } else {
@@ -39,11 +41,14 @@ var builder = (method, url, body, headers=HEADERS) => {
             headers,
             body: JSON.stringify(body)
         };
-        console.log(params);
         promise = fetch(url, params)
     }
     return promise.then((res) => {
-        // console.log('response', res.json());
+        // console.log('response', res.headers);
+        // console.log(document.cookie)
+        if (res.status !== 200) {
+            return {'message' : 'error', 'serverStatus' : res.status}
+        }
         return res.json();
     }).then(data => {
          console.log('data', data);
@@ -67,16 +72,16 @@ export default {
     // delete (apiMethod, params) {
     //     return builder('del', apiMethod, params);
     // }
-    get (apiMethod, params) {
-        return builder('get', apiMethod, params);
+    get (apiMethod, params, credentails) {
+        return builder('get', apiMethod, params, credentails);
     },
-    post (apiMethod, params) {
-        return builder('post', apiMethod, params);
+    post (apiMethod, params, credentails) {
+        return builder('post', apiMethod, params, credentails);
     },
-    put (apiMethod, params) {
-        return builder('put', apiMethod, params);
+    put (apiMethod, params, credentails) {
+        return builder('put', apiMethod, params, credentails);
     },
-    delete (apiMethod, params) {
-        return builder('del', apiMethod, params);
+    delete (apiMethod, params, credentails) {
+        return builder('del', apiMethod, params, credentails);
     }
 };

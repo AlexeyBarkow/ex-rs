@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { LoginForm } from 'react-stormpath';
 import '../../styles/login.css';
 import request from '../request.js';
 
@@ -10,15 +9,19 @@ export default class Login extends React.Component {
         this.state = {
             usernameState: '',
             passwordState: '',
-            disableState: ''
+            disableState: '',
+            inputUsername: '',
+            inputPassword: ''
         }
     }
-    _submitForm = (e, next) => {
+    _submitForm = (e) => {
         e.preventDefault();
         // console.log(e.data);
         // e.preventDefault();
-        const username = e.data.username;
-        const password = e.data.password;
+        const username = this.state.inputUsername;
+        const password = this.state.inputPassword;
+        // const username = e.data.username;
+        // const password = e.data.password;
         this.setState({
             usernameState: username ?
                             '' : 'username field is empty',
@@ -45,8 +48,10 @@ export default class Login extends React.Component {
                     });
                 } else {
                     // console.log(success);
-                    // window.locatin = '/';
-                    next();
+                    // next();
+                    this.props.history.push('/');
+                    console.log(res);
+
                 }
 
                 //duct tape
@@ -56,7 +61,7 @@ export default class Login extends React.Component {
                 // }, 100);
             });
         }
-        next(new Error('error'));
+        // next(new Error('error'));
 
     }
     // _onChangeLoginValue = (e) => {
@@ -69,17 +74,24 @@ export default class Login extends React.Component {
     //         editingPasswordValue: e.target.value
     //     })
     // }
+    _onChangeValue ( propertyName ) {
+        return (e) => {
+            let obj = {};
+            obj[propertyName] = e.target.value
+            this.setState(obj);
+        }
+    }
     render () {
         // const { editingLoginValue, editingPasswordValue } = this.state;
-        const {usernameState, passwordState, disableState } = this.state;
+        const {inputUsername, inputPassword, usernameState, passwordState, disableState } = this.state;
         return (
-            <LoginForm onSubmit={this._submitForm}>
+            <form onSubmit={this._submitForm}>
                 <ul>
                     <li>
                         <label htmlFor="username">Username</label>
                     </li>
                     <li>
-                        <input type="text" id="username" name="username"/>
+                        <input type="text" name="username" onChange={ this._onChangeValue('inputUsername') } value={ inputUsername }/>
                         {usernameState?
                             (<span className="error">{ usernameState }</span>)
                             :
@@ -90,7 +102,7 @@ export default class Login extends React.Component {
                         <label htmlFor="password">Password</label>
                     </li>
                     <li>
-                        <input type="password" id="password" name="password"/>
+                        <input type="password" name="password" onChange={ this._onChangeValue('inputPassword') } value={ inputPassword }/>
                         {passwordState?
                             (<span className="error">{ passwordState }</span>)
                             :
@@ -101,7 +113,7 @@ export default class Login extends React.Component {
                         <input id="subm" type="submit" value="Login"/>
                     </li>
                 </ul>
-            </LoginForm>
+            </form>
 
         );
     }

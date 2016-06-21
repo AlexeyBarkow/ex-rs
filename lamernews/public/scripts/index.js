@@ -2,17 +2,18 @@ import '../index.html';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.react.js';
-import ReactStormpath, { Router, AuthenticatedRoute, LoginRoute } from 'react-stormpath';
+// import ReactStormpath, { Router, AuthenticatedRoute, LoginRoute } from 'react-stormpath';
 
-import { Route, Link, browserHistory, IndexRedirect } from 'react-router';
+import { Router, Route, Link, browserHistory, IndexRedirect } from 'react-router';
 import LogIn from './components/Login.react.js';
 import Register from './components/Register.react.js';
+import UserPage from './components/UserPage.react.js';
 // let test = require('./scripts/test-script');
-
+// console.log(UserPage);
 // Test();
 // console.log(SiteWrapper)
 // console.log(ReactStormpath.init);
-ReactStormpath.init({
+// ReactStormpath.init({
     // web: {
     //     register: {
     //         enabled: true,
@@ -47,17 +48,18 @@ ReactStormpath.init({
     //         }
     //     }
     // },
-    endpoints: {
-        login: '/login',
-        logout: '/logout',
-        register: '/register'
-    }
-});
+//     endpoints: {
+//         login: '/login',
+//         logout: '/logout',
+//         register: '/register'
+//     }
+// });
 ReactDOM.render((
     <Router history={ browserHistory }>
         <Route path="/" component={ App }>
-            <LoginRoute path="/login" component={ LogIn }></LoginRoute>
+            <Route path="/login" component={ LogIn }></Route>
             <Route path="/register" component={ Register }></Route>
+            <Route path="/users/:username" component={ UserPage }></Route>
         </Route>
     </Router>
     ), document.getElementById('content-wrapper'));

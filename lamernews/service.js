@@ -37,7 +37,7 @@ app.use(webpackHotMiddleware(compiler, {
 }));
 // router.use(bodyParser);
 
-router.use(cookieParser());
+router.use(cookieParser('SECRET'));
 router.use(session({ secret: 'SECRET' }));
 router.use(bodyParser());
 router.use(passport.initialize());

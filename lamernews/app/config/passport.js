@@ -6,7 +6,7 @@ passport.use('local', new LocalStrategy(
     function (username, password, done) {
         console.log('f is called');
         User.findOne({
-            username: username
+            username
          }).exec().then((user => {
              console.log('trying to log in:',user);
              if (user) {
@@ -30,10 +30,12 @@ passport.use('local', new LocalStrategy(
     }
 ));
 passport.serializeUser(function (user, done) {
+    console.log('serializing...')
     done(null, user.id);
 });
 
 passport.deserializeUser(function (id, done) {
+    console.log('deserializing')
     User.findById(id).then(user => {
         done(null, user);
     }).catch(err => {
