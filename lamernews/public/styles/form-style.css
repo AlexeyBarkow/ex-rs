@@ -1,0 +1,9 @@
+form {
+    padding: 10px;
+}
+    form li {
+        margin-bottom: 10px;
+    }
+    form li > * {
+        display: block;
+    }

@@ -1,3 +1,4 @@
+'use strict';
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // var user = require()
@@ -8,7 +9,10 @@ var articleSchema = Schema({
     },
     title: String,
     link: String,
-    rating: Number,
+    rating: {
+        type: [Schema.Types.ObjectId],
+        ref: 'User'
+    },
     creationDate: Date,
     // comments
 

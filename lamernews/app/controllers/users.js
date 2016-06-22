@@ -1,5 +1,6 @@
+'use strict';
 const User = require('../models/user.js');
-const passport = require('passport');
+const passport = require('./../config/passport.js');
 // console.log(passport);
 // function addNewUser(username, password, email) {
     // var user = new User({
@@ -58,9 +59,11 @@ function getPublicUserInfo (req, res, next) {
             console.log('user',user);
             if (user) {
                 res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(user));
+                res.json(user);
             } else {
-                res.sendStatus(404);
+                res.status(404).json({
+                    message: 'user not found'
+                });
             }
         });
     } else {
@@ -68,7 +71,7 @@ function getPublicUserInfo (req, res, next) {
     }
     // console.log('user',user);
     // res.sendStatus(404);
-};
+}
 function createNewUser (req, res) {
     'use strict';
     // router.use(bodyParser());
@@ -87,15 +90,15 @@ function createNewUser (req, res) {
     // users.addNewUser(req.params.username.toLowerCase(), req.body.password, req.body.email.toLowerCase())
     .then((user) => {
         console.log(user);
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({ 'message' : 'success' }));
+        // res.setHeader('Content-Type', 'application/json');
+        res.json({ 'message' : 'success' });
     }).catch((error) => {
         console.log('error', error);
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({
-            'message' : 'login or email is already used',
-            'error' : error.errmsg
-        }));
+        // res.setHeader('Content-Type', 'application/json');
+        res.json({
+            'message' : error.errmsg
+            // 'error' : error.errmsg
+        });
     });
     // res.sendStatus(404);
 };
@@ -125,19 +128,21 @@ function updateUser (req, res) {
             // users.updateUser(req.params.username, req.body.username, req.body.password, req.body.email)
             .then((success) => {
                 console.log(success);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(success));
+                // res.setHeader('Content-Type', 'application/json');
+                res.json(success);
             }).catch((error) => {
                 console.log('error', error);
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify({
+                // res.setHeader('Content-Type', 'application/json');
+                res.json({
                     'error' : 'invalid user login'
-                }));
+                });
             });
         }
 
     } else {
-        res.sendStatus(401);
+        res.status(401).json({
+            message: 'not authenticated'
+        });
     }
     //should update user information (username should be username of authorized user)
     // res.sendStatus(404);
@@ -151,23 +156,31 @@ function deleteUser(req, res) {
         .exec()
         .then(success => {
             console.log('success', success);
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(success));
+            // res.setHeader('Content-Type', 'application/json');
+            res.json(success);
         }).catch(error => {
             console.log('error', error);
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify({
+            // res.setHeader('Content-Type', 'application/json');
+            res.status(403).json({
                 message : 'Can not delete: invalid user login'
-            }));
+            });
         });
     } else {
-        res.sendStatus(401);
+        res.status(401).json({
+            message: 'not authenticated'
+        });
     }
     // res.sendStatus(404);
 };
 // console.log(passport);
 function login (req, res, next) {
+    // console.log();
     // console.log(passport);
+    // if (req.user) {
+    //     res.redirect('/');
+    // }
+    // console.log('xhr?' ,req.xhr);
+        console.log(req.headers)
     passport.authenticate('local', (err, user, info) => {
         console.log(user);
         console.log('login in..')
@@ -179,16 +192,22 @@ function login (req, res, next) {
                 req.logIn(user, (err) => {
                     if (err) {
                         console.log('error while loging in', err);
-                        res.send(JSON.stringify({ message: "unknown error" }));
+                        // res.send(JSON.stringify({ message: "unknown error" }));
+                        res.status(500).json({message: "unknown error"})
                         next(err);
                     } else {
-                        console.log('successfully logged', user);
-                        res.send(JSON.stringify({message: "success"}));
+                        console.log('successfully logged', user, req.user);
+                        res.json({
+                            message: "success",
+                            id: user.id
+                        });
+                        // res.redirect('/');
                     }
                 });
             } else {
                 console.log('no user found', info);
-                res.send(JSON.stringify(info));
+                // res.send(JSON.stringify(info));
+                res.status(401).json(info);
             }
         }
     })(req, res, next);
@@ -198,8 +217,23 @@ function logout (req, res) {
     console.log(req.user)
     req.logout();
     console.log('loggin out...')
-    res.send(JSON.stringify({message: "success"}));
-    // res.redirect('/');
+    // res.send(JSON.stringify({message: "success"}));
+    // res.status(200).json({message: "success"});
+    res.redirect('/');
+}
+
+function whoAmI (req, res, next) {
+    console.log('called')
+    if (req.isAuthenticated()) {
+        res.json({
+            userId: req.user.id
+        });
+    } else {
+        res.status(401).json({
+            message: 'unauthorized'
+        });
+    }
+    // next();
 }
 
 module.exports = {
@@ -208,6 +242,7 @@ module.exports = {
     updateUser,
     deleteUser,
     login,
-    logout
+    logout,
+    whoAmI
     // isValidPassword
 }

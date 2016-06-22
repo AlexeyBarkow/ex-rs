@@ -16,11 +16,8 @@ const users = require('./app/controllers/users.js');
 const articles = require('./app/controllers/articles.js');
 var jsonParser = bodyParser.json({type: 'application/json'});
 
-try {
-    mongoose.connect('mongodb://localhost:27017/lamernews_db');
-} catch(e) {
-    console.log('Cannot connect to mongodb');
-}
+mongoose.connect('mongodb://localhost:27017/lamernews_db');
+
 
 
 app.use(webpackDevMiddleware(compiler, {
@@ -35,30 +32,39 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler, {
     log: console.log
 }));
-// router.use(bodyParser);
 
-router.use(cookieParser('SECRET'));
-router.use(session({ secret: 'SECRET' }));
-router.use(bodyParser());
-router.use(passport.initialize());
-router.use(passport.session());
+
+
+app.use(cookieParser())
+app.use(bodyParser());
+app.use(session({ secret: 'SECRET', cookie: {secure: false}}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-AUTHENTICATION, X-IP, Content-Type, Accept')
+//   res.header( 'Access-Control-Allow-Credentials', true)
+//   res.header ('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+//   next()
+// })
 // console.log(passport);
 // router.
-router.get('/articles/:startIndex/:count', articles.sendArticles);
-router.get('/articles/random', articles.sendRandomArticle);
-router.post('/articles/', articles.createNewArticle);
-router.put('/articles/:id', articles.updateArticle);
-router.delete('/articles/:id', articles.deleteArticle);
+app.get('/articles/:startIndex/:count', articles.sendArticles);
+app.get('/articles/random', articles.sendRandomArticle);
+app.post('/articles/', articles.createNewArticle);
+app.put('/articles/:id', articles.updateArticle);
+app.delete('/articles/:id', articles.deleteArticle);
 
-
-router.post('/login', users.login);
-router.post('/logout', users.logout);
-router.get('/users/:username', users.getPublicUserInfo);
-router.post('/register', jsonParser, users.createNewUser);
-router.put('/users/:username', jsonParser, users.updateUser);
-router.delete('/users/:username', users.deleteUser);
-router.get('*', routes.sendIndexHTML);
-app.use(router);
+app.get('/whoislogged', users.whoAmI);
+app.post('/login', users.login);
+app.post('/logout', users.logout);
+app.get('/users/:username', users.getPublicUserInfo);
+app.post('/register', jsonParser, users.createNewUser);
+app.put('/users/:username', jsonParser, users.updateUser);
+app.delete('/users/:username', users.deleteUser);
+// app.use(router);
+app.get('*', routes.sendIndexHTML);
 
 // console.log(webpackConfig)
 

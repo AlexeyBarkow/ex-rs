@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../styles/login.css';
@@ -49,8 +50,10 @@ export default class Login extends React.Component {
                 } else {
                     // console.log(success);
                     // next();
-                    this.props.history.push('/');
+                    window.loggedUserId = res.id;
                     console.log(res);
+                    this.props.history.push('/');
+                    // console.log(res);
 
                 }
 
@@ -85,35 +88,38 @@ export default class Login extends React.Component {
         // const { editingLoginValue, editingPasswordValue } = this.state;
         const {inputUsername, inputPassword, usernameState, passwordState, disableState } = this.state;
         return (
-            <form onSubmit={this._submitForm}>
-                <ul>
-                    <li>
-                        <label htmlFor="username">Username</label>
-                    </li>
-                    <li>
-                        <input type="text" name="username" onChange={ this._onChangeValue('inputUsername') } value={ inputUsername }/>
-                        {usernameState?
-                            (<span className="error">{ usernameState }</span>)
-                            :
-                            ('')
-                        }
-                    </li>
-                    <li>
-                        <label htmlFor="password">Password</label>
-                    </li>
-                    <li>
-                        <input type="password" name="password" onChange={ this._onChangeValue('inputPassword') } value={ inputPassword }/>
-                        {passwordState?
-                            (<span className="error">{ passwordState }</span>)
-                            :
-                            ('')
-                        }
-                    </li>
-                    <li>
-                        <input id="subm" type="submit" value="Login"/>
-                    </li>
-                </ul>
-            </form>
+            <div>
+                <form onSubmit={this._submitForm}>
+                    <ul>
+                        <li>
+                            <label htmlFor="username">Username</label>
+                        </li>
+                        <li>
+                            <input type="text" name="username" onChange={ this._onChangeValue('inputUsername') } value={ inputUsername }/>
+                            {usernameState?
+                                (<span className="error">{ usernameState }</span>)
+                                :
+                                ('')
+                            }
+                        </li>
+                        <li>
+                            <label htmlFor="password">Password</label>
+                        </li>
+                        <li>
+                            <input type="password" name="password" onChange={ this._onChangeValue('inputPassword') } value={ inputPassword }/>
+                            {passwordState?
+                                (<span className="error">{ passwordState }</span>)
+                                :
+                                ('')
+                            }
+                        </li>
+                        <li>
+                            <input id="subm" type="submit" value="Login"/>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
 
         );
     }

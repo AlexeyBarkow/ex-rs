@@ -1,15 +1,29 @@
+'use strict';
 const express = require('express');
 const path = require('path');//currently not used
+
 // const passport = require('./passport.js');
 const db = require('../controllers/db.js');
 // router.use()
 
 function sendIndexHTML (req, res) {
     // console.log('trying to send...')
+
+    // if (req.get())
     console.log('logged user to send ', req.user)
     console.log('sending index.html...')
-    res.sendFile('/public/index.html', {'root': __dirname + '../../../'});
-    // next(req,res);
+    let options = {
+        'root': __dirname + '../../../'
+    };
+    if (req.isAuthenticated()){
+        console.log('sending userId...', req.user.id);
+        options.headers = {
+            id: req.user.id
+        }
+    }
+    res.status(200).sendFile('/public/index.html', options);
+
+    // snext(req,res);
 };
 
 

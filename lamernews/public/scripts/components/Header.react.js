@@ -1,14 +1,15 @@
+'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../styles/header.css';
 import { Link } from 'react-router';
+import Authenticated from './Authenticated.react.js';
 // import { LoginLink, LogoutLink, NotAuthenticated, Authenticated } from 'react-stormpath';
 // console.log(LogoutLink);
 export default class Header extends React.Component {
     constructor (props) {
         super(props);
     }
-
     render () {
         return (
             <header>
@@ -22,14 +23,14 @@ export default class Header extends React.Component {
                         <nav>
                             <ul className="nav-bar">
                                 <li>
-                                    <a href="/" className="nav-button">
+                                    <Link to="/articles/0/10?sort=top" className="nav-button">
                                         top
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="/" className="nav-button">
+                                    <Link to="/articles/0/10?sort=latest" className="nav-button">
                                         latest
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <a href="/" className="nav-button">
@@ -44,21 +45,28 @@ export default class Header extends React.Component {
                             </ul>
                         </nav>
                         <div className="log-in">
+                            <Authenticated val={ true }>
                                 <Link to="/login" className="nav-button">
                                         login
                                 </Link>
                                 <Link to="/register" className="nav-button">
                                         register
                                 </Link>
-
-                                <Link to="/logout" className="nav-button">
-                                    logout
-                                </Link>
+                            </Authenticated>
+                            <Authenticated val={ false }>
+                                <form action="/logout" method="post" className="nav-button">
+                                    <input type="submit" value="logout"/>
+                                </form>
+                            </Authenticated>
                         </div>
                     </div>
                 </section>
-                <section></section>
             </header>
         )
     }
 }
+
+//
+// <Link to="/logout" className="nav-button">
+//     logout
+// </Link>

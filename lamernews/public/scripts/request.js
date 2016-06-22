@@ -1,10 +1,16 @@
 // import request from 'superagent';
-
+'use strict';
 var HEADERS = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    // 'Access-Control-Request-Headers': true
 };
 
 var builder = (method, url, body, headers=HEADERS) => {
+    headers = new Headers(headers);
+    // for (let i in headers) {
+    //     headers2.append(i, headers[i]);
+    // }
+    // console.log(headers2);
     // let paramsTransport = httpMethod ==='get' ?
     //     'query':
     //     'send';
@@ -23,15 +29,22 @@ var builder = (method, url, body, headers=HEADERS) => {
         //         });
         // });
     let promise;
+    // if (body) {
+    //     body.credentials = 'include';
+    // }
+    console.log(body);
     if (method === 'get') {
         if (body) {
+
             promise = fetch(url, {
                 headers,
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
+                credentials: 'include'
             });
         } else {
             promise = fetch(url, {
-                headers
+                headers,
+                credentials: 'include'
             });
             // console.log('prom',promise);
         }
@@ -39,7 +52,8 @@ var builder = (method, url, body, headers=HEADERS) => {
         let params = {
             method,
             headers,
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
+            credentials: 'include'
         };
         promise = fetch(url, params)
     }

@@ -1,8 +1,9 @@
+'use strict';
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user.js');
 
-passport.use('local', new LocalStrategy(
+passport.use(new LocalStrategy(
     function (username, password, done) {
         console.log('f is called');
         User.findOne({
@@ -11,7 +12,7 @@ passport.use('local', new LocalStrategy(
              console.log('trying to log in:',user);
              if (user) {
                 if (user.password === password) {
-                    done(null, user);
+                    return done(null, user);
                 } else {
                     done(null, false, {
                         message: 'Incorrect password'
@@ -30,7 +31,7 @@ passport.use('local', new LocalStrategy(
     }
 ));
 passport.serializeUser(function (user, done) {
-    console.log('serializing...')
+    console.log('serializing...', user.id)
     done(null, user.id);
 });
 

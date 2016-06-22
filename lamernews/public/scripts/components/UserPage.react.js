@@ -1,7 +1,9 @@
+'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from '../request.js';
 import '../../styles/user-page.css'
+import MyForm from './MyForm.react.js';
 
 export default class UserPage extends React.Component {
     constructor (props) {
@@ -10,20 +12,28 @@ export default class UserPage extends React.Component {
             username: '',
             email: '',
             registrationDate: '',
-            serverStatus: 200
+            serverStatus: 200,
+            isLoggedUsersPage: true,//change to false later
+            isEditing: false
         }
     }
     componentWillMount () {
         // console.log('here?')
+        // debugger
         request.get(`/users/${ this.props.params.username }`)
             .then(msg => {
+                // debugger;
                 // console.log(msg, msg.serverStatus);
                 let state = {};
 
                 if (msg.serverStatus) {
                     state.serverStatus = msg.serverStatus
                 } else {
-                    state = msg;
+                    state = {
+                        username: msg.username,
+                        email: msg.email,
+                        registrationDate: msg.registrationDate
+                    };
                 }
                 console.log(state);
                 this.setState(state);
@@ -36,22 +46,57 @@ export default class UserPage extends React.Component {
                 // }
             });
     }
+    _onSubmit (e) {
+        // debugger
+        console.log(this.state);
+        return false;
+        // this.props.history.push('/');
+    }
+    _onEditClick = (e) => {
+        this.setState({
+            isEditing : true
+        });
+    }
     render () {
-        const {serverStatus, username, email, registrationDate} = this.state;
-        console.log(JSON.stringify(this.props))
+        const {isEditing, isLoggedUsersPage, serverStatus, username, email, registrationDate} = this.state;
+        // console.log(JSON.stringify(this.props))
+        console.log(isEditing)
+        // debugger
         // console.log(serverStatus)
         return (
             <div className="user-container">
                 { serverStatus === 200 ?
                     (
-                        <div>
-                            <h2>{`${ username }\'s profile page`}</h2>
+                    <div>
+                        <h2>{`${ username }\'s profile page`}</h2>
+                        { !isEditing ?
+                            (
                             <ul className="upperline">
                                 <li>Registered: { registrationDate }</li>
                                 <li>email: { email }</li>
                                 <li>articles: coming soon!</li>
+                                { isLoggedUsersPage ?
+                                (
+                                    <li><button onClick={this._onEditClick}>Edit</button></li>
+                                ) :
+                                ('')
+                                }
                             </ul>
-                        </div>
+                            )
+                            :
+                            (
+                                <MyForm initState={{newEmail: '', newPassword: '', newPasswordDupl: ''}}
+                                      submitHandler={ this._onSubmit }
+                                      inputNames={['newEmail', 'newPassword', 'newPasswordDupl']}
+                                      inputLabels={['New email', 'New password', 'Repeat your password']}
+                                      inputTypes={['text', 'password', 'password']}
+                                      submitValue="Update"
+                                      >
+                                      <input type="button" value="Delete user account"/>
+                                </MyForm>
+                            )
+                        }
+                    </div>
                     )
                     :
                     ( <h1>{ serverStatus }</h1> )
