@@ -10,74 +10,23 @@ import LogIn from './components/Login.react.js';
 import Register from './components/Register.react.js';
 import UserPage from './components/UserPage.react.js';
 import ArticleList from './components/ArticleList.react.js';
-// let test = require('./scripts/test-script');
-// console.log(UserPage);
-// Test();
-// console.log(SiteWrapper)
-// console.log(ReactStormpath.init);
-// ReactStormpath.init({
-    // web: {
-    //     register: {
-    //         enabled: true,
-    //         nextUri: '/',
-    //         uri: '/register',
-    //         form: {
-    //             fields: {
-    //                 givenName: {
-    //                     enabled: false
-    //                 },
-    //                 surname: {
-    //                     enabled: false
-    //                 },
-    //                 username: {
-    //                     enabled: true,
-    //                     label: 'Username',
-    //                     name: 'username',
-    //                     placeholder: 'Type your username here',
-    //                     required: true,
-    //                     type: 'text'
-    //                 },
-    //                 confrimPassword: {
-    //                     enabled: true,
-    //                     label: 'Confrim password',
-    //                     name: 'confrimPassword',
-    //                     placeholder: 'Repeat password',
-    //                     required: true,
-    //                     type: 'password'
-    //                 }
-    //             },
-    //             fieldOrder: [ 'username', 'email', 'password', 'confrimPassword']
-    //         }
-    //     }
-    // },
-//     endpoints: {
-//         login: '/login',
-//         logout: '/logout',
-//         register: '/register'
-//     }
-// });
+import SubmitArticle from './components/SubmitArticle.react.js'
 window.authenticateId = '';
 
 ReactDOM.render((
     <Router history={ browserHistory }>
         <Route path="/" component={ App }>
+            <IndexRedirect to="/articles/0/10?sort=latest"></IndexRedirect>
             <Route path="/login" component={ LogIn }></Route>
             <Route path="/register" component={ Register }></Route>
             <Route path="/users/:username" component={ UserPage }></Route>
             <Route path="/articles/:startIndex/:count" component={ ArticleList }></Route>
-            <Route path="/articles/"></Route>
+            // <Route path="/articles/" ></Route>
+            <Route path="/submit" component={ SubmitArticle }></Route>
         </Route>
     </Router>
     ), document.getElementById('content-wrapper'));
-// console.log(test());
-// if (module.hot) {
-//     module.hot.accept('./scripts/test-script.js', function(e) {
-//         console.log("message", e);
-//
-//         test = require(e);
-//     });
 
-// }
 if (module.hot) {
     module.hot.accept();
 }

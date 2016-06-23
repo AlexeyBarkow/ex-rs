@@ -14,6 +14,8 @@ export default class Authenticated extends React.Component {
     whoAmI () {
         request.get('/whoislogged').then(res => {
             window.loggedUserId = res.userId;
+            window.loggedUsername = res.username;
+            console.log('ly',window.loggedUsername)
             this.setState({
                 prevLogIn: window.loggedUserId
             });
@@ -40,30 +42,8 @@ export default class Authenticated extends React.Component {
         }
             // }
     }
-
-    // shouldComponentUpdate (a,b) {
-    //     console.log('a',a,b, window.loggedUserId);
-    //     return this.prevLogIn !== window.loggedUserId;
-    // }
-    //
-
-    //
-    // componentWillUpdate () {
-    //     const newState = this.shouldDrawChildrenWhenAuthorized ? false : true;
-    //     this.setState({
-    //         prevLogIn: window.loggedUserId
-    //     });
-    // }
-    //
-    //
-    // componentWillMount () {
-    //     this.whoAmI();
-    // }
-
-
-
-
     render () {
+        console.log(window.loggedUsername)
         // const { shouldDrawChildrenNow } = this.state;
         const shouldDrawChildrenNow = this.state.prevLogIn ? !this.shouldDrawChildrenWhenAuthorized : this.shouldDrawChildrenWhenAuthorized;
         // console.log('should', shouldDrawChildrenNow);

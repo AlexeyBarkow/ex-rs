@@ -21,6 +21,59 @@ const User = require('../models/user.js')
 // function noSort() {
 //     return 1;
 // }
+
+function sendSingleArticle (req, res, next) {
+    if (req.get('Content-Type') || req.params.id === 'random') {
+        Article.findById(req.params.id).then(found => {
+            console.log('found', found);
+            if (found) {
+                found.rateCount = found.rating.length;
+                res.json(found);
+            } else {
+                res.send(404).json({
+                    message: 'article not found'
+                });
+            }
+        })
+    } else {
+        next();
+    }
+}
+function like (req, res) {
+    console.log('liking...',req.params.id)
+    if (req.isAuthenticated()) {
+        const articleId = req.params.id;
+        Article.findById(articleId).then(found => {
+            console.log('found!',found);
+            if (found) {
+                const index = found.rating.indexOf(req.user.id);
+                if (index === -1) {
+                    found.rating.push(req.user.id);
+                } else {
+                    found.rating.splice(index, 1);
+                }
+                found.save();
+                res.json({
+                    message: index === -1 ? 'liked' : 'disliked'
+                });
+            } else {
+                res.send(404).json({
+                    message: 'article not found'
+                });
+            }
+        }).catch(err => {
+            res.status(500).json({
+                message: err
+            })
+        });
+    } else {
+        // console.log('nope');
+        res.status(401).json({
+            message: 'not authenticated'
+        })
+    }
+}
+
 function sendArticles (req, res, next) {
 
     //should return json array with list of count articles starting from startIndex sorted in sort order (latest|top)
@@ -46,7 +99,7 @@ function sendArticles (req, res, next) {
         Article.aggregate([
             {
                 $project: {
-                    '_id': 0,
+                    '_id': 1,
                     'author': 1,
                     'title': 1,
                     'rateCount': {$size: '$rating'},
@@ -72,8 +125,14 @@ function sendArticles (req, res, next) {
                 // console.log(req.params);
             }
             res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.stringify(selectedArticles));
+            res.json({
+                articles: selectedArticles,
+                totalLength: articles.length
+            });
         }).catch(e => {
+            res.status(500).json({
+                message: e
+            });
             console.log('error', e)
         });
         // Article.aggregate([
@@ -112,7 +171,7 @@ function sendArticles (req, res, next) {
 function sendRandomArticle (req, res) {
     Article.aggregate({
         $project: {
-            '_id': 0,
+            '_id': 1,
             'author': 1,
             'title': 1,
             'rateCount': {$size: '$rating'},
@@ -122,7 +181,7 @@ function sendRandomArticle (req, res) {
 
         }
     }).exec().then(articles => {
-        res.setHeader('Content-Type', 'application/json');
+        // res.setHeader('Content-Type', 'application/json');
         var article = {};
         if (articles.length > 0) {
             article = articles[Math.trunc(articles.length * Math.random())];
@@ -186,7 +245,7 @@ function updateArticle (req, res) {
     if (req.isAuthenticated()) {
         // console.log(req.user.id, req.params.id)
         // User.findOne(req.user.id).then(user => {console.log(user)})
-        Article.findOne(req.params.id).then((article => {
+        Article.findById(req.params.id).then((article => {
             if (article) {
                 if (article.author === req.user) {
                     var title = req.body.title;
@@ -255,6 +314,8 @@ module.exports = {
     sendRandomArticle,
     createNewArticle,
     updateArticle,
-    deleteArticle
+    deleteArticle,
+    like,
+    sendSingleArticle
 
 }

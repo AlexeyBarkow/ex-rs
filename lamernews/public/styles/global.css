@@ -14,3 +14,11 @@ ul {
 body {
     font-family: Helvetica, sans-serif;
 }
+
+.top-container {
+    position: relative;
+}
+
+*:focus {
+    outline: 0;
+}

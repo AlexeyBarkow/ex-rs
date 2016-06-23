@@ -51,10 +51,12 @@ app.use(passport.session());
 // console.log(passport);
 // router.
 app.get('/articles/:startIndex/:count', articles.sendArticles);
+app.get('/articles/:id', articles.sendSingleArticle);
 app.get('/articles/random', articles.sendRandomArticle);
 app.post('/articles/', articles.createNewArticle);
 app.put('/articles/:id', articles.updateArticle);
 app.delete('/articles/:id', articles.deleteArticle);
+app.post('/like/:id', articles.like);
 
 app.get('/whoislogged', users.whoAmI);
 app.post('/login', users.login);

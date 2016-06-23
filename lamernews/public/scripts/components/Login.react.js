@@ -51,6 +51,7 @@ export default class Login extends React.Component {
                     // console.log(success);
                     // next();
                     window.loggedUserId = res.id;
+                    window.loggedUsername = res.username;
                     console.log(res);
                     this.props.history.push('/');
                     // console.log(res);

@@ -29,7 +29,7 @@ export default class App extends React.Component {
         // console.log(inp);
         // console.log(this.context);
         return (
-            <div>
+            <div class="top-container">
                 <Header/>
 
                 { this.props.children }

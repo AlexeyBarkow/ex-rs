@@ -9,7 +9,15 @@ export default class MyForm extends React.Component {
         console.log('props',props);
         let self = this;
         this.state = props.initState;
-        this._onSubmitHandler = props.submitHandler.bind(this) || function() { console.log(self.state); return true; };
+        this.state.errorMsg = '';
+        if (props.submitHandler) {
+            this._onSubmitHandler = props.submitHandler.bind(this);
+        } else {
+            this._onSubmitHandler = function() {
+                console.log(self.state);
+                return true;
+            }
+        }
         this.inputNames = props.inputNames;
         this.inputLabels = props.inputLabels || props.inputNames;
         this.inputTypes = props.inputTypes;
@@ -46,6 +54,10 @@ export default class MyForm extends React.Component {
                         })
                     }
                         <li>
+                            { this.props.children }
+                            <span className="error">{ this.state.errorMsg}</span>
+                        </li>
+                        <li>
                             <input type="submit" value={ this.submitValue }/>
                         </li>
                     </ul>
@@ -54,4 +66,7 @@ export default class MyForm extends React.Component {
             </div>
         );
     }
+}
+MyForm.contextTypes = {
+    router: React.PropTypes.func.isRequired
 }

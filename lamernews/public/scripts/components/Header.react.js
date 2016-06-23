@@ -10,7 +10,9 @@ export default class Header extends React.Component {
     constructor (props) {
         super(props);
     }
+
     render () {
+        console.log('loggedUsername', window.loggedUsername, window.loggedUserId);
         return (
             <header>
                 <section>
@@ -38,25 +40,30 @@ export default class Header extends React.Component {
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/" className="nav-button">
-                                        submit
-                                    </a>
+                                    <Authenticated val={ false }>
+                                        <Link to="/submit" className="nav-button">
+                                            submit
+                                        </Link>
+                                    </Authenticated>
                                 </li>
                             </ul>
                         </nav>
                         <div className="log-in">
                             <Authenticated val={ true }>
                                 <Link to="/login" className="nav-button">
-                                        login
+                                    login
                                 </Link>
                                 <Link to="/register" className="nav-button">
-                                        register
+                                    register
                                 </Link>
                             </Authenticated>
                             <Authenticated val={ false }>
                                 <form action="/logout" method="post" className="nav-button">
                                     <input type="submit" value="logout"/>
                                 </form>
+                                <Link to={`/users/${ window.loggedUsername }`} className="nav-button">
+                                    profile
+                                </Link>
                             </Authenticated>
                         </div>
                     </div>

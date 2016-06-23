@@ -13,10 +13,12 @@ export default class UserPage extends React.Component {
             email: '',
             registrationDate: '',
             serverStatus: 200,
-            isLoggedUsersPage: true,//change to false later
+            //isLoggedUsersPage: false,//change to false later
             isEditing: false
         }
     }
+
+
     componentWillMount () {
         // console.log('here?')
         // debugger
@@ -32,10 +34,11 @@ export default class UserPage extends React.Component {
                     state = {
                         username: msg.username,
                         email: msg.email,
-                        registrationDate: msg.registrationDate
+                        registrationDate: msg.registrationDate,
+                        // isLoggedUsersPage: window.username === msg.username
                     };
                 }
-                console.log(state);
+                console.log('state',state, window.username);
                 this.setState(state);
                 // const serverStatus = msg['serverStatus'];
                 // if (serverStatus !) {
@@ -46,6 +49,9 @@ export default class UserPage extends React.Component {
                 // }
             });
     }
+
+
+
     _onSubmit (e) {
         // debugger
         console.log(this.state);
@@ -58,7 +64,7 @@ export default class UserPage extends React.Component {
         });
     }
     render () {
-        const {isEditing, isLoggedUsersPage, serverStatus, username, email, registrationDate} = this.state;
+        const {isEditing, serverStatus, username, email, registrationDate} = this.state;
         // console.log(JSON.stringify(this.props))
         console.log(isEditing)
         // debugger
@@ -75,7 +81,7 @@ export default class UserPage extends React.Component {
                                 <li>Registered: { registrationDate }</li>
                                 <li>email: { email }</li>
                                 <li>articles: coming soon!</li>
-                                { isLoggedUsersPage ?
+                                { window.loggedUsername === username ?
                                 (
                                     <li><button onClick={this._onEditClick}>Edit</button></li>
                                 ) :
@@ -88,7 +94,7 @@ export default class UserPage extends React.Component {
                                 <MyForm initState={{newEmail: '', newPassword: '', newPasswordDupl: ''}}
                                       submitHandler={ this._onSubmit }
                                       inputNames={['newEmail', 'newPassword', 'newPasswordDupl']}
-                                      inputLabels={['New email', 'New password', 'Repeat your password']}
+                                      inputLabels={['New email', 'New password', 'Confrim your password']}
                                       inputTypes={['text', 'password', 'password']}
                                       submitValue="Update"
                                       >

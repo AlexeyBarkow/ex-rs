@@ -196,10 +196,11 @@ function login (req, res, next) {
                         res.status(500).json({message: "unknown error"})
                         next(err);
                     } else {
-                        console.log('successfully logged', user, req.user);
+                        console.log('successfully logged', user, res.user);
                         res.json({
                             message: "success",
-                            id: user.id
+                            id: user.id,
+                            username: user.username
                         });
                         // res.redirect('/');
                     }
@@ -226,7 +227,8 @@ function whoAmI (req, res, next) {
     console.log('called')
     if (req.isAuthenticated()) {
         res.json({
-            userId: req.user.id
+            userId: req.user.id,
+            username: req.user.username
         });
     } else {
         res.status(401).json({

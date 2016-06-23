@@ -60,10 +60,16 @@ var builder = (method, url, body, headers=HEADERS) => {
     return promise.then((res) => {
         // console.log('response', res.headers);
         // console.log(document.cookie)
+        // if (res.status !== 200) {
+        //     return {'message' : 'error', 'serverStatus' : res.status}
+        // }
+        // return res.json();
+        let message = res.json();
         if (res.status !== 200) {
-            return {'message' : 'error', 'serverStatus' : res.status}
+            message.serverStatus = res.status;
         }
-        return res.json();
+
+        return message;
     }).then(data => {
          console.log('data', data);
         return data;
