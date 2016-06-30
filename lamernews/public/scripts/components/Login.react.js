@@ -49,9 +49,9 @@ export default class Login extends React.Component {
                     });
                 } else {
                     // console.log(success);
-                    // next();
-                    window.loggedUserId = res.id;
-                    window.loggedUsername = res.username;
+                    // // next();
+                    // window.loggedUserId = res.id;
+                    // window.loggedUsername = res.username;
                     console.log(res);
                     this.props.history.push('/');
                     // console.log(res);
@@ -78,6 +78,7 @@ export default class Login extends React.Component {
     //         editingPasswordValue: e.target.value
     //     })
     // }
+
     _onChangeValue ( propertyName ) {
         return (e) => {
             let obj = {};

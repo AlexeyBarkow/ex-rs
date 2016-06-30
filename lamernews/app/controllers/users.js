@@ -44,21 +44,23 @@ function getPublicUserInfo (req, res, next) {
     // console.log(req.query, req.body, req.params);
     // var username = req.params.username;
     // users.getUserByUsername(req.params.username)
-    var username = req.params.username;
     // if (req.body.type === 'json')
     // console.log(req.header
     //duct tape
 
-    console.log('logged user', req.user)
+    // console.log('logged user', req.user)
     if (req.get('Content-Type')) {
-
+        let username = req.params.username;
+        if (username === 'home' && req.user) {
+            username = req.user.username;
+        }
         User.findOne({
             username: username.toLowerCase()
         }, 'username email registrationDate')
         .then((user) => {
             console.log('user',user);
             if (user) {
-                res.setHeader('Content-Type', 'application/json');
+                // res.setHeader('Content-Type', 'application/json');
                 res.json(user);
             } else {
                 res.status(404).json({

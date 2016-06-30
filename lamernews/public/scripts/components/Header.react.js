@@ -4,13 +4,17 @@ import ReactDOM from 'react-dom';
 import '../../styles/header.css';
 import { Link } from 'react-router';
 import Authenticated from './Authenticated.react.js';
+import request from '../request.js';
 // import { LoginLink, LogoutLink, NotAuthenticated, Authenticated } from 'react-stormpath';
 // console.log(LogoutLink);
 export default class Header extends React.Component {
     constructor (props) {
         super(props);
     }
-
+    shouldComponentUpdate() {
+        console.log('update header');
+        return true;
+    }
     render () {
         console.log('loggedUsername', window.loggedUsername, window.loggedUserId);
         return (
@@ -61,7 +65,7 @@ export default class Header extends React.Component {
                                 <form action="/logout" method="post" className="nav-button">
                                     <input type="submit" value="logout"/>
                                 </form>
-                                <Link to={`/users/${ window.loggedUsername }`} className="nav-button">
+                                <Link to="/myprofile" className="nav-button">
                                     profile
                                 </Link>
                             </Authenticated>

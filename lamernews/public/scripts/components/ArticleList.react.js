@@ -5,6 +5,7 @@ import request from '../request.js';
 // import { State } from 'react-router';
 import { Link } from 'react-router';
 import '../../styles/article-list.css';
+import ArticleItem from './ArticleItem.react.js';
 import ReactNotify from 'react-notify';
 
 export default class ArticleList extends React.Component {
@@ -13,7 +14,8 @@ export default class ArticleList extends React.Component {
         this.state = {
             articles: [],
             totalLength: 0,
-            notifications: []
+            notifications: [],
+            whoIsLogged: null
         }
     }
     // componentWillReceiveProps (next, prev) {
@@ -27,37 +29,58 @@ export default class ArticleList extends React.Component {
     //     // }
     //
     // }
-    componentWillReceiveProps (newProps, prevState) {
-        console.log('props');
-        this._getState(prevState, newProps.location.pathname +
-            newProps.location.search);
+    // componentWillReceiveProps (newProps, prevState) {
+    //     // console.log('props');
+    //     this._getState(prevState, newProps.location.pathname +
+    //         newProps.location.search);
+    // }
+    //
+    // componentWillUpdate (newProps, prevState) {
+    //     // console.log('upd');
+    //     this._getState(prevState, newProps.location.pathname +
+    //         newProps.location.search);
+    // }
+    componentWillReceiveProps(newProps) {
+        // debugger;
+        this._getState(newProps);
+    }
+    shouldComponentUpdate (nextProps, newState) {
+        // debugger;
+        if (JSON.stringify(this.state.articles) === JSON.stringify(newState.articles)) {
+            return false;
+        }
+        return true;
     }
 
-    componentWillUpdate (newProps, prevState) {
-        console.log('upd');
-        this._getState(prevState, newProps.location.pathname +
-            newProps.location.search);
-    }
-    _getState = (prev, newPath) => {
+    _getState = (nextProps) => {
         // debugger;
         // // console.log('query', this.props.location.query);
         // console.log('state', this.state);
         // const prev = this.state.articles;
-        prev = prev || {articles: []};
-        newPath = newPath || `/articles/${ this.props.params.startIndex }/${ this.props.params.count }?sort=${ this.props.location.query.sort }`;
         // debugger;
-        let self = this;
-        request.get(newPath)
-            .then(res => {
-                let state = this.state;
-                console.log('equal', res.articles, prev.articles);
-                if (JSON.stringify(res.articles) !== JSON.stringify(prev.articles)) {
-                    this.setState({
-                        articles: res.articles,
-                        totalLength: res.totalLength
-                    });
-                }
+        let currentState =  currentState || this.state;
+        nextProps = nextProps || this.props;
+        let newPath = `/articles/${ nextProps.startIndex }/${ nextProps.count }?sort=${ nextProps.sort }`;
+        // debugger;
+        // let self = this;
+        Promise.all([
+            request.get(newPath),
+            request.get('/whoislogged')
+        ]).then(res => {
+            console.log(this.state.articles, res[0].articles);
+            // debugger;
+
+            // let state = this.state;
+            // console.log('equal', res.articles, currentState.articles);
+            // if (JSON.stringify(res.articles) !== JSON.stringify(currentState.articles)) {
+            this.setState({
+                articles: res[0].articles,
+                totalLength: res[0].totalLength,
+                whoIsLogged: res[1]
             });
+        });
+
+
     }
     componentWillMount () {
         // console.log(this.props.query);
@@ -65,70 +88,41 @@ export default class ArticleList extends React.Component {
     }
 
 
-    _liker (index) {
-        let self = this;
-        let i = index;
-        return function (e) {
-            const articleId = self.state.articles[i]._id;
-            console.log('fuck',i, articleId);
-            request.post(`/like/${ articleId }`).then(msg => {
-                console.log('msg',msg);
-                // self.forceUpdate();
-                // debugger;
-                // console.log(ReactNotify.succes
-                // console.log(self);
-                if (msg.message === 'not authenticated') {
-                    self.refs.notificator.error('Error', 'You should be logged in to perform this action', 4000);
-                } else {
-                    self._getState();
-                }
 
-            })
-        }
-    }
     render () {
-        const { articles, totalLength, notifications } = this.state;
-        const currStart = this.props.params.startIndex;
-        const count = this.props.params.count;
-        const search = this.props.location.search;
-
-        const prevStart = Math.max(0, currStart - count);
-        const nextStart = + currStart + (+ count);
-        console.log('next', nextStart,'prev', prevStart)
+        const { articles, totalLength, notifications, whoIsLogged } = this.state;
+        const currStart = this.props.startIndex;
+        const count = this.props.count;
+        const search = '?sort=' + this.props.sort;
+        // debugger;
+        const prevStart = Math.max(0, currStart - count - 1);
+        const nextStart = + currStart + (+ count) + 1;
+        console.log('total',totalLength)
         return (
-            <div>
+            <nav className="articles-nav">
+                <ul>
                 {
                     articles.map((article, index) => {
                         return (
-                            <section key={index}>
-                                <h3>
-                                    <span className="big">
-                                        { article.title }
-                                    </span>
-                                    <button className={
-                                            article
-                                            .rating
-                                            .indexOf(window.loggedUserId) === -1 ?
-                                            'rating-up'
-                                            :
-                                            'rating-down'
-                                         }
-                                           onClick={this._liker(index)}></button> <span className="gray-small">at <a href={ (article.link.slice(0,4) === 'http' ? '' : 'http://') + article.link } target="_blank">{ article.link }</a> </span> </h3>
-                                       <p>rating: { article.rateCount }, posted by { article.author } { article.creationDate }</p>
-                            </section>
+                            <li key={index}>
+                                <ArticleItem article={ article }
+                                             reference={ `/articles/${ currStart }/${ count }/${ search }&id=${ article._id }` }
+                                             whoIsLogged={ whoIsLogged } />
+                            </li>
                         )
                     })
                 }
-                <section>
+                </ul>
+                <div>
                     <Link to={`/articles/${ prevStart }/${ count }${ search }`}
                           className={prevStart < currStart ? "" : "non-active"}>Prev page</Link>
                     <Link to={`/articles/${ nextStart }/${ count }${ search }`}
                           className={nextStart < totalLength ? "" : "non-active"}>Next page</Link>
-                </section>
+                  </div>
                 <div className="notify-container">
                     <ReactNotify ref="notificator"></ReactNotify>
                 </div>
-            </div>
+            </nav>
         );
     }
 }

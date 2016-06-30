@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../styles/global.css';
 import Header from './Header.react.js';
+import ArticleList from './ArticleList.react.js';
 // import { Button } from 'react-bootstrap'
 
 export default class App extends React.Component {
@@ -31,7 +32,6 @@ export default class App extends React.Component {
         return (
             <div class="top-container">
                 <Header/>
-
                 { this.props.children }
             </div>
         );

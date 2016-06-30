@@ -4,58 +4,81 @@ import ReactDOM from 'react-dom';
 import request from '../request.js';
 import '../../styles/user-page.css'
 import MyForm from './MyForm.react.js';
+// import
 
 export default class UserPage extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            username: '',
-            email: '',
-            registrationDate: '',
-            serverStatus: 200,
-            //isLoggedUsersPage: false,//change to false later
+            user: {
+                username: '',
+                email: '',
+                registrationDate: ''
+            },
+            isLoggedUser: false,
             isEditing: false
         }
     }
 
-
+    shouldComponentUpdate () {
+        return true;
+    }
     componentWillMount () {
         // console.log('here?')
         // debugger
-        request.get(`/users/${ this.props.params.username }`)
-            .then(msg => {
-                // debugger;
-                // console.log(msg, msg.serverStatus);
-                let state = {};
+        Promise.all([
+            request.get(`/users/${ this.props.params.username }`),
+            request.get('/whoislogged')
+        ]).then((msg) => {
+            console.log('datas', msg)
+            // debugger;
+            // console.log(msg, msg.serverStatus);
+            let state = {
+                user: null,
+                isLoggedUser: false
+            };
+            if (msg[0].message !== 'user not found') {
+                state.user = msg[0];
 
-                if (msg.serverStatus) {
-                    state.serverStatus = msg.serverStatus
-                } else {
-                    state = {
-                        username: msg.username,
-                        email: msg.email,
-                        registrationDate: msg.registrationDate,
-                        // isLoggedUsersPage: window.username === msg.username
-                    };
+                if (msg[0]._id === msg[1].userId) {
+                    state.isLoggedUser = true;
                 }
-                console.log('state',state, window.username);
-                this.setState(state);
-                // const serverStatus = msg['serverStatus'];
-                // if (serverStatus !) {
-                // console.log(<serverStatus></serverStatus>)
-                // this.setState({
-                //     serverStatus
-                // });
-                // }
-            });
+            } else {
+                if (this.props.params.username === 'home') {
+                    this.props.history.push('/');
+                }
+            }
+            this.setState(state);
+
+            // if (msg.serverStatus) {
+            //     state.serverStatus = msg.serverStatus
+            // } else {
+            //     state = {
+            //         username: msg.username,
+            //         email: msg.email,
+            //         registrationDate: msg.registrationDate,
+            //         // isLoggedUsersPage: window.username === msg.username
+            //     };
+            // }
+
+            // const serverStatus = msg['serverStatus'];
+            // if (serverStatus !) {
+            // console.log(<serverStatus></serverStatus>)
+            // this.setState({
+            //     serverStatus
+            // });
+            // }
+        })
     }
 
 
 
     _onSubmit (e) {
         // debugger
-        console.log(this.state);
-        return false;
+        e.preventDefault();
+        // console.log(this.state);
+        const { newEmail, newPassword, newPasswordDupl } = this.state;
+        return true;
         // this.props.history.push('/');
     }
     _onEditClick = (e) => {
@@ -64,24 +87,25 @@ export default class UserPage extends React.Component {
         });
     }
     render () {
-        const {isEditing, serverStatus, username, email, registrationDate} = this.state;
-        // console.log(JSON.stringify(this.props))
-        console.log(isEditing)
+        const {isEditing, isLoggedUser, user} = this.state;
+
+         // console.log(JSON.stringify(this.props))
+        console.log(isLoggedUser, user)
         // debugger
         // console.log(serverStatus)
         return (
             <div className="user-container">
-                { serverStatus === 200 ?
+                { user ?
                     (
                     <div>
-                        <h2>{`${ username }\'s profile page`}</h2>
+                        <h2>{`${ user.username }\'s profile page`}</h2>
                         { !isEditing ?
                             (
                             <ul className="upperline">
-                                <li>Registered: { registrationDate }</li>
-                                <li>email: { email }</li>
+                                <li>Registered: { user.registrationDate }</li>
+                                <li>email: { user.email }</li>
                                 <li>articles: coming soon!</li>
-                                { window.loggedUsername === username ?
+                                { isLoggedUser ?
                                 (
                                     <li><button onClick={this._onEditClick}>Edit</button></li>
                                 ) :
@@ -105,7 +129,7 @@ export default class UserPage extends React.Component {
                     </div>
                     )
                     :
-                    ( <h1>{ serverStatus }</h1> )
+                    ( <h1> 404 :{'('} </h1> )
                 }
             </div>
         );

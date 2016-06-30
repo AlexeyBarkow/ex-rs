@@ -55,14 +55,13 @@ export default class MyForm extends React.Component {
                     }
                         <li>
                             { this.props.children }
-                            <span className="error">{ this.state.errorMsg}</span>
+                            <span className="error">{ this.state.errorMsg }</span>
                         </li>
                         <li>
                             <input type="submit" value={ this.submitValue }/>
                         </li>
                     </ul>
                 </form>
-                { this.props.children }
             </div>
         );
     }

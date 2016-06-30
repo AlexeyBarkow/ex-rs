@@ -113,22 +113,47 @@ function sendArticles (req, res, next) {
                 $sort: comparator
             }
         ]).exec().then(articles => {
-            // console.log(startIndex, count, sort, articles);
-            var selectedArticles = [];
+            // Articles.find(articles)
+            // articles.forEac
+            console.log(startIndex, count, sort, articles);
+            let selectedArticles = [];
+            let promises = [];
             if (articles.length > startIndex) {
                 // var comparator = dateComparator;
 
-                console.log(articles)
+                // console.log(articles)
                 selectedArticles = articles.slice(startIndex, + startIndex + ( + count));
+
+                selectedArticles.forEach((curr, index) => {
+                    promises.push(User.findById(curr.author).then(author => {
+                        // console.log('rrreeesss', curr, author, curr.author);
+                        if (author) {
+                            selectedArticles[index].username = author.username;
+                        } else {
+                            selectedArticles[index].username = "user deleted";
+                            selectedArticles[index].author = "0";
+                        }
+                    }));
+                });
+
                 // console.log(startIndex, + startIndex + count)
                 // console.log(selectedArticles);
                 // console.log(req.params);
             }
-            res.setHeader('Content-Type', 'application/json');
-            res.json({
-                articles: selectedArticles,
-                totalLength: articles.length
+            Promise.all(promises).then(_ => {
+                console.log('selected', selectedArticles);
+                // res.setHeader('Content-Type', 'application/json');
+                res.json({
+                    articles: selectedArticles,
+                    totalLength: articles.length
+                });
+            }).catch(err => {
+                console.log('lolwtf');
+                res.status(500).json({
+                    message: err
+                });
             });
+
         }).catch(e => {
             res.status(500).json({
                 message: e
@@ -169,6 +194,11 @@ function sendArticles (req, res, next) {
     }
 };
 function sendRandomArticle (req, res) {
+    // Article.find({}).populate('author').exec().then(res => {
+    //     console.log('res', res)
+    // }).catch(err => {
+    //     console.log('err', err)
+    // })
     Article.aggregate({
         $project: {
             '_id': 1,

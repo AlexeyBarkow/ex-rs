@@ -8,18 +8,23 @@ export default class Authenticated extends React.Component {
         super(props);
         this.shouldDrawChildrenWhenAuthorized = props.val;
         this.state = {
-            prevLogIn: window.loggedUserId
+            isLogged: false
         }
     }
     whoAmI () {
+        let self = this;
         request.get('/whoislogged').then(res => {
-            window.loggedUserId = res.userId;
-            window.loggedUsername = res.username;
-            console.log('ly',window.loggedUsername)
-            this.setState({
-                prevLogIn: window.loggedUserId
-            });
-            this.forceUpdate();
+            // console.log('ly',window.loggedUsername)
+            console.log('am i logged', self.state.isLogged,!!res.username);
+            if (self.state.isLogged !== !!res.username) {
+                console.log('receive new state');
+                self.setState({
+                    // prevLogIn: window.loggedUserId
+                    isLogged: !!res.username
+                });
+                self.forceUpdate();
+            }
+
         });
     }
     componentWillMount () {
@@ -27,27 +32,30 @@ export default class Authenticated extends React.Component {
         this.whoAmI();
     }
 
-    shouldComponentUpdate () {
-        return this.prevLogIn !== window.loggedUserId;
+    shouldComponentUpdate (nextProps, newState) {
+        // return this.prevLogIn !== window.loggedUserId;
+        console.log('new props', newState.isLogged !== this.state.isLogged);
+        this.whoAmI();
+        // return this.state.isLogged === ;
+        return newState.isLogged !== this.state.isLogged;
     }
 
-    componentDidUpdate (_, n) {
-        // console.log('up', ei, n)
-        // window.counter++;
-        // if (window.counter < 100) {
-        if (n.prevLogIn !== window.loggedUserId) {
-            this.setState({
-                prevLogIn: window.loggedUserId
-            });
-        }
-            // }
-    }
+    // componentDidUpdate (_, n) {
+    //     // console.log('up', ei, n)
+    //     // window.counter++;
+    //     // if (window.counter < 100) {
+    //     if (n.prevLogIn !== window.loggedUserId) {
+    //         this.setState({
+    //             prevLogIn: window.loggedUserId
+    //         });
+    //     }
+    //         // }
+    // }
     render () {
-        console.log(window.loggedUsername)
+        console.log('render auth', this.state.isLogged)
         // const { shouldDrawChildrenNow } = this.state;
-        const shouldDrawChildrenNow = this.state.prevLogIn ? !this.shouldDrawChildrenWhenAuthorized : this.shouldDrawChildrenWhenAuthorized;
+        const shouldDrawChildrenNow = this.state.isLogged ? !this.shouldDrawChildrenWhenAuthorized : this.shouldDrawChildrenWhenAuthorized;
         // console.log('should', shouldDrawChildrenNow);
-        return shouldDrawChildrenNow ? (<span>{this.props.children}</span>) : (<span></span>);
+        return shouldDrawChildrenNow ? (<div>{this.props.children}</div>) : (<div></div>);
     }
-
 }

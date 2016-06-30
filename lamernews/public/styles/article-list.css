@@ -1,6 +1,9 @@
-section {
-    padding:10px;
+.articles-nav {
+    /*padding-left: 10px;*/
 }
+    .articles-nav li:not(:last-child) {
+        margin-bottom: 10px;
+    }
     section h3 {
         /*margin-bottom: -10px;*/
     }
