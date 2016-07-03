@@ -3,6 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import request from '../request.js';
 
+let whoIsLogged = {};
+
 export default class Authenticated extends React.Component {
     constructor (props) {
         super(props);
@@ -10,6 +12,9 @@ export default class Authenticated extends React.Component {
         this.state = {
             isLogged: false
         }
+    }
+    static get whoIsLogged () {
+        return whoIsLogged;
     }
     whoAmI () {
         let self = this;
@@ -22,6 +27,8 @@ export default class Authenticated extends React.Component {
                     // prevLogIn: window.loggedUserId
                     isLogged: !!res.username
                 });
+                whoIsLogged = res.username ? res : null;
+                console.log('now logged user is ', whoIsLogged);
                 self.forceUpdate();
             }
 

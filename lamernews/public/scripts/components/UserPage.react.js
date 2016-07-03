@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import request from '../request.js';
 import '../../styles/user-page.css'
 import MyForm from './MyForm.react.js';
+import Authenticated from './Authenticated.react.js';
 // import
 
 export default class UserPage extends React.Component {
@@ -26,21 +27,19 @@ export default class UserPage extends React.Component {
     componentWillMount () {
         // console.log('here?')
         // debugger
-        Promise.all([
-            request.get(`/users/${ this.props.params.username }`),
-            request.get('/whoislogged')
-        ]).then((msg) => {
-            console.log('datas', msg)
+
+        request.get(`/users/${ this.props.params.username }`).then((msg) => {
+            // console.log('datas', msg)
             // debugger;
             // console.log(msg, msg.serverStatus);
             let state = {
                 user: null,
                 isLoggedUser: false
             };
-            if (msg[0].message !== 'user not found') {
-                state.user = msg[0];
+            if (msg.message !== 'user not found') {
+                state.user = msg;
 
-                if (msg[0]._id === msg[1].userId) {
+                if (msg._id === Authenticated.whoIsLogged.userId) {
                     state.isLoggedUser = true;
                 }
             } else {

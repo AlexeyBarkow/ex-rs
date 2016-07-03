@@ -222,7 +222,7 @@ function logout (req, res) {
     console.log('loggin out...')
     // res.send(JSON.stringify({message: "success"}));
     // res.status(200).json({message: "success"});
-    res.redirect('/');
+    res.json({message: 'successfully logged out'});
 }
 
 function whoAmI (req, res, next) {

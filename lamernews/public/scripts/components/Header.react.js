@@ -15,6 +15,18 @@ export default class Header extends React.Component {
         console.log('update header');
         return true;
     }
+
+    _logout (e) {
+        e.preventDefault();
+        let self = this;
+        request.post('/logout').then(res => {
+            // console.log(res);
+            // console.log('THIS IS ', this);
+            self.forceUpdate();
+
+            // Authenticated.whoAmI();
+        });
+    }
     render () {
         console.log('loggedUsername', window.loggedUsername, window.loggedUserId);
         return (
@@ -62,10 +74,10 @@ export default class Header extends React.Component {
                                 </Link>
                             </Authenticated>
                             <Authenticated val={ false }>
-                                <form action="/logout" method="post" className="nav-button">
+                                <form onSubmit={ this._logout.bind(this) } className="nav-button">
                                     <input type="submit" value="logout"/>
                                 </form>
-                                <Link to="/myprofile" className="nav-button">
+                                <Link to="/home" className="nav-button">
                                     profile
                                 </Link>
                             </Authenticated>

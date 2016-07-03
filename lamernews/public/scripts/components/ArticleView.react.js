@@ -9,7 +9,6 @@ export default class ArticleView extends React.Component {
     }
 
 
-
     render () {
         const startIndex = this.props.params.startIndex;
         const count = this.props.params.count;
@@ -18,6 +17,7 @@ export default class ArticleView extends React.Component {
         const selectedNews = this.props.location.query.id;
         // console.log('qwe',startIndex, count, sort);
             // debugger;
+        console.log(1, selectedNews)
 
         return (
             <div className="article-view">

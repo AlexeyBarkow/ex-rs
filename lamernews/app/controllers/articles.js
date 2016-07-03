@@ -24,6 +24,7 @@ const User = require('../models/user.js')
 
 function sendSingleArticle (req, res, next) {
     if (req.get('Content-Type') || req.params.id === 'random') {
+        console.log('req',req.params.id);
         Article.findById(req.params.id).then(found => {
             console.log('found', found);
             if (found) {
@@ -40,11 +41,11 @@ function sendSingleArticle (req, res, next) {
     }
 }
 function like (req, res) {
-    console.log('liking...',req.params.id)
+    // console.log('liking...',req.params.id)
     if (req.isAuthenticated()) {
         const articleId = req.params.id;
         Article.findById(articleId).then(found => {
-            console.log('found!',found);
+            // console.log('found!',found);
             if (found) {
                 const index = found.rating.indexOf(req.user.id);
                 if (index === -1) {
@@ -84,7 +85,7 @@ function sendArticles (req, res, next) {
         var sort = req.query.sort;
 
         // console.log(req.query);
-        console.log(startIndex, count, sort);
+        // console.log(startIndex, count, sort);
         var comparator = {};
         switch (sort) {
             case 'top':
@@ -115,7 +116,7 @@ function sendArticles (req, res, next) {
         ]).exec().then(articles => {
             // Articles.find(articles)
             // articles.forEac
-            console.log(startIndex, count, sort, articles);
+            // console.log(startIndex, count, sort, articles);
             let selectedArticles = [];
             let promises = [];
             if (articles.length > startIndex) {
@@ -141,7 +142,7 @@ function sendArticles (req, res, next) {
                 // console.log(req.params);
             }
             Promise.all(promises).then(_ => {
-                console.log('selected', selectedArticles);
+                // console.log('selected', selectedArticles);
                 // res.setHeader('Content-Type', 'application/json');
                 res.json({
                     articles: selectedArticles,

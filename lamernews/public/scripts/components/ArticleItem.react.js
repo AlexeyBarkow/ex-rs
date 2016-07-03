@@ -1,16 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
+import Authenticated from './Authenticated.react.js';
 import request from '../request.js';
+
+// let x = Authenticated.Authenticated.whoIsLogged || {};
+
 
 export default class ArticleItem extends React.Component {
     constructor (props) {
+        // debugger;
         super(props);
         console.log('art',props.article);
         this.state = {
             article: props.article,
-            reference: props.reference,
-            whoIsLogged: props.whoIsLogged
+            reference: props.reference || '/'
         }
     }
 
@@ -18,7 +22,7 @@ export default class ArticleItem extends React.Component {
         if (JSON.stringify(newProps.article) !== JSON.stringify(this.props.article)) {
             this.setState({
                 article: newProps.article,
-                reference: newProps.reference
+                reference: newProps.reference || '/'
             });
         }
     }
@@ -35,9 +39,9 @@ export default class ArticleItem extends React.Component {
                 this.refs.notificator.error('Error', 'You should be logged in to perform this action', 4000);
             } else {
                 console.log('old', article)
-                const itemIndex = article.rating.indexOf(this.state.whoIsLogged.userId);
+                const itemIndex = article.rating.indexOf(Authenticated.whoIsLogged.userId);
                 if (itemIndex === -1) {
-                    article.rating.push(this.state.whoIsLogged.userId);
+                    article.rating.push(Authenticated.whoIsLogged.userId);
                 } else {
                     article.rating.splice(itemIndex, 1);
                 }
@@ -51,8 +55,9 @@ export default class ArticleItem extends React.Component {
     }
 
     render () {
-        const { reference, article, whoIsLogged } = this.state;
-        console.log('logged as', whoIsLogged)
+        const { article, reference } = this.state;
+            // console.log('logged as', Authenticated.whoIsLogged)
+        const whoIsLogged = Authenticated.whoIsLogged;
         return (
             <div>
                 <h3>
@@ -77,7 +82,7 @@ export default class ArticleItem extends React.Component {
                             target="_blank">{ article.link }</a>
                     </span>
                 </h3>
-                <p>rating: { article.rateCount }, posted by <Link to={ `/users/${ article.username }` }>
+                <p>rating: { article.rating.length }, posted by <Link to={ `/users/${ article.username }` }>
                     { article.username }
                 </Link> { article.creationDate }</p>
             </div>
