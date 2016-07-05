@@ -12,7 +12,7 @@ export default class Header extends React.Component {
         super(props);
     }
     shouldComponentUpdate() {
-        console.log('update header');
+        // console.log('update header');
         return true;
     }
 
@@ -28,7 +28,8 @@ export default class Header extends React.Component {
         });
     }
     render () {
-        console.log('loggedUsername', window.loggedUsername, window.loggedUserId);
+        // console.log('loggedUsername', window.loggedUsername, window.loggedUserId);
+
         return (
             <header>
                 <section>
@@ -41,12 +42,12 @@ export default class Header extends React.Component {
                         <nav>
                             <ul className="nav-bar">
                                 <li>
-                                    <Link to="/articles/0/10?sort=top" className="nav-button">
+                                    <Link to={{ query: { sort: 'top' } }} className="nav-button">
                                         top
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/articles/0/10?sort=latest" className="nav-button">
+                                    <Link to={{ query: { sort: 'latest' } }} className="nav-button">
                                         latest
                                     </Link>
                                 </li>
@@ -77,7 +78,7 @@ export default class Header extends React.Component {
                                 <form onSubmit={ this._logout.bind(this) } className="nav-button">
                                     <input type="submit" value="logout"/>
                                 </form>
-                                <Link to="/home" className="nav-button">
+                                <Link to="/users/home" className="nav-button">
                                     profile
                                 </Link>
                             </Authenticated>
@@ -88,7 +89,12 @@ export default class Header extends React.Component {
         )
     }
 }
-
+//
+//
+// Header.contextTypes = {
+//     location: React.PropTypes.object,
+//     params: React.PropTypes.object
+// }
 //
 // <Link to="/logout" className="nav-button">
 //     logout

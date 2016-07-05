@@ -6,16 +6,15 @@ import request from '../request.js';
 import { Link } from 'react-router';
 import '../../styles/article-list.css';
 import ArticleItem from './ArticleItem.react.js';
-import ReactNotify from 'react-notify';
 
 export default class ArticleList extends React.Component {
     constructor (props) {
         super(props);
+        console.log(this.props)
         this.state = {
             articles: [],
             totalLength: 0,
-            notifications: [],
-            whoIsLogged: null
+            notifications: []
         }
     }
     // componentWillReceiveProps (next, prev) {
@@ -40,43 +39,43 @@ export default class ArticleList extends React.Component {
     //     this._getState(prevState, newProps.location.pathname +
     //         newProps.location.search);
     // }
-    componentWillReceiveProps(newProps) {
+    componentWillReceiveProps(newProps, nextContext) {
         // debugger;
-        this._getState(newProps);
+        this._getState(nextContext);
     }
     shouldComponentUpdate (nextProps, newState) {
         // debugger;
+        if (newState !== this.state) {
+            return true;
+        }
         if (JSON.stringify(this.state.articles) === JSON.stringify(newState.articles)) {
             return false;
         }
         return true;
     }
 
-    _getState = (nextProps) => {
+    _getState = (nextContext) => {
         // debugger;
         // // console.log('query', this.props.location.query);
         // console.log('state', this.state);
         // const prev = this.state.articles;
         // debugger;
         let currentState =  currentState || this.state;
-        nextProps = nextProps || this.props;
-        let newPath = `/articles/${ nextProps.startIndex }/${ nextProps.count }?sort=${ nextProps.sort }`;
+        // nextProps = nextProps || this.props;
+        nextContext = nextContext || this.context;
+        let newPath = `/articles/${ nextContext.params.startIndex }/${ nextContext.params.count }${ nextContext.location.search }`;
         // debugger;
         // let self = this;
-        Promise.all([
-            request.get(newPath),
-            request.get('/whoislogged')
-        ]).then(res => {
-            console.log(this.state.articles, res[0].articles);
+        request.get(newPath).then(res => {
+            // console.log(this.state.articles, res.articles);
             // debugger;
 
             // let state = this.state;
             // console.log('equal', res.articles, currentState.articles);
             // if (JSON.stringify(res.articles) !== JSON.stringify(currentState.articles)) {
             this.setState({
-                articles: res[0].articles,
-                totalLength: res[0].totalLength,
-                whoIsLogged: res[1]
+                articles: res.articles,
+                totalLength: res.totalLength,
             });
         });
 
@@ -90,14 +89,16 @@ export default class ArticleList extends React.Component {
 
 
     render () {
-        const { articles, totalLength, notifications, whoIsLogged } = this.state;
-        const currStart = this.props.startIndex;
-        const count = this.props.count;
-        const search = '?sort=' + this.props.sort;
         // debugger;
-        const prevStart = Math.max(0, currStart - count - 1);
-        const nextStart = + currStart + (+ count) + 1;
-        console.log('total',totalLength)
+        const { articles, totalLength } = this.state;
+        const { startIndex, count } = this.context.params;
+        const search = this.context.location.search;
+        // const count = this.context.count;
+        // const search = this.context.sort ? '?sort=' + this.context.sort : '';
+        // debugger;
+        const prevStart = Math.max(0, startIndex - count - 1);
+        const nextStart = + startIndex + (+ count) + 1;
+        // console.log('total',totalLength)
         return (
             <nav className="articles-nav">
                 <ul>
@@ -105,24 +106,24 @@ export default class ArticleList extends React.Component {
                     articles.map((article, index) => {
                         return (
                             <li key={index}>
-                                <ArticleItem article={ article }
-                                             reference={ `/articles/${ currStart }/${ count }/${ search }&id=${ article._id }` }
-                                             whoIsLogged={ whoIsLogged } />
+                                <ArticleItem article={ article } />
                             </li>
                         )
                     })
                 }
                 </ul>
                 <div>
-                    <Link to={`/articles/${ prevStart }/${ count }${ search }`}
-                          className={prevStart < currStart ? "" : "non-active"}>Prev page</Link>
-                    <Link to={`/articles/${ nextStart }/${ count }${ search }`}
+                    <Link to={ `/articles/${ prevStart }/${ count }${ search }` }
+                          className={prevStart < startIndex ? "" : "non-active"}>Prev page</Link>
+                      <Link to={ `/articles/${ nextStart }/${ count }${ search }` }
                           className={nextStart < totalLength ? "" : "non-active"}>Next page</Link>
                   </div>
-                <div className="notify-container">
-                    <ReactNotify ref="notificator"></ReactNotify>
-                </div>
+
             </nav>
         );
     }
+}
+ArticleList.contextTypes = {
+    params: React.PropTypes.object,
+    location: React.PropTypes.object
 }

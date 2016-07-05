@@ -28,12 +28,12 @@ export default class ArticleDetails extends React.Component {
         let self = this;
         newProps = newProps || this.props;
         // debugger;
-        console.log(2, newProps.id);
+        // console.log(2, newProps.id);
         // console.log(`/articles/${ this.props.id }`);
         request.get(`/articles/${ newProps.id }`).then(res => {
             // console.log(res);
             // debugger;
-            console.log(JSON.stringify(self.state.article) , JSON.stringify(res))
+            // console.log(JSON.stringify(self.state.article) , JSON.stringify(res))
             if (JSON.stringify(self.state.article) !== JSON.stringify(res)){
                 self.setState({
                     article: res,
@@ -59,7 +59,7 @@ export default class ArticleDetails extends React.Component {
         const { article } = this.state;
         return this.state.article ?
         (
-            <div>
+            <div className="article-details">
                 <ArticleItem article={ article }/>
             </div>
         )

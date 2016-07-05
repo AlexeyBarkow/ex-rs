@@ -32,7 +32,7 @@ var builder = (method, url, body, headers=HEADERS) => {
     // if (body) {
     //     body.credentials = 'include';
     // }
-    console.log(body);
+    // console.log(body);
     if (method === 'get') {
         if (body) {
 

@@ -44,7 +44,8 @@ export default class UserPage extends React.Component {
                 }
             } else {
                 if (this.props.params.username === 'home') {
-                    this.props.history.push('/');
+                    // this.props.history.push('/');
+                    this.context.router.push('/');
                 }
             }
             this.setState(state);
@@ -89,7 +90,7 @@ export default class UserPage extends React.Component {
         const {isEditing, isLoggedUser, user} = this.state;
 
          // console.log(JSON.stringify(this.props))
-        console.log(isLoggedUser, user)
+        // console.log(isLoggedUser, user)
         // debugger
         // console.log(serverStatus)
         return (
@@ -133,4 +134,8 @@ export default class UserPage extends React.Component {
             </div>
         );
     }
+}
+
+UserPage.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }

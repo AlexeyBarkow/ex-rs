@@ -29,7 +29,7 @@ export default class Login extends React.Component {
             passwordState: password ?
                             '' : 'password field is empty'
         });
-
+        // let self = this;
         if (username && password) {
             // console.log(next)
             // console.log(smth);
@@ -37,7 +37,7 @@ export default class Login extends React.Component {
                 username,
                 password
             }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 var message = res.message;
                 if (message === 'incorrect username') {
                     this.setState({
@@ -52,11 +52,15 @@ export default class Login extends React.Component {
                     // // next();
                     // window.loggedUserId = res.id;
                     // window.loggedUsername = res.username;
-                    console.log(res);
-                    // Authenticated.whoAmI();
-                    this.props.history.push('/');
                     // console.log(res);
+                    // Authenticated.whoAmI();
+                    // this.props.history.push('/');
+                    // console.log(this, self)
+                    // debugger;
 
+                    this.context.router.push('/');
+
+                    // self.context.location.transitionTo('/');
                 }
 
                 //duct tape
@@ -128,6 +132,10 @@ export default class Login extends React.Component {
     }
 }
 
+Login.contextTypes = {
+    location: React.PropTypes.object,
+    router: React.PropTypes.object.isRequired
+}
 //
 
 // <form action={this._submitForm}>

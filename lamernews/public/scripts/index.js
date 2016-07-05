@@ -18,16 +18,16 @@ window.authenticateId = '';
 ReactDOM.render((
     <Router history={ browserHistory }>
         <Route path="/" component={ App }>
-            <IndexRedirect to="/articles/0/10?sort=latest"></IndexRedirect>
-            <Route path="/home">
+            <IndexRedirect to="/articles/0/10"></IndexRedirect>
+            <Route name="mypage" path="/home">
                 <IndexRedirect to="/users/home"></IndexRedirect>
             </Route>
-            <Route path="/login" component={ LogIn }></Route>
-            <Route path="/register" component={ Register }></Route>
-            <Route path="/users/:username" component={ UserPage }></Route>
-            <Route path="/articles/:startIndex/:count" component={ ArticleView }></Route>
+            <Route name="login" path="/login" component={ LogIn }></Route>
+            <Route name="register" path="/register" component={ Register }></Route>
+            <Route name="user" path="/users/:username" component={ UserPage }></Route>
+            <Route name="articles" path="/articles/:startIndex/:count" component={ ArticleView }></Route>
             // <Route path="/articles/" ></Route>
-            <Route path="/submit" component={ SubmitArticle }></Route>
+            <Route name="write" path="/submit" component={ SubmitArticle }></Route>
             <Route path="*" component={ NoMatch }></Route>
         </Route>
     </Router>

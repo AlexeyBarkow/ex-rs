@@ -5,7 +5,7 @@ import request from '../request.js';
 let Router = require('react-router');
 import MyForm from './MyForm.react.js';
 
-console.log('router', Router)
+// console.log('router', Router)
 export default class SubmitArticle extends React.Component {
     constructor (props) {
         super (props);
@@ -13,7 +13,7 @@ export default class SubmitArticle extends React.Component {
     _submitHander (e) {
         e.preventDefault();
         // this.context.router.transitionTo('../');
-        console.log(this.state);
+        // console.log(this.state);
         const title = this.state.title;
         const link = this.state.link
         if (!title){
@@ -35,11 +35,12 @@ export default class SubmitArticle extends React.Component {
                     this.setState({
                         errorMsg: ''
                     });
-                    console.log(self);
+                    // console.log(self);
                     // self.props.history.push('/');
-                    window.location.replace('/');
+                    // window.location.replace('/');
+                    this.context.router.push('/');
                 } else {
-                    console.log(msg);
+                    // console.log(msg);
                     this.setState({
                         errorMsg: 'unhandled error'
                     });
@@ -64,6 +65,8 @@ export default class SubmitArticle extends React.Component {
     }
 
 }
-
+SubmitArticle.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
 
 // console.log('qw',SubmitArticle.contextTypes);

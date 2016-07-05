@@ -81,7 +81,8 @@ export default class Register extends React.Component {
                         acceptMessage: 'User has been successfully created. Redirecting to login page...'
                     });
                     setTimeout(() => {
-                        this.props.history.push('/login');
+                        // this.props.history.push('/login');
+                        this.context.router.push('/login');
                     }, 2000);
 
                 }
@@ -180,4 +181,8 @@ export default class Register extends React.Component {
             </form>
         );
     }
+}
+
+Register.contextTypes = {
+    router: React.PropTypes.object.isRequired
 }

@@ -20,15 +20,15 @@ export default class Authenticated extends React.Component {
         let self = this;
         request.get('/whoislogged').then(res => {
             // console.log('ly',window.loggedUsername)
-            console.log('am i logged', self.state.isLogged,!!res.username);
+            // console.log('am i logged', self.state.isLogged,!!res.username);
             if (self.state.isLogged !== !!res.username) {
-                console.log('receive new state');
+                // console.log('receive new state');
                 self.setState({
                     // prevLogIn: window.loggedUserId
                     isLogged: !!res.username
                 });
                 whoIsLogged = res.username ? res : null;
-                console.log('now logged user is ', whoIsLogged);
+                // console.log('now logged user is ', whoIsLogged);
                 self.forceUpdate();
             }
 
@@ -41,7 +41,7 @@ export default class Authenticated extends React.Component {
 
     shouldComponentUpdate (nextProps, newState) {
         // return this.prevLogIn !== window.loggedUserId;
-        console.log('new props', newState.isLogged !== this.state.isLogged);
+        // console.log('new props', newState.isLogged !== this.state.isLogged);
         this.whoAmI();
         // return this.state.isLogged === ;
         return newState.isLogged !== this.state.isLogged;
@@ -59,7 +59,7 @@ export default class Authenticated extends React.Component {
     //         // }
     // }
     render () {
-        console.log('render auth', this.state.isLogged)
+        // console.log('render auth', this.state.isLogged)
         // const { shouldDrawChildrenNow } = this.state;
         const shouldDrawChildrenNow = this.state.isLogged ? !this.shouldDrawChildrenWhenAuthorized : this.shouldDrawChildrenWhenAuthorized;
         // console.log('should', shouldDrawChildrenNow);

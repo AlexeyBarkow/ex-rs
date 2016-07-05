@@ -11,18 +11,17 @@ export default class ArticleItem extends React.Component {
     constructor (props) {
         // debugger;
         super(props);
-        console.log('art',props.article);
+        // console.log('art',props.article);
         this.state = {
-            article: props.article,
-            reference: props.reference || '/'
+            article: props.article
         }
     }
 
     componentWillReceiveProps (newProps) {
+        // debugger;
         if (JSON.stringify(newProps.article) !== JSON.stringify(this.props.article)) {
             this.setState({
-                article: newProps.article,
-                reference: newProps.reference || '/'
+                article: newProps.article
             });
         }
     }
@@ -33,12 +32,13 @@ export default class ArticleItem extends React.Component {
         // debugger;
         // console.log(this.state);
         let article = this.state.article;
+        let self = this;
         request.post(`/like/${ article._id }`).then(msg => {
-            console.log('msg',msg);
+            // console.log('msg',msg);
             if (msg.message === 'not authenticated') {
-                this.refs.notificator.error('Error', 'You should be logged in to perform this action', 4000);
+                self.context.notificator.error('Error', 'You should be logged in to perform this action', 4000);
             } else {
-                console.log('old', article)
+                // console.log('old', article)
                 const itemIndex = article.rating.indexOf(Authenticated.whoIsLogged.userId);
                 if (itemIndex === -1) {
                     article.rating.push(Authenticated.whoIsLogged.userId);
@@ -48,20 +48,29 @@ export default class ArticleItem extends React.Component {
                 this.setState({
                     article: article
                 })
-                console.log('new', article)
+                // console.log('new', article)
                 // this._getState();
             }
         });
     }
 
     render () {
-        const { article, reference } = this.state;
+        const { article } = this.state;
             // console.log('logged as', Authenticated.whoIsLogged)
-        const whoIsLogged = Authenticated.whoIsLogged;
+        const { whoIsLogged } = Authenticated;
+        // const
+        // debugger;
+        const { pathname } = this.context.location;
+        let query = {};
+        // debugger;
+        for (let i in this.context.location.query) {
+            query[i] = this.context.location.query[i];
+        }
+        query.id = article._id;
         return (
             <div>
                 <h3>
-                    <Link to={ reference } className="big">
+                    <Link to={{ pathname, query }} className="big">
                         { article.title }
                     </Link>
                     <button className={
@@ -72,7 +81,7 @@ export default class ArticleItem extends React.Component {
                             'rating-down'
                          }
                            onClick={ this._liker }></button>
-                    <span   className="gray-small">
+                    <span className="gray-small">
                         at <a href={
                         (article.link.slice(0,4) === 'http' ?
                             ''
@@ -88,4 +97,10 @@ export default class ArticleItem extends React.Component {
             </div>
         );
     }
+}
+ArticleItem.contextTypes = {
+    location: React.PropTypes.object,
+    params: React.PropTypes.object,
+    notificator: React.PropTypes.object,
+    router: React.PropTypes.object.isRequired
 }

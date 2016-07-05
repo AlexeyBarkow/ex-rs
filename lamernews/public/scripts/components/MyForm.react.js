@@ -6,7 +6,7 @@ export default class MyForm extends React.Component {
     constructor (props) {
         super(props);
         // debugger;
-        console.log('props',props);
+        // console.log('props',props);
         let self = this;
         this.state = props.initState;
         this.state.errorMsg = '';
@@ -14,7 +14,7 @@ export default class MyForm extends React.Component {
             this._onSubmitHandler = props.submitHandler.bind(this);
         } else {
             this._onSubmitHandler = function() {
-                console.log(self.state);
+                // console.log(self.state);
                 return true;
             }
         }

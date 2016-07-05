@@ -28,8 +28,18 @@ function sendSingleArticle (req, res, next) {
         Article.findById(req.params.id).then(found => {
             console.log('found', found);
             if (found) {
+                found = found.toObject();
+                console.log(found);
                 found.rateCount = found.rating.length;
-                res.json(found);
+                User.findById(found.author).then(author => {
+                    if (author) {
+                        found.username = author.username;
+                    }
+                    res.json(found);
+                }).catch(err => {
+                    console.log(err)
+                    res.send(500).json({message: err});
+                });
             } else {
                 res.send(404).json({
                     message: 'article not found'

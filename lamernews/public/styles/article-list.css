@@ -1,5 +1,31 @@
+.article-view {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-basis: 400px;
+}
+
+.article-details {
+    flex: 1 auto;
+}
+
+.articles-nav, .article-details {
+    padding: 10px;
+    /*flex: 1 auto;*/
+}
+
 .articles-nav {
+    flex-basis: 400px;
+}
+
+.articles-nav:not(:only-child) {
+    /*flex-grow: 100px;*/
     /*padding-left: 10px;*/
+    border-right: 2px solid rgb(107, 107, 107);
+
 }
     .articles-nav li:not(:last-child) {
         margin-bottom: 10px;
