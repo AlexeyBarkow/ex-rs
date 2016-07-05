@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import Authenticated from './Authenticated.react.js';
 import request from '../request.js';
-
+import dateFormat from 'dateformat';
 // let x = Authenticated.Authenticated.whoIsLogged || {};
 
 
@@ -28,7 +28,8 @@ export default class ArticleItem extends React.Component {
     // _getState () {
     //
     // }
-    _liker = () => {
+    _liker = (e) => {
+        e.preventDefault();
         // debugger;
         // console.log(this.state);
         let article = this.state.article;
@@ -73,14 +74,14 @@ export default class ArticleItem extends React.Component {
                     <Link to={{ pathname, query }} className="big">
                         { article.title }
                     </Link>
-                    <button className={
+                    <Link to="" className={
                             article.rating
                             .indexOf(whoIsLogged.userId) === -1 ?
                             'rating-up'
                             :
                             'rating-down'
                          }
-                           onClick={ this._liker }></button>
+                           onClick={ this._liker }></Link>
                     <span className="gray-small">
                         at <a href={
                         (article.link.slice(0,4) === 'http' ?
@@ -91,9 +92,9 @@ export default class ArticleItem extends React.Component {
                             target="_blank">{ article.link }</a>
                     </span>
                 </h3>
-                <p>rating: { article.rating.length }, posted by <Link to={ `/users/${ article.username }` }>
-                    { article.username }
-                </Link> { article.creationDate }</p>
+                <p>rating: { article.rating.length }, posted by <Link to={ `/users/${ article.username || article.author.username }` }>
+                    { article.username || article.author.username }
+                </Link> { dateFormat(article.creationDate, 'yyyy-mm-dd, hh:mm TT') }</p>
             </div>
         );
     }

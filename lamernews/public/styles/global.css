@@ -11,14 +11,57 @@ ul {
     padding-left: 0;
 }
 
+.my-form input[type="submit"], .my-form input[type="button"] {
+    background-color: #872c23;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    min-width: 75px;
+    border: none;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.my-form input[type="submit"]:hover, .my-form input[type="button"]:hover {
+    background-color: #61211b;
+}
+
+
+html, body {
+    margin: 0;
+}
 body {
     font-family: Helvetica, sans-serif;
 }
 
 .top-container {
     position: relative;
+    min-height: 100%;
+    margin-bottom: -50px;
 }
 
 *:focus {
     outline: 0;
 }
+
+html, body, #content-wrapper,div[data-reactroot] {
+    height: 100%;
+}
+
+.edit-button {
+    font-weight: normal;
+}
+
+.edit-button:before {
+    content: '[';
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.edit-button:after {
+    content: ']';
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+    .edit-button:hover:before, .edit-button:hover:after {
+        color: black;
+    }

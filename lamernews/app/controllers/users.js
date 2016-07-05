@@ -1,5 +1,6 @@
 'use strict';
 const User = require('../models/user.js');
+const Article = require('../models/article.js');
 const passport = require('./../config/passport.js');
 // console.log(passport);
 // function addNewUser(username, password, email) {
@@ -60,8 +61,20 @@ function getPublicUserInfo (req, res, next) {
         .then((user) => {
             console.log('user',user);
             if (user) {
+                Article.find({
+                    author: user._id
+                }).populate('author').then(articles => {
+                    user = user.toObject();
+                    user.articles = articles;
+                        console.log(user);
+                    res.json(user);
+                }).catch(error => {
+                    console.log(error);
+                    res.status(500).json({
+                        message: error
+                    })
+                })
                 // res.setHeader('Content-Type', 'application/json');
-                res.json(user);
             } else {
                 res.status(404).json({
                     message: 'user not found'
@@ -109,14 +122,15 @@ function createNewUser (req, res) {
 function updateUser (req, res) {
 
     if (req.isAuthenticated()) {
-        var newData = {};
-        var username = req.user.username;
+        let newData = {};
+        let username = req.user.username;
+        // console.log(username, req.params.username)
         if (username !== req.params.username) {
             res.sendStatus(403);
         } else {
-            var newUsername = req.body.username;
-            var newPassword = req.body.password;
-            var newEmail = req.body.email;
+            const newUsername = req.body.username;
+            const newPassword = req.body.password;
+            const newEmail = req.body.email;
             if (newUsername) {
                 newData['username'] = newUsername;
             }

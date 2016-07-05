@@ -6,6 +6,7 @@ import Header from './Header.react.js';
 import ArticleList from './ArticleList.react.js';
 // import { Button } from 'react-bootstrap'
 import ReactNotify from 'react-notify';
+import Footer from './Footer.react.js';
 export default class App extends React.Component {
     constructor (props) {
         super(props);
@@ -50,12 +51,14 @@ export default class App extends React.Component {
         // console.log(inp);
         // console.log(this.context);
         return (
-            <div class="top-container">
-                <Header/>
-                { this.props.children }
-                <div className="notify-container">
-                    <ReactNotify ref={ (param) => { this._notificator = param; }}></ReactNotify>
+            <div>
+                <div className="top-container">
+                    <Header/>
+                    { this.props.children }
+                        <ReactNotify ref={ (param) => { this._notificator = param; }}></ReactNotify>
                 </div>
+                <div className="notify-container" />
+                <Footer />
             </div>
         );
     };

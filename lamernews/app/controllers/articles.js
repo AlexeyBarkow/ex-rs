@@ -238,6 +238,22 @@ function sendRandomArticle (req, res) {
     //should return random article
     // res.sendStatus(501);
 };
+// 
+// function getAllUserArticles (req, res) {
+//     // console.log(req);
+//     // console.log(req.params)
+//     User.findOne({
+//         username: req.params.username.toLowerCase()
+//     }).then(user => {
+//         Article.find({
+//             author: user._id
+//         }).then(articles => {
+//             // console.log(articles);
+//             res.json(articles);
+//         })
+//     });
+// }
+
 function createNewArticle (req, res) {
     // articles.addNewArticle()
     //should create new article
@@ -286,9 +302,12 @@ function updateArticle (req, res) {
     if (req.isAuthenticated()) {
         // console.log(req.user.id, req.params.id)
         // User.findOne(req.user.id).then(user => {console.log(user)})
-        Article.findById(req.params.id).then((article => {
+
+        Article.findById(req.params.id).then(article => {
+            // console.log(article.author === req.user._id, req.user._id, article.author,
+            // '' + article.author === '' + req.user._id, + req.user._id, '' + req.user._id);
             if (article) {
-                if (article.author === req.user) {
+                if ( '' + article.author === '' + req.user._id) {
                     var title = req.body.title;
                     var link = req.body.link;
                     var newArticle = {};
@@ -303,7 +322,7 @@ function updateArticle (req, res) {
                     article.save();
                     res.setHeader('Content-Type', 'application/json');
                     res.json({
-                        'status' : 'success'
+                        message : 'success'
                     });
                 } else {
                     res.status(403).json({
@@ -318,7 +337,7 @@ function updateArticle (req, res) {
                 });
             }
 
-        })).catch(error => {
+        }).catch(error => {
             console.log(error);
             res.status(500);
         })
@@ -358,5 +377,5 @@ module.exports = {
     deleteArticle,
     like,
     sendSingleArticle
-
+    // getAllUserArticles
 }

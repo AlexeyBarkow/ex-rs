@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import request from '../request.js';
 // import { State } from 'react-router';
 import { Link } from 'react-router';
-import '../../styles/article-list.css';
 import ArticleItem from './ArticleItem.react.js';
 
 export default class ArticleList extends React.Component {
@@ -112,7 +111,7 @@ export default class ArticleList extends React.Component {
                     })
                 }
                 </ul>
-                <div>
+                <div className="article-links">
                     <Link to={ `/articles/${ prevStart }/${ count }${ search }` }
                           className={prevStart < startIndex ? "" : "non-active"}>Prev page</Link>
                       <Link to={ `/articles/${ nextStart }/${ count }${ search }` }

@@ -48,6 +48,7 @@
             color: black;
         }
     .rating-up, .rating-down {
+        display: inline-block;
         margin-left: 5px;
         margin-right: 5px;
         position: relative;
@@ -69,6 +70,7 @@
             border-bottom-color: #aaa;
         }
     .rating-down {
+        margin-bottom: -3px;
         top: 0px;
         border-bottom: 0 solid transparent;
         border-top: 20px solid #ccc;
@@ -100,3 +102,10 @@
             color: white;
             font-weight: bold;
         }
+
+    .article-links a:first-child {
+        float: left;
+    }
+    .article-links a:last-child {
+        float: right;
+    }

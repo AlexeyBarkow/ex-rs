@@ -4,6 +4,8 @@ import ArticleList from './ArticleList.react.js';
 import ArticleDetails from './ArticleDetails.react.js';
 import ArticleItem from './ArticleItem.react.js';
 import ReactNotify from 'react-notify';
+
+import '../../styles/article-list.css';
 export default class ArticleView extends React.Component {
     constructor (props) {
         super(props);

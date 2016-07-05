@@ -1,0 +1,15 @@
+.sticky-footer {
+    margin-top: 50px;
+    padding: 5px;
+    background-color: #a3362b;
+
+    display: flex;
+    justify-content: flex-end;
+}
+    .sticky-footer a {
+        color: white;
+        font-weight: bold;
+    }
+    .sticky-footer .author {
+        margin-right: 5px;
+    }

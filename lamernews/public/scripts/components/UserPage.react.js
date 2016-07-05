@@ -5,8 +5,9 @@ import request from '../request.js';
 import '../../styles/user-page.css'
 import MyForm from './MyForm.react.js';
 import Authenticated from './Authenticated.react.js';
-// import
-
+import { Link } from 'react-router';
+import { isEmail } from '../validator.js';
+import ArticleItem from './ArticleItem.react.js';
 export default class UserPage extends React.Component {
     constructor (props) {
         super(props);
@@ -14,8 +15,10 @@ export default class UserPage extends React.Component {
             user: {
                 username: '',
                 email: '',
-                registrationDate: ''
+                registrationDate: '',
+                articles: []
             },
+            editMessage: 'edit',
             isLoggedUser: false,
             isEditing: false
         }
@@ -24,10 +27,8 @@ export default class UserPage extends React.Component {
     shouldComponentUpdate () {
         return true;
     }
-    componentWillMount () {
-        // console.log('here?')
-        // debugger
 
+    _getState() {
         request.get(`/users/${ this.props.params.username }`).then((msg) => {
             // console.log('datas', msg)
             // debugger;
@@ -38,7 +39,7 @@ export default class UserPage extends React.Component {
             };
             if (msg.message !== 'user not found') {
                 state.user = msg;
-
+                // debugger;
                 if (msg._id === Authenticated.whoIsLogged.userId) {
                     state.isLoggedUser = true;
                 }
@@ -49,45 +50,86 @@ export default class UserPage extends React.Component {
                 }
             }
             this.setState(state);
+        });
+    }
 
-            // if (msg.serverStatus) {
-            //     state.serverStatus = msg.serverStatus
-            // } else {
-            //     state = {
-            //         username: msg.username,
-            //         email: msg.email,
-            //         registrationDate: msg.registrationDate,
-            //         // isLoggedUsersPage: window.username === msg.username
-            //     };
-            // }
+    componentWillMount () {
+        // console.log('here?')
+        // debugger
+        this._getState();
 
-            // const serverStatus = msg['serverStatus'];
-            // if (serverStatus !) {
-            // console.log(<serverStatus></serverStatus>)
-            // this.setState({
-            //     serverStatus
-            // });
-            // }
-        })
     }
 
 
-
-    _onSubmit (e) {
+    _onSubmit () {
         // debugger
-        e.preventDefault();
-        // console.log(this.state);
-        const { newEmail, newPassword, newPasswordDupl } = this.state;
-        return true;
+        let self = this;
+        const { whoIsLogged } = Authenticated;
+        return function (e) {
+            e.preventDefault();
+            // console.log(this.state);
+            const { newEmail, newPassword, newPasswordDupl } = this.state;
+            let msg = {},
+            errorState = {
+                errorMsg: ''
+            };
+            if (newEmail) {
+
+                if (!isEmail(newEmail)) {
+                    errorState = {
+                        errorMsg: 'Wrong email'
+                    };
+                } else {
+                    msg.email = newEmail;
+                }
+            }
+            if (newPassword) {
+                if (newPassword !== newPasswordDupl) {
+                    errorState = {
+                        errorMsg: 'Passwords should match'
+                    };
+                } else {
+                    msg.password = newPassword;
+                }
+            }
+            if (Object.keys(msg).length > 0) {
+                console.log('wil', whoIsLogged)
+                request.put(`/users/${ whoIsLogged.username }`, msg).then(status => {
+                    if (status.ok === 1) {
+                        self.setState({
+                            isEditing: false,
+                            editMessage: 'edit'
+                        });
+                        self._getState();
+                    } else {
+                        this.setState({
+                            errorMsg: 'Email is already used'
+                        });
+                    }
+                });
+            } else {
+                if (errorState.errorMsg) {
+                    this.setState(errorState);
+                } else {
+                    this.setState({
+                        errorMsg: 'Email or password fields should not be empty'
+                    });
+                }
+            }
+
+        }
+        // return true;
         // this.props.history.push('/');
     }
     _onEditClick = (e) => {
+        e.preventDefault();
         this.setState({
-            isEditing : true
+            isEditing: !this.state.isEditing,
+            editMessage: this.state.isEditing ? 'edit' : 'back'
         });
     }
     render () {
-        const {isEditing, isLoggedUser, user} = this.state;
+        const {isEditing, isLoggedUser, user, editMessage } = this.state;
 
          // console.log(JSON.stringify(this.props))
         // console.log(isLoggedUser, user)
@@ -98,25 +140,37 @@ export default class UserPage extends React.Component {
                 { user ?
                     (
                     <div>
-                        <h2>{`${ user.username }\'s profile page`}</h2>
+                        <h2>{`${ user.username }\'s profile page`}
+                            { isLoggedUser ?
+                            (
+                                <Link to="" className="edit-button" onClick={this._onEditClick}>{ editMessage }</Link>
+                            ) :
+                            ('')
+                            }
+                        </h2>
                         { !isEditing ?
                             (
                             <ul className="upperline">
+
                                 <li>Registered: { user.registrationDate }</li>
                                 <li>email: { user.email }</li>
-                                <li>articles: coming soon!</li>
-                                { isLoggedUser ?
-                                (
-                                    <li><button onClick={this._onEditClick}>Edit</button></li>
-                                ) :
-                                ('')
-                                }
+                                <li>articles:
+                                    <ul>
+                                        { user.articles.map((article, index) => {
+                                            return (
+                                                <li key={ index }>
+                                                    <ArticleItem article={ article }/>
+                                                </li>
+                                            )
+                                        }) }
+                                    </ul>
+                                </li>
                             </ul>
                             )
                             :
                             (
                                 <MyForm initState={{newEmail: '', newPassword: '', newPasswordDupl: ''}}
-                                      submitHandler={ this._onSubmit }
+                                      submitHandler={ this._onSubmit() }
                                       inputNames={['newEmail', 'newPassword', 'newPasswordDupl']}
                                       inputLabels={['New email', 'New password', 'Confrim your password']}
                                       inputTypes={['text', 'password', 'password']}

@@ -5,11 +5,9 @@ import ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';
 import '../../styles/login.css';
 import request from '../request.js';
+import { isEmail } from '../validator.js';
 // console.log('TT',Router.transitionTo);
 // console.log(Navigation);
-function isEmail(string) {
-    return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(string);
-}
 function isCorrectUsername(string) {
     return /^[a-zA-Z]+[^\s]*$/.test(string);
 }
@@ -115,7 +113,7 @@ export default class Register extends React.Component {
         const { acceptMessage, inputUsername, inputEmail, inputPassword, inputPasswordConfrim, usernameState, emailState, passwordState } = this.state;
 
         return (
-            <form  onSubmit={ this._submitForm }>
+            <form  onSubmit={ this._submitForm } className="my-form">
                 <ul>
                     <li>
                         <label htmlFor="username">Username</label>

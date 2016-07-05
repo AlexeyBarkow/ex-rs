@@ -36,12 +36,15 @@ export default class MyForm extends React.Component {
         // debugger
         return (
             <div>
-                <form onSubmit={ this._onSubmitHandler }>
+                <form  className="my-form" onSubmit={ this._onSubmitHandler }>
                     <ul>
+                        <li>
+                            { this.props.children }
+                        </li>
                     {
                         this.inputNames.map((name, index) => {
                             return (
-                                <li>
+                                <li key={index}>
                                     <label>{ this.inputLabels[index] }</label>
                                     <input type={this.inputTypes[index]}
                                            key={ name }
@@ -54,7 +57,6 @@ export default class MyForm extends React.Component {
                         })
                     }
                         <li>
-                            { this.props.children }
                             <span className="error">{ this.state.errorMsg }</span>
                         </li>
                         <li>
@@ -65,7 +67,4 @@ export default class MyForm extends React.Component {
             </div>
         );
     }
-}
-MyForm.contextTypes = {
-    router: React.PropTypes.func.isRequired
 }

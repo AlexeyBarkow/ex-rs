@@ -96,7 +96,7 @@ export default class Login extends React.Component {
         const {inputUsername, inputPassword, usernameState, passwordState, disableState } = this.state;
         return (
             <div>
-                <form onSubmit={this._submitForm}>
+                <form onSubmit={this._submitForm} className="my-form">
                     <ul>
                         <li>
                             <label htmlFor="username">Username</label>

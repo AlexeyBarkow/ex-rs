@@ -52,9 +52,9 @@ export default class Header extends React.Component {
                                     </Link>
                                 </li>
                                 <li>
-                                    <a href="/" className="nav-button">
+                                    <Link to={{ query: { id: 'random' } }} className="nav-button">
                                         random
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <Authenticated val={ false }>
@@ -75,8 +75,8 @@ export default class Header extends React.Component {
                                 </Link>
                             </Authenticated>
                             <Authenticated val={ false }>
-                                <form onSubmit={ this._logout.bind(this) } className="nav-button">
-                                    <input type="submit" value="logout"/>
+                                <form onSubmit={ this._logout.bind(this) }>
+                                    <input type="submit" value="logout" className="nav-button"/>
                                 </form>
                                 <Link to="/users/home" className="nav-button">
                                     profile
