@@ -60,7 +60,7 @@ export default class MyForm extends React.Component {
                             <span className="error">{ this.state.errorMsg }</span>
                         </li>
                         <li>
-                            <input type="submit" value={ this.submitValue }/>
+                            <input type="submit" value={ this.submitValue } className="button"/>
                         </li>
                     </ul>
                 </form>

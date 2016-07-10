@@ -80,28 +80,16 @@ var builder = (method, url, body, headers=HEADERS) => {
 
 // console.log(builder('get', '/articles/0/123?sort=latest'))
 export default {
-    // get (apiMethod, params) {
-    //     return builder('get', apiMethod, params);
-    // },
-    // post (apiMethod, params) {
-    //     return builder('post', apiMethod, params);
-    // },
-    // put (apiMethod, params) {
-    //     return builder('put', apiMethod, params);
-    // },
-    // delete (apiMethod, params) {
-    //     return builder('del', apiMethod, params);
-    // }
     get (apiMethod, params, credentails) {
-        return builder('get', apiMethod, params, credentails);
+        return builder('GET', apiMethod, params, credentails);
     },
     post (apiMethod, params, credentails) {
-        return builder('post', apiMethod, params, credentails);
+        return builder('POST', apiMethod, params, credentails);
     },
     put (apiMethod, params, credentails) {
-        return builder('put', apiMethod, params, credentails);
+        return builder('PUT', apiMethod, params, credentails);
     },
     delete (apiMethod, params, credentails) {
-        return builder('del', apiMethod, params, credentails);
+        return builder('DELETE', apiMethod, params, credentails);
     }
 };

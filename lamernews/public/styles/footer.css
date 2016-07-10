@@ -1,5 +1,8 @@
 .sticky-footer {
-    margin-top: 50px;
+    /*position: relative;*/
+    /*bottom: 0;*/
+    /*height: 20px;*/
+    /*margin-top: 70px;*/
     padding: 5px;
     background-color: #a3362b;
 
@@ -13,3 +16,7 @@
     .sticky-footer .author {
         margin-right: 5px;
     }
+
+.sticky-footer {
+    height: 20px;
+}

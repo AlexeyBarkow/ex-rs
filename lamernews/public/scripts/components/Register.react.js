@@ -167,7 +167,7 @@ export default class Register extends React.Component {
                                onChange={ this._onChangeValue('inputPasswordConfrim') }/>
                     </li>
                     <li>
-                        <input type="submit" value="Register"/>
+                        <input type="submit" value="Register" className="button"/>
                         {acceptMessage ?
                             (<span className="success">{ acceptMessage }</span>)
                             :

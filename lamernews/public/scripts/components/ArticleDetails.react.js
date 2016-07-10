@@ -107,6 +107,25 @@ export default class ArticleDetails extends React.Component {
         }
 
     }
+
+    _deleteHandler () {
+        const { context } = this;
+        const { _id } = this.state.article
+        return function (e) {
+            e.preventDefault();
+            // debugger;
+            // context.notificator.error('error', 'something wicked this way comes' + _id, 2000)
+            request.delete(`/articles/${ _id }`).then(res => {
+                console.log(res);
+                if (res.ok === 1) {
+                    context.notificator.success('Success', 'Article has been successfully deleted', 2000);
+                    context.router.push('/');
+                } else {
+                    context.notificator.error('Error', res.message, 2000);
+                }
+            })
+        }
+    }
     render () {
         // debugger;
         const { article, isEditing, editMessage } = this.state;
@@ -116,7 +135,7 @@ export default class ArticleDetails extends React.Component {
         (
             <div className="article-details">
                  {
-                    (whoIsLogged.userId === article.author) ?
+                    (article.author && whoIsLogged.userId === article.author._id) ?
                     (<Link to="" className="edit-button" onClick={this._startEdit}>{ editMessage }</Link>)
                     :
                     ('')
@@ -128,7 +147,17 @@ export default class ArticleDetails extends React.Component {
                         inputLabels={['New title', 'New link']}
                         inputTypes={['text', 'text']}
                         submitValue="Save"
-                        articleId={article._id}></MyForm>
+                        articleId={article._id}>
+                        <span>
+                            <input id="pseudo-button-article" type="checkbox"/>
+                            <label htmlFor="pseudo-button-article" className="button">Delete article</label>
+                            <span className="toggle">
+                                Do you really want to delete this article?
+                                <input type="button" className="button yesno" value="&#10003;" onClick={ this._deleteHandler() }/>
+                                <label htmlFor="pseudo-button-article" className="button yesno">&#10007;</label>
+                            </span>
+                        </span>
+                    </MyForm>
                     :
                   <ArticleItem article={ article }/>
                 }
@@ -137,4 +166,9 @@ export default class ArticleDetails extends React.Component {
         :
         (<div></div>);
     }
+}
+
+ArticleDetails.contextTypes = {
+    router: React.PropTypes.object.isRequired,
+    notificator: React.PropTypes.object
 }

@@ -7,3 +7,52 @@ form {
     form li > * {
         display: block;
     }
+    .my-form .button {
+        background-color: #872c23;
+        color: white;
+        /*font-weight: bold;*/
+        padding: 5px;
+        min-width: 75px;
+        border: none;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    }
+    .my-form input[type="checkbox"] {
+        display: none;
+    }
+    .my-form input[type="checkbox"]+label:hover {
+        cursor: pointer;
+    }
+    .my-form input[type="checkbox"]:checked+label {
+        display:none;
+    }
+    .my-form input[type="checkbox"]:not(:checked)~.toggle {
+        display: none;
+    }
+    .my-form .yesno {
+        box-sizing: border-box;
+        padding: 4px;
+        vertical-align: middle;
+        text-align: center;
+        height: 30px;
+        min-width: 40px;
+        margin-left: 5px;
+        display: inline-block;
+    }
+    .my-form .button:hover {
+        background-color: #61211b;
+    }
+
+    .my-form label:not(.button) {
+        margin: 20px 0 0 0;
+        font-size: 16px;
+    }
+
+    .my-form input[type="text"], .my-form input[type="password"] {
+        font-size: 16px;
+        height: 20px;
+        /*direction: rtl;*/
+        /*padding: 2px;*/
+        border: 1px solid black;
+        border-radius: 1px;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5);
+    }

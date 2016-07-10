@@ -247,7 +247,7 @@ function whoAmI (req, res, next) {
             username: req.user.username
         });
     } else {
-        res.status(401).json({
+        res.json({
             message: 'unauthorized'
         });
     }

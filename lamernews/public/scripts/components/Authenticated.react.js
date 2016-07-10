@@ -27,7 +27,7 @@ export default class Authenticated extends React.Component {
                     // prevLogIn: window.loggedUserId
                     isLogged: !!res.username
                 });
-                whoIsLogged = res.username ? res : null;
+                whoIsLogged = res.username ? res : {};
                 // console.log('now logged user is ', whoIsLogged);
                 self.forceUpdate();
             }

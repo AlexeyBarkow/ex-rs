@@ -121,7 +121,7 @@ export default class Login extends React.Component {
                             }
                         </li>
                         <li>
-                            <input id="subm" type="submit" value="Login"/>
+                            <input id="subm" type="submit" value="Login" className="button"/>
                         </li>
                     </ul>
                 </form>

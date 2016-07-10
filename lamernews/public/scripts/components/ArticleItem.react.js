@@ -68,6 +68,7 @@ export default class ArticleItem extends React.Component {
             query[i] = this.context.location.query[i];
         }
         query.id = article._id;
+        // debugger;
         return (
             <div>
                 <h3>
@@ -92,9 +93,23 @@ export default class ArticleItem extends React.Component {
                             target="_blank">{ article.link }</a>
                     </span>
                 </h3>
-                <p>rating: { article.rating.length }, posted by <Link to={ `/users/${ article.username || article.author.username }` }>
-                    { article.username || article.author.username }
-                </Link> { dateFormat(article.creationDate, 'yyyy-mm-dd, hh:mm TT') }</p>
+                <p>rating: { article.rating.length },
+                    {
+                        article.author ?
+                            <span> posted by <Link to={ `users/${ article.author.username }` }>
+                                          { article.author.username }
+                                      </Link>
+                            </span>
+                            :
+                            <span> author account deleted</span>
+                //         posted by <Link to={
+                //         article.author ?
+                //         `/users/${ article.author.username }`
+                //         : ''
+                //     } className={ article.author ? '' :  }>
+                //     {  article.author ? article.author.username : '[deleted]'}
+                // </Link>
+                    } { dateFormat(article.creationDate, 'yyyy-mm-dd, hh:mm TT') }</p>
             </div>
         );
     }

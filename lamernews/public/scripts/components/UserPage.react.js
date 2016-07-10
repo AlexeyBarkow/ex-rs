@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import request from '../request.js';
-import '../../styles/user-page.css'
 import MyForm from './MyForm.react.js';
 import Authenticated from './Authenticated.react.js';
 import { Link } from 'react-router';
@@ -25,6 +24,8 @@ export default class UserPage extends React.Component {
     }
 
     shouldComponentUpdate () {
+        // debugger;
+        this._getState();
         return true;
     }
 
@@ -121,6 +122,29 @@ export default class UserPage extends React.Component {
         // return true;
         // this.props.history.push('/');
     }
+
+    _deleteHandler = () => {
+        const { context } = this;
+        const { whoIsLogged } = Authenticated;
+        // debugger;
+        return function(e) {
+            // debugger;
+            e.preventDefault();
+            // context.notificator.success('Success', 'err', 2000);
+            request.delete(`/users/${ whoIsLogged.username }`)
+                .then(res => {
+                    // console.log(res);
+                    if (res.message) {
+                        context.notificator.error('Error', res.message);
+                    } else {
+                        context.notificator.success('Success', 'Account deleted. Redirecting to main page...');
+                        setTimeout(() => {
+                            context.router.push('/');
+                        }, 2000);
+                    }
+                });
+        }
+    }
     _onEditClick = (e) => {
         e.preventDefault();
         this.setState({
@@ -154,16 +178,23 @@ export default class UserPage extends React.Component {
 
                                 <li>Registered: { user.registrationDate }</li>
                                 <li>email: { user.email }</li>
-                                <li>articles:
-                                    <ul>
-                                        { user.articles.map((article, index) => {
-                                            return (
-                                                <li key={ index }>
-                                                    <ArticleItem article={ article }/>
-                                                </li>
-                                            )
-                                        }) }
-                                    </ul>
+                                <li>{
+                                        user.articles.length > 0 ?
+                                        (
+                                        <div>
+                                            <h3>user's articles:</h3>
+                                            <ul>
+                                                { user.articles.map((article, index) => {
+                                                    return (
+                                                        <li key={ index }>
+                                                            <ArticleItem article={ article }/>
+                                                        </li>
+                                                    )
+                                                }) }
+                                            </ul>
+                                        </div>)
+                                        : (<h3>this user hasn't published any articles yet</h3>)
+                                    }
                                 </li>
                             </ul>
                             )
@@ -176,7 +207,15 @@ export default class UserPage extends React.Component {
                                       inputTypes={['text', 'password', 'password']}
                                       submitValue="Update"
                                       >
-                                      <input type="button" value="Delete user account"/>
+                                      <span>
+                                          <input id="pseudo-button" type="checkbox"/>
+                                          <label htmlFor="pseudo-button" className="button">Delete user account</label>
+                                          <span className="toggle">
+                                              Do you really want to delete your account?
+                                              <input type="button" className="button yesno" value="&#10003;" onClick={ this._deleteHandler() }/>
+                                              <label htmlFor="pseudo-button" className="button yesno">&#10007;</label>
+                                          </span>
+                                      </span>
                                 </MyForm>
                             )
                         }
@@ -191,5 +230,6 @@ export default class UserPage extends React.Component {
 }
 
 UserPage.contextTypes = {
-    router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired,
+    notificator: React.PropTypes.object
 }

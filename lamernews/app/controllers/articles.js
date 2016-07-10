@@ -23,23 +23,28 @@ const User = require('../models/user.js')
 // }
 
 function sendSingleArticle (req, res, next) {
-    if (req.get('Content-Type') || req.params.id === 'random') {
+    if (req.get('Content-Type')) {
         console.log('req',req.params.id);
-        Article.findById(req.params.id).then(found => {
+        Article.find({
+            _id: req.params.id
+        }).populate('author', 'username').then(found => {
             console.log('found', found);
             if (found) {
-                found = found.toObject();
-                console.log(found);
-                found.rateCount = found.rating.length;
-                User.findById(found.author).then(author => {
-                    if (author) {
-                        found.username = author.username;
-                    }
-                    res.json(found);
-                }).catch(err => {
-                    console.log(err)
-                    res.send(500).json({message: err});
-                });
+                // found = found.toObject();
+                // console.log(found);
+                // found.rateCount = found.rating.length;
+                res.json(found[0]);
+                // User.findById(found.author).populate('autho').then(author => {
+                //     // if (author) {
+                //     //     found.username = author.username;
+                //     // } else {
+                //     //     found.username = null;
+                //     // }
+                //     res.json(found);
+                // }).catch(err => {
+                //     console.log(err)
+                //     res.send(500).json({message: err});
+                // });
             } else {
                 res.send(404).json({
                     message: 'article not found'
@@ -117,53 +122,73 @@ function sendArticles (req, res, next) {
                     'rating': 1,
                     'link': 1,
                     'creationDate': 1
-
                 }
             },
             {
                 $sort: comparator
             }
         ]).exec().then(articles => {
-            // Articles.find(articles)
-            // articles.forEac
-            // console.log(startIndex, count, sort, articles);
-            let selectedArticles = [];
-            let promises = [];
-            if (articles.length > startIndex) {
-                // var comparator = dateComparator;
+            Article.populate(articles, {
+                path: 'author',
+                select: 'username'
+            }).then(articles => {
 
-                // console.log(articles)
-                selectedArticles = articles.slice(startIndex, + startIndex + ( + count));
+                console.log('real articles', articles)
+                let selectedArticles = [];
 
-                selectedArticles.forEach((curr, index) => {
-                    promises.push(User.findById(curr.author).then(author => {
-                        // console.log('rrreeesss', curr, author, curr.author);
-                        if (author) {
-                            selectedArticles[index].username = author.username;
-                        } else {
-                            selectedArticles[index].username = "user deleted";
-                            selectedArticles[index].author = "0";
-                        }
-                    }));
-                });
-
-                // console.log(startIndex, + startIndex + count)
-                // console.log(selectedArticles);
-                // console.log(req.params);
-            }
-            Promise.all(promises).then(_ => {
-                // console.log('selected', selectedArticles);
-                // res.setHeader('Content-Type', 'application/json');
+                if (articles.length > startIndex) {
+                    selectedArticles = articles.slice(startIndex, + startIndex + ( + count));
+                }
                 res.json({
                     articles: selectedArticles,
                     totalLength: articles.length
                 });
+                // let promises = [];
+                // if (articles.length > startIndex) {
+                //     // var comparator = dateComparator;
+                //
+                //     // console.log(articles)
+                //     selectedArticles = articles.slice(startIndex, + startIndex + ( + count));
+                //
+                //     selectedArticles.forEach((curr, index) => {
+                //         promises.push(User.findById(curr.author).then(author => {
+                //             // console.log('rrreeesss', curr, author, curr.author);
+                //             if (author) {
+                //                 selectedArticles[index].username = author.username;
+                //             } else {
+                //                 selectedArticles[index].username = null;
+                //                 selectedArticles[index].author = null;
+                //             }
+                //         }));
+                //     });
+                //
+                //     // console.log(startIndex, + startIndex + count)
+                //     // console.log(selectedArticles);
+                //     // console.log(req.params);
+                // }
+                // Promise.all(promises).then(_ => {
+                //     // console.log('selected', selectedArticles);
+                //     // res.setHeader('Content-Type', 'application/json');
+                //     res.json({
+                //         articles: selectedArticles,
+                //         totalLength: articles.length
+                //     });
+                // }).catch(err => {
+                //     console.log('lolwtf');
+                //     res.status(500).json({
+                //         message: err
+                //     });
+                // });
+
+
+
             }).catch(err => {
-                console.log('lolwtf');
-                res.status(500).json({
-                    message: err
-                });
-            });
+                console.log('real error', err);
+            })
+            // Articles.find(articles)
+            // articles.forEac
+            // console.log(startIndex, count, sort, articles);
+
 
         }).catch(e => {
             res.status(500).json({
@@ -210,18 +235,7 @@ function sendRandomArticle (req, res) {
     // }).catch(err => {
     //     console.log('err', err)
     // })
-    Article.aggregate({
-        $project: {
-            '_id': 1,
-            'author': 1,
-            'title': 1,
-            'rateCount': {$size: '$rating'},
-            'rating': 1,
-            'link': 1,
-            'creationDate': 1
-
-        }
-    }).exec().then(articles => {
+    Article.find({}).populate('author', 'username').then(articles => {
         // res.setHeader('Content-Type', 'application/json');
         var article = {};
         if (articles.length > 0) {
@@ -238,7 +252,7 @@ function sendRandomArticle (req, res) {
     //should return random article
     // res.sendStatus(501);
 };
-// 
+//
 // function getAllUserArticles (req, res) {
 //     // console.log(req);
 //     // console.log(req.params)
@@ -358,7 +372,7 @@ function deleteArticle (req, res) {
             author: req.user
         }).remove().exec().then(success => {
             console.log('success', success);
-            res.setHeader('Content-Type', 'application/json');
+            // res.setHeader('Content-Type', 'application/json');
             res.json(success);
         }).catch(error => {
             console.log(error);
