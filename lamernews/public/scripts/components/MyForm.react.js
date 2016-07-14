@@ -1,12 +1,11 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../../styles/form-style.css'
+import '../../styles/form-style.css';
+
 export default class MyForm extends React.Component {
     constructor (props) {
         super(props);
-        // debugger;
-        // console.log('props',props);
         let self = this;
         this.state = props.initState;
         this.state.errorMsg = '';
@@ -14,7 +13,6 @@ export default class MyForm extends React.Component {
             this._onSubmitHandler = props.submitHandler.bind(this);
         } else {
             this._onSubmitHandler = function() {
-                // console.log(self.state);
                 return true;
             }
         }
@@ -33,7 +31,6 @@ export default class MyForm extends React.Component {
     }
     render () {
         const state = this.state;
-        // debugger
         return (
             <div>
                 <form  className="my-form" onSubmit={ this._onSubmitHandler }>

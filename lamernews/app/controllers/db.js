@@ -1,4 +1,5 @@
 'use strict';
+//currently not used
 const mongoose = require('mongoose');
 
 function dropAllTables() {

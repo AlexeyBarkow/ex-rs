@@ -1,11 +1,12 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router';
 import ArticleItem from './ArticleItem.react.js';
 import Authenticated from './Authenticated.react.js';
 import request from '../request.js';
-import { Link } from 'react-router';
 import MyForm from './MyForm.react.js';
+
 export default class ArticleDetails extends React.Component {
     constructor (props) {
         super(props);
@@ -17,25 +18,10 @@ export default class ArticleDetails extends React.Component {
     }
 
 
-    // shouldComponentUpdate () {
-    //     this._getArticle();
-    //     return true;
-    // }
-    // componentWillReceiveProps () {
-    //     debugger;
-    //     console.log(2);
-    // }
-
     _getArticle (newProps) {
         let self = this;
         newProps = newProps || this.props;
-        // debugger;
-        // console.log(2, newProps.id);
-        // console.log(`/articles/${ this.props.id }`);
         request.get(`/articles/${ newProps.id }`).then(res => {
-            // console.log(res);
-            // debugger;
-            // console.log(JSON.stringify(self.state.article) , JSON.stringify(res))
             if (JSON.stringify(self.state.article) !== JSON.stringify(res)){
                 self.setState({
                     article: res,
@@ -50,7 +36,6 @@ export default class ArticleDetails extends React.Component {
 
 
     componentWillReceiveProps (newProps) {
-        // debugger;
         this._setStandartEditingStatus();
         this._getArticle(newProps);
     }
@@ -80,25 +65,21 @@ export default class ArticleDetails extends React.Component {
         let self = this;
         return function (e) {
             e.preventDefault();
-            // debugger;
             const { newTitle, newLink } = this.state;
             if (newTitle && newLink) {
                 request.put(`/articles/${ this.props.articleId }`, {
                     title: newTitle,
                     link: newLink
                 }).then(status => {
-                    console.log(status);
-                    // debugger;
                     if (status.message === 'success') {
-                        // debugger;
                         self._setStandartEditingStatus();
                         self._getArticle();
                     } else {
                         this.setState({
                             errorMsg: status.message
-                        })
+                        });
                     }
-                })
+                });
             } else {
                 this.setState({
                     errorMsg: 'both fields should not be empty'
@@ -113,10 +94,7 @@ export default class ArticleDetails extends React.Component {
         const { _id } = this.state.article
         return function (e) {
             e.preventDefault();
-            // debugger;
-            // context.notificator.error('error', 'something wicked this way comes' + _id, 2000)
             request.delete(`/articles/${ _id }`).then(res => {
-                console.log(res);
                 if (res.ok === 1) {
                     context.notificator.success('Success', 'Article has been successfully deleted', 2000);
                     context.router.push('/');
@@ -127,10 +105,8 @@ export default class ArticleDetails extends React.Component {
         }
     }
     render () {
-        // debugger;
         const { article, isEditing, editMessage } = this.state;
         const { whoIsLogged } = Authenticated;
-        // debugger;
         return this.state.article ?
         (
             <div className="article-details">

@@ -11,26 +11,11 @@ export default class ArticleView extends React.Component {
         super(props);
     }
 
-    // getChildContext () {
-    //     const startIndex = this.props.params.startIndex;
-    //     const count = this.props.params.count;
-    //         // console.log(this.props);
-    //     const sort = this.props.location.query.sort;
-    //     // debugger;
-    //     return {
-    //         startIndex, count, sort
-    //     }
-    // }
-
     render () {
         const startIndex = this.props.params.startIndex;
         const count = this.props.params.count;
-            // console.log(this.props);
         const sort = this.props.location.query.sort;
         const selectedNews = this.props.location.query.id;
-        // console.log('qwe',startIndex, count, sort);
-            // debugger;
-        // console.log(1, selectedNews)
 
         return (
             <div className="article-view">

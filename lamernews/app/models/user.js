@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 // var article = require('./article.js')
-var userShema = Schema({
+const userShema = Schema({
     username: {
         type: String,
         unique: true,
@@ -21,5 +21,5 @@ var userShema = Schema({
         required: true
     }
 });
-var User = mongoose.model('User', userShema);
+const User = mongoose.model('User', userShema);
 module.exports = User;

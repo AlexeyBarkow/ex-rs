@@ -1,16 +1,13 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { RegistrationForm } from 'react-stormpath';
 import { browserHistory } from 'react-router';
-import '../../styles/login.css';
 import request from '../request.js';
-import { isEmail } from '../validator.js';
-// console.log('TT',Router.transitionTo);
-// console.log(Navigation);
-function isCorrectUsername(string) {
-    return /^[a-zA-Z]+[^\s]*$/.test(string);
-}
+import { isEmail, isCorrectUsername } from '../validator.js';
+import '../../styles/login.css';
+
+//move to the another package later
+
 
 export default class Register extends React.Component {
     constructor (props) {
@@ -27,7 +24,6 @@ export default class Register extends React.Component {
         };
     }
     _submitForm = (e) => {
-        // debugger;
         e.preventDefault();
         let { inputUsername, inputEmail, inputPassword, inputPasswordConfrim } = this.state;
         let state = {
@@ -38,22 +34,18 @@ export default class Register extends React.Component {
         if (!inputUsername) {
             state.usernameState = 'username field should be not empty';
             this.setState(state);
-            // next('error');
         } else if (!isCorrectUsername(inputUsername)) {
             state.usernameState = 'username is incorrect';
             this.setState(state);
         } else if (!inputEmail) {
             state.emailState = 'email should be not empty';
             this.setState(state);
-            // next('error');
         } else if (!isEmail(inputEmail)) {
             state.emailState = 'wrong email';
             this.setState(state);
-            // next('error');
         } else if (inputPassword !== inputPasswordConfrim) {
             state.passwordState = 'passwords does not match';
             this.setState(state);
-            // next('error');
         } else {
             let self = this;
             request.post('/register', {
@@ -79,27 +71,12 @@ export default class Register extends React.Component {
                         acceptMessage: 'User has been successfully created. Redirecting to login page...'
                     });
                     setTimeout(() => {
-                        // this.props.history.push('/login');
                         this.context.router.push('/login');
                     }, 2000);
 
                 }
-
-                // console.log('msg',msg);
-                // console.log(self);
-                // console.log(window.location);
-                // window.location = '/';
-                // self.transitionTo('/');
-                //todo add some error handling here
             });
-            // console.log(next(null, {
-            //     username: inputUsername,
-            //     password: inputPassword,
-            //     email: inputEmail
-            // }))
-
         }
-        // console.log(state);
     }
 
     _onChangeValue ( propertyName ) {

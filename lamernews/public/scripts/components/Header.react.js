@@ -5,14 +5,11 @@ import '../../styles/header.css';
 import { Link } from 'react-router';
 import Authenticated from './Authenticated.react.js';
 import request from '../request.js';
-// import { LoginLink, LogoutLink, NotAuthenticated, Authenticated } from 'react-stormpath';
-// console.log(LogoutLink);
 export default class Header extends React.Component {
     constructor (props) {
         super(props);
     }
     shouldComponentUpdate() {
-        // console.log('update header');
         return true;
     }
 
@@ -20,16 +17,10 @@ export default class Header extends React.Component {
         e.preventDefault();
         let self = this;
         request.post('/logout').then(res => {
-            // console.log(res);
-            // console.log('THIS IS ', this);
             self.forceUpdate();
-
-            // Authenticated.whoAmI();
         });
     }
     render () {
-        // console.log('loggedUsername', window.loggedUsername, window.loggedUserId);
-
         return (
             <header>
                 <section>
@@ -89,13 +80,3 @@ export default class Header extends React.Component {
         )
     }
 }
-//
-//
-// Header.contextTypes = {
-//     location: React.PropTypes.object,
-//     params: React.PropTypes.object
-// }
-//
-// <Link to="/logout" className="nav-button">
-//     logout
-// </Link>

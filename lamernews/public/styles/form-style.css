@@ -31,7 +31,7 @@ form {
     .my-form .yesno {
         box-sizing: border-box;
         padding: 4px;
-        vertical-align: middle;
+        vertical-align: middle;    
         text-align: center;
         height: 30px;
         min-width: 40px;

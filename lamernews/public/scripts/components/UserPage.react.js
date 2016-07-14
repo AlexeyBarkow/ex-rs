@@ -7,6 +7,7 @@ import Authenticated from './Authenticated.react.js';
 import { Link } from 'react-router';
 import { isEmail } from '../validator.js';
 import ArticleItem from './ArticleItem.react.js';
+
 export default class UserPage extends React.Component {
     constructor (props) {
         super(props);
@@ -24,51 +25,43 @@ export default class UserPage extends React.Component {
     }
 
     shouldComponentUpdate () {
-        // debugger;
         this._getState();
         return true;
     }
 
     _getState() {
-        request.get(`/users/${ this.props.params.username }`).then((msg) => {
-            // console.log('datas', msg)
-            // debugger;
-            // console.log(msg, msg.serverStatus);
-            let state = {
-                user: null,
-                isLoggedUser: false
-            };
-            if (msg.message !== 'user not found') {
-                state.user = msg;
-                // debugger;
-                if (msg._id === Authenticated.whoIsLogged.userId) {
-                    state.isLoggedUser = true;
+        request.get(`/users/${ this.props.params.username }`)
+            .then((msg) => {
+                let state = {
+                    user: null,
+                    isLoggedUser: false
+                };
+                if (msg.message !== 'user not found') {
+                    state.user = msg;
+                    // debugger;
+                    if (msg._id === Authenticated.whoIsLogged.userId) {
+                        state.isLoggedUser = true;
+                    }
+                } else {
+                    if (this.props.params.username === 'home') {
+                        // this.props.history.push('/');
+                        this.context.router.push('/');
+                    }
                 }
-            } else {
-                if (this.props.params.username === 'home') {
-                    // this.props.history.push('/');
-                    this.context.router.push('/');
-                }
-            }
-            this.setState(state);
-        });
+                this.setState(state);
+            });
     }
 
     componentWillMount () {
-        // console.log('here?')
-        // debugger
         this._getState();
-
     }
 
 
     _onSubmit () {
-        // debugger
         let self = this;
         const { whoIsLogged } = Authenticated;
         return function (e) {
             e.preventDefault();
-            // console.log(this.state);
             const { newEmail, newPassword, newPasswordDupl } = this.state;
             let msg = {},
             errorState = {
@@ -94,7 +87,6 @@ export default class UserPage extends React.Component {
                 }
             }
             if (Object.keys(msg).length > 0) {
-                console.log('wil', whoIsLogged)
                 request.put(`/users/${ whoIsLogged.username }`, msg).then(status => {
                     if (status.ok === 1) {
                         self.setState({
@@ -117,23 +109,17 @@ export default class UserPage extends React.Component {
                     });
                 }
             }
-
         }
-        // return true;
-        // this.props.history.push('/');
     }
 
     _deleteHandler = () => {
         const { context } = this;
         const { whoIsLogged } = Authenticated;
-        // debugger;
+
         return function(e) {
-            // debugger;
             e.preventDefault();
-            // context.notificator.success('Success', 'err', 2000);
             request.delete(`/users/${ whoIsLogged.username }`)
                 .then(res => {
-                    // console.log(res);
                     if (res.message) {
                         context.notificator.error('Error', res.message);
                     } else {
@@ -154,11 +140,6 @@ export default class UserPage extends React.Component {
     }
     render () {
         const {isEditing, isLoggedUser, user, editMessage } = this.state;
-
-         // console.log(JSON.stringify(this.props))
-        // console.log(isLoggedUser, user)
-        // debugger
-        // console.log(serverStatus)
         return (
             <div className="user-container">
                 { user ?

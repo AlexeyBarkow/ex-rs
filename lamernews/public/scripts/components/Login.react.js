@@ -1,8 +1,8 @@
 'use strict';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../../styles/login.css';
 import request from '../request.js';
+import '../../styles/login.css';
 
 export default class Login extends React.Component {
     constructor (props) {
@@ -17,28 +17,20 @@ export default class Login extends React.Component {
     }
     _submitForm = (e) => {
         e.preventDefault();
-        // console.log(e.data);
-        // e.preventDefault();
         const username = this.state.inputUsername;
         const password = this.state.inputPassword;
-        // const username = e.data.username;
-        // const password = e.data.password;
         this.setState({
             usernameState: username ?
                             '' : 'username field is empty',
             passwordState: password ?
                             '' : 'password field is empty'
         });
-        // let self = this;
         if (username && password) {
-            // console.log(next)
-            // console.log(smth);
             request.post('/login', {
                 username,
                 password
             }).then((res) => {
-                // console.log(res);
-                var message = res.message;
+                const message = res.message;
                 if (message === 'incorrect username') {
                     this.setState({
                         usernameState: 'username is incorrect'
@@ -48,41 +40,11 @@ export default class Login extends React.Component {
                         passwordState: 'password is incorrect'
                     });
                 } else {
-                    // console.log(success);
-                    // // next();
-                    // window.loggedUserId = res.id;
-                    // window.loggedUsername = res.username;
-                    // console.log(res);
-                    // Authenticated.whoAmI();
-                    // this.props.history.push('/');
-                    // console.log(this, self)
-                    // debugger;
-
                     this.context.router.push('/');
-
-                    // self.context.location.transitionTo('/');
                 }
-
-                //duct tape
-                // setTimeout(() => {
-                //     console.log('here')
-                //     document.getElementById('subm').removeAttribute('disabled')
-                // }, 100);
             });
         }
-        // next(new Error('error'));
-
     }
-    // _onChangeLoginValue = (e) => {
-    //     this.setState({
-    //         editingLoginValue: e.target.value
-    //     });
-    // }
-    // _onChangePasswordValue = (e) => {
-    //     this.setState({
-    //         editingPasswordValue: e.target.value
-    //     })
-    // }
 
     _onChangeValue ( propertyName ) {
         return (e) => {
@@ -92,7 +54,6 @@ export default class Login extends React.Component {
         }
     }
     render () {
-        // const { editingLoginValue, editingPasswordValue } = this.state;
         const {inputUsername, inputPassword, usernameState, passwordState, disableState } = this.state;
         return (
             <div>
@@ -126,8 +87,6 @@ export default class Login extends React.Component {
                     </ul>
                 </form>
             </div>
-
-
         );
     }
 }
@@ -136,20 +95,3 @@ Login.contextTypes = {
     location: React.PropTypes.object,
     router: React.PropTypes.object.isRequired
 }
-//
-
-// <form action={this._submitForm}>
-//     <ul>
-//         <li>
-//
-//             <label htmlFor=""></label>
-//             <input value={ editingLoginValue }
-//                    type="text"
-//                    onChange={this._onChangeLoginValue}/>
-//             <input type="submit"
-//                    value="Log In"/>
-//         </li>
-//         <li>
-//         </li>
-//     </ul>
-// </form>

@@ -26,7 +26,6 @@ ReactDOM.render((
             <Route name="register" path="/register" component={ Register }></Route>
             <Route name="user" path="/users/:username" component={ UserPage }></Route>
             <Route name="articles" path="/articles/:startIndex/:count" component={ ArticleView }></Route>
-            // <Route path="/articles/" ></Route>
             <Route name="write" path="/submit" component={ SubmitArticle }></Route>
             <Route path="*" component={ NoMatch }></Route>
         </Route>
