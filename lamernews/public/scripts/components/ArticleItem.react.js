@@ -28,7 +28,7 @@ export default class ArticleItem extends React.Component {
         request.post(`/like/${ article._id }`)
             .then(msg => {
                 if (msg.message === 'not authenticated') {
-                    self.context.notificator.error('Error', 'You should be logged in to perform this action', 4000);
+                    self.context.notificator.error('Error', 'You should be logged in to perform this action', self.context.notificator.DEFAULT_DELAY);
                 } else {
                     const itemIndex = article.rating.indexOf(Authenticated.whoIsLogged.userId);
                     if (itemIndex === -1) {
@@ -79,7 +79,7 @@ export default class ArticleItem extends React.Component {
                 <p>rating: { article.rating.length },
                     {
                         article.author ?
-                            <span> posted by <Link to={ `users/${ article.author.username }` }>
+                            <span> posted by <Link to={ `/users/${ article.author.username }` }>
                                           { article.author.username }
                                       </Link>
                             </span>

@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('./passport.js');
 const users = require('../controllers/users.js');
 const articles = require('../controllers/articles.js');
+const comments = require('../controllers/comments.js');
 const bodyParser = require('body-parser');
 
 router.use(cookieParser())
@@ -22,6 +23,9 @@ router.post('/articles/', articles.createNewArticle);
 router.put('/articles/:id', articles.updateArticle);
 router.delete('/articles/:id', articles.deleteArticle);
 router.post('/like/:id', articles.like);
+
+router.post('/comment/:id', comments.postComment);
+router.delete('/comment/:commentId', comments.deleteComment);
 
 router.get('/whoislogged', users.whoAmI);
 router.post('/login', users.login);

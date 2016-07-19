@@ -6,6 +6,8 @@ import ArticleItem from './ArticleItem.react.js';
 import Authenticated from './Authenticated.react.js';
 import request from '../request.js';
 import MyForm from './MyForm.react.js';
+import CommentView from './CommentView.React';
+import '../../styles/comment.css';
 
 export default class ArticleDetails extends React.Component {
     constructor (props) {
@@ -104,10 +106,22 @@ export default class ArticleDetails extends React.Component {
             })
         }
     }
+    onCommentPost = (res) => {
+        const { context } = this;
+        if (res.message === 'success') {
+            this._getArticle();
+        } else if (res.message === 'not authenticated') {
+            context.notificator.error('Error', 'You should be logged in to perform this action', context.notificator.DEFAULT_DELAY);
+        } else {
+            context.notificator.error('Error', 'Something wrong happened. Please, try again later', context.notificator.DEFAULT_DELAY);
+        }
+    }
+
     render () {
         const { article, isEditing, editMessage } = this.state;
+        const comments = article ? article.comments : {};
         const { whoIsLogged } = Authenticated;
-        return this.state.article ?
+        return article ?
         (
             <div className="article-details">
                  {
@@ -135,7 +149,11 @@ export default class ArticleDetails extends React.Component {
                         </span>
                     </MyForm>
                     :
-                  <ArticleItem article={ article }/>
+                    <div>
+                        <ArticleItem article={ article }/>
+                        <CommentView comments={ comments } articleId={ article._id } onCommentPost={this.onCommentPost}/>
+                    </div>
+
                 }
             </div>
         )
@@ -143,6 +161,7 @@ export default class ArticleDetails extends React.Component {
         (<div></div>);
     }
 }
+
 
 ArticleDetails.contextTypes = {
     router: React.PropTypes.object.isRequired,

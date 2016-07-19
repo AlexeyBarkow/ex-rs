@@ -11,10 +11,14 @@ const articleSchema = Schema({
     link: String,
     rating: {
         type: [Schema.Types.ObjectId],
-        ref: 'User'
+        ref: 'User',
+        default: []
     },
     creationDate: Date,
-    // comments
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 
 });
 const Article = mongoose.model('Article', articleSchema);

@@ -7,6 +7,9 @@ import ArticleList from './ArticleList.react.js';
 import ReactNotify from 'react-notify';
 import Footer from './Footer.react.js';
 
+const DEFAULT_DELAY = 3000;
+
+
 export default class App extends React.Component {
     constructor (props) {
         super(props);
@@ -33,7 +36,12 @@ export default class App extends React.Component {
                 <div className="top-container">
                     <Header />
                     { this.props.children }
-                    <ReactNotify ref={ (param) => { this._notificator = param; }}></ReactNotify>
+                    <ReactNotify ref={ (param) => {
+                        this._notificator = param;
+                        if (this._notificator) {
+                            this._notificator.DEFAULT_DELAY = DEFAULT_DELAY;
+                        }
+                    }}></ReactNotify>
                 </div>
                 <div className="notify-container" />
                 <Footer />

@@ -121,9 +121,9 @@ export default class UserPage extends React.Component {
             request.delete(`/users/${ whoIsLogged.username }`)
                 .then(res => {
                     if (res.message) {
-                        context.notificator.error('Error', res.message);
+                        context.notificator.error('Error', res.message, context.notificator.DEFAULT_DELAY);
                     } else {
-                        context.notificator.success('Success', 'Account deleted. Redirecting to main page...');
+                        context.notificator.success('Success', 'Account deleted. Redirecting to main page...', context.notificator.DEFAULT_DELAY);
                         setTimeout(() => {
                             context.router.push('/');
                         }, 2000);

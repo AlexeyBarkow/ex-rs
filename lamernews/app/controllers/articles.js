@@ -1,12 +1,24 @@
 'use strict';
 const Article = require('../models/article.js');
 const User = require('../models/user.js');
+const Comment = require('../models/comment.js')
 
 function sendSingleArticle (req, res, next) {
     if (req.get('Content-Type')) {
         Article.find({
             _id: req.params.id
-        }).populate('author', 'username').then(found => {
+        }).populate([{
+            path: 'author',
+            select: 'username'
+        },
+        {
+            path: 'comments',
+            select: 'text answerTo author creationDate',
+            populate: {
+                path: 'author',
+                select: 'username'
+            }
+        }]).then(found => {
             console.log('found', found);
             if (found) {
                 res.json(found[0]);
@@ -50,7 +62,7 @@ function like (req, res) {
 
         res.status(401).json({
             message: 'not authenticated'
-        })
+        });
     }
 }
 
@@ -135,7 +147,8 @@ function createNewArticle (req, res) {
             title: req.body.title,
             link: req.body.link,
             rating: [],
-            creationDate: new Date()
+            creationDate: new Date(),
+            comments: []
         });
         console.log(article);
         article.save().then((success) => {
@@ -155,12 +168,13 @@ function createNewArticle (req, res) {
             message: 'not authenticated'
         });
     }
-};
+}
+
 function updateArticle (req, res) {
     if (req.isAuthenticated()) {
         Article.findById(req.params.id).then(article => {
             if (article) {
-                if ( '' + article.author === '' + req.user._id) {
+                if ('' + article.author === '' + req.user._id) {
                     const title = req.body.title;
                     const link = req.body.link;
                     let newArticle = {};
@@ -205,7 +219,7 @@ function deleteArticle (req, res) {
             res.json(success);
         }).catch(error => {
             console.log(error);
-            res.status(500);
+            res.status(500).json(error);
         });
     }
 };
