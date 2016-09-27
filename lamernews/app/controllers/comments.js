@@ -4,9 +4,7 @@ const Article = require('../models/article.js');
 
 function postComment(req, res) {
     if (req.isAuthenticated()) {
-        console.log('post', req.params);
         Article.findById(req.params.id).then(article => {
-            console.log('article',article);
             if (article) {
                 let comment = new Comment({
                     author: req.user,
@@ -14,7 +12,6 @@ function postComment(req, res) {
                     answerTo: req.body.answerTo,
                     creationDate: new Date()
                 });
-                console.log(comment);
                 comment.save().then((success) => {
                     article.comments.push(comment._id);
                     article.save();
@@ -42,7 +39,6 @@ function postComment(req, res) {
 
 function deleteComment(req, res) {
     if (req.isAuthenticated()) {
-        console.log('adscnsadkljfg d',req.params);
         Comment.findOne( {
             _id: req.params.commentId,
             author: req.user
@@ -56,6 +52,12 @@ function deleteComment(req, res) {
             console.log(error);
             res.status(500).json(error);
         });
+    }
+}
+
+function updateComment(req, res) {
+    if (req.isAuthenticated()) {
+
     }
 }
 
